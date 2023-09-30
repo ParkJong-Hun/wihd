@@ -7,14 +7,14 @@ plugins {
 
 android {
     namespace = "co.kr.parkjonghun.whatishedoingwithandroid.mobile"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "co.kr.parkjonghun.whatishedoingwithandroid.mobile"
         minSdk = 29
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.1.0.01"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
