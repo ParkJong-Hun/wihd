@@ -12,6 +12,7 @@ android {
     defaultConfig {
         applicationId = "co.kr.parkjonghun.whatishedoingwithandroid.mobile"
         minSdk = 29
+        // noinspection EditedTargetSdkVersion
         targetSdk = 34
         versionCode = 1
         versionName = "0.1.0.01"
