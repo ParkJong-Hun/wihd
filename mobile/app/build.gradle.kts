@@ -1,8 +1,8 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.com.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.com.google.gms.google.services)
+    alias(libs.plugins.agp)
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.gms)
 }
 
 android {
@@ -53,20 +53,21 @@ android {
 }
 
 dependencies {
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.activity.compose)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.ui)
-    implementation(libs.ui.graphics)
-    implementation(libs.ui.tooling.preview)
-    implementation(libs.material3)
+    implementation(libs.jetpack.core.ktx)
+    implementation(libs.jetpack.lifecycle.runtime.ktx)
+    implementation(libs.jetpack.activity.compose)
+    implementation(platform(libs.jetpack.compose.bom))
+    implementation(libs.jetpack.compose.ui)
+    implementation(libs.jetpack.compose.ui.graphics)
+    implementation(libs.jetpack.compose.ui.tooling.preview)
+    implementation(libs.jetpack.compose.material3)
     implementation(platform(libs.firebase.bom))
+    implementation(libs.jetpack.navigation.compose)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-    androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.ui.test.junit4)
-    debugImplementation(libs.ui.tooling)
-    debugImplementation(libs.ui.test.manifest)
+    androidTestImplementation(libs.jetpack.junit)
+    androidTestImplementation(libs.jetpack.espresso.core)
+    androidTestImplementation(platform(libs.jetpack.compose.bom))
+    androidTestImplementation(libs.jetpack.compose.ui.test.junit4)
+    debugImplementation(libs.jetpack.compose.ui.tooling)
+    debugImplementation(libs.jetpack.compose.ui.test.manifest)
 }
