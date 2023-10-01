@@ -3,6 +3,5 @@
 plugins {
     alias(libs.plugins.androidGradlePlugin) apply false
     alias(libs.plugins.kotlinPlugin) apply false
-    alias(libs.plugins.kspPlugin) apply false
 }
 true // Needed to make the Suppress annotation work for the plugins block
