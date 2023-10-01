@@ -1,8 +1,10 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.agp)
-    alias(libs.plugins.kotlin)
-    alias(libs.plugins.gms)
+    alias(libs.plugins.androidGradlePlugin)
+    alias(libs.plugins.kotlinPlugin)
+    alias(libs.plugins.gmsPlugin)
+    alias(libs.plugins.daggerHiltPlugin)
+    alias(libs.plugins.kspPlugin)
 }
 
 android {
@@ -63,6 +65,8 @@ dependencies {
     implementation(libs.jetpack.compose.material3)
     implementation(platform(libs.firebase.bom))
     implementation(libs.jetpack.navigation.compose)
+    implementation(libs.dagger.hilt)
+    ksp(libs.dagger.hilt.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.jetpack.junit)
     androidTestImplementation(libs.jetpack.espresso.core)
