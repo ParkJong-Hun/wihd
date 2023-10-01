@@ -3,5 +3,6 @@
 plugins {
     alias(libs.plugins.androidGradlePlugin) apply false
     alias(libs.plugins.kotlinPlugin) apply false
+    alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
 }
 true // Needed to make the Suppress annotation work for the plugins block
