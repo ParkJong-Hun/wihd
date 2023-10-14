@@ -9,6 +9,7 @@ group = "co.kr.parkjonghun.whatishedoingwithandroid.mobile.buildlogic"
 repositories {
     google()
     mavenCentral()
+    gradlePluginPortal()
 }
 
 val compileKotlin: KotlinCompile by tasks
@@ -20,34 +21,29 @@ java {
 }
 
 dependencies {
-    compileOnly(libs.plugins.androidGradlePlugin)
-    compileOnly(libs.plugins.androidGradleLibraryPlugin)
-    compileOnly(libs.plugins.kotlinPlugin)
-    compileOnly(libs.plugins.gmsPlugin)
-    compileOnly(libs.plugins.daggerHiltPlugin)
-    compileOnly(libs.plugins.kspPlugin)
+    implementation(libs.bundles.plugins)
 }
 
 gradlePlugin {
     plugins {
         register("core") {
-            id = "parkjonghun.whatishedoingwithandroid.mobile.core"
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.core"
             implementationClass = "CoreConventionPlugin"
         }
         register("compose") {
-            id = "parkjonghun.whatishedoingwithandroid.mobile.compose"
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.compose"
             implementationClass = "ComposeConventionPlugin"
         }
         register("dagger") {
-            id = "parkjonghun.whatishedoingwithandroid.mobile.dagger"
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.dagger"
             implementationClass = "DaggerConventionPlugin"
         }
         register("firebase") {
-            id = "parkjonghun.whatishedoingwithandroid.mobile.firebase"
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase"
             implementationClass = "FirebaseConventionPlugin"
         }
         register("test") {
-            id = "parkjonghun.whatishedoingwithandroid.mobile.firebase"
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase"
             implementationClass = "TestConventionPlugin"
         }
     }

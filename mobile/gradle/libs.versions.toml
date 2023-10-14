@@ -14,6 +14,7 @@ jetpack-junit = "1.1.5"
 jetpack-espresso-core = "3.5.1"
 jetpack-compose-bom = "2023.09.02"
 jetpack-compose = "1.5.2"
+jetbrain-compose = "1.5.0"
 jetpack-compose-material3 = "1.1.2"
 junit = "4.13.2"
 firebase-bom = "32.3.1"
@@ -21,6 +22,13 @@ dagger-hilt = "2.48"
 
 
 [libraries]
+androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlinPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+jetbrainCompoesPlugin = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "jetbrain-compose" }
+daggerHiltPlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "dagger-hilt" }
+kspPlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+gmsPlugin = { group = "com.google.gms", name = "google-services", version.ref = "gms" }
+
 # jetpack
 jetpack-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "jetpack-core-ktx" }
 jetpack-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "jetpack-activity-compose" }
@@ -57,3 +65,11 @@ daggerHiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "dagge
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [bundles]
+plugins = [
+    "androidGradlePlugin",
+    "kotlinPlugin",
+    "daggerHiltPlugin",
+    "jetbrainCompoesPlugin",
+    "kspPlugin",
+    "gmsPlugin",
+]
