@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.gmsPlugin)
     alias(libs.plugins.daggerHiltPlugin)
     alias(libs.plugins.kspPlugin)
+    id("parkjonghun.whatishedoingwithandroid.mobile.convention.compose")
 }
 
 android {
@@ -40,12 +41,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.2"
     }
     packaging {
         resources {
