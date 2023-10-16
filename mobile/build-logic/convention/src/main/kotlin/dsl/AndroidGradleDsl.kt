@@ -1,6 +1,5 @@
 package dsl
 
-import com.android.build.api.dsl.CommonExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.TestedExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
@@ -23,19 +22,17 @@ fun Project.android(action: TestedExtension.() -> Unit) {
 
 fun Project.setupAndroid() {
     android {
-        namespace?.let {
-            this.namespace = it
-        }
+        namespace?.let { this.namespace = it }
         compileSdkVersion(34)
 
         defaultConfig {
-            minSdk = 23
-            targetSdk = 33
+            minSdk = 29
+            targetSdk = 34
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_11
-            targetCompatibility = JavaVersion.VERSION_11
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
             isCoreLibraryDesugaringEnabled = true
         }
         dependencies {
@@ -45,22 +42,6 @@ fun Project.setupAndroid() {
             unitTests {
                 isIncludeAndroidResources = true
             }
-        }
-
-        (this as CommonExtension<*, *, *, *, *>).lint {
-            val filename = displayName.replace(":", "_").replace("[\\s']".toRegex(), "")
-
-            xmlReport = true
-            xmlOutput =
-                rootProject.layout.buildDirectory.file("lint-reports/lint-results-${filename}.xml")
-                    .get().asFile
-
-            htmlReport = true
-            htmlOutput =
-                rootProject.layout.buildDirectory.file("lint-reports/lint-results-${filename}.html")
-                    .get().asFile
-
-            sarifReport = false
         }
     }
 }
