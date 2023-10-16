@@ -42,9 +42,9 @@ gradlePlugin {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase"
             implementationClass = "FirebaseConventionPlugin"
         }
-        register("test") {
-            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase"
-            implementationClass = "TestConventionPlugin"
+        register("kotlin") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin"
+            implementationClass = "KotlinConventionPlugin"
         }
     }
 }
