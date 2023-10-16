@@ -1,6 +1,6 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.core")
+    id("parkjonghun.whatishedoingwithandroid.mobile.convention.android")
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.compose")
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.dagger")
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.firebase")

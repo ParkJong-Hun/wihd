@@ -26,9 +26,9 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        register("core") {
-            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.core"
-            implementationClass = "CoreConventionPlugin"
+        register("android") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.android"
+            implementationClass = "AndroidConventionPlugin"
         }
         register("compose") {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.compose"
