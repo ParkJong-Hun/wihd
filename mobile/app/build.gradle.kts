@@ -2,10 +2,10 @@
 plugins {
     alias(libs.plugins.androidGradlePlugin)
     alias(libs.plugins.kotlinPlugin)
-    alias(libs.plugins.gmsPlugin)
-    alias(libs.plugins.daggerHiltPlugin)
     alias(libs.plugins.kspPlugin)
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.compose")
+    id("parkjonghun.whatishedoingwithandroid.mobile.convention.dagger")
+    id("parkjonghun.whatishedoingwithandroid.mobile.convention.firebase")
 }
 
 android {
@@ -50,23 +50,5 @@ android {
 }
 
 dependencies {
-    implementation(libs.jetpack.core.ktx)
-    implementation(libs.jetpack.lifecycle.runtime.ktx)
-    implementation(libs.jetpack.activity.compose)
-    implementation(platform(libs.jetpack.compose.bom))
-    implementation(libs.jetpack.compose.ui)
-    implementation(libs.jetpack.compose.ui.graphics)
-    implementation(libs.jetpack.compose.ui.tooling.preview)
-    implementation(libs.jetpack.compose.material3)
-    implementation(platform(libs.firebase.bom))
     implementation(libs.jetpack.navigation.compose)
-    implementation(libs.dagger.hilt)
-    ksp(libs.dagger.hilt.compiler)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.jetpack.junit)
-    androidTestImplementation(libs.jetpack.espresso.core)
-    androidTestImplementation(platform(libs.jetpack.compose.bom))
-    androidTestImplementation(libs.jetpack.compose.ui.test.junit4)
-    debugImplementation(libs.jetpack.compose.ui.tooling)
-    debugImplementation(libs.jetpack.compose.ui.test.manifest)
 }
