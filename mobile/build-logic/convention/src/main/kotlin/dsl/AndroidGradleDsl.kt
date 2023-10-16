@@ -6,7 +6,6 @@ import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.dependencies
 
 fun Project.androidApplication(action: BaseAppModuleExtension.() -> Unit) {
     extensions.configure(action)
@@ -33,10 +32,6 @@ fun Project.setupAndroid() {
         compileOptions {
             sourceCompatibility = JavaVersion.VERSION_17
             targetCompatibility = JavaVersion.VERSION_17
-            isCoreLibraryDesugaringEnabled = true
-        }
-        dependencies {
-            add("coreLibraryDesugaring", libs.library("androidDesugarJdkLibs"))
         }
         testOptions {
             unitTests {
