@@ -23,6 +23,7 @@ class ComposeConventionPlugin : Plugin<Project> {
                 implementation(libs.library("jetpack-activity-compose"))
                 implementation(libs.library("jetpack-core-ktx"))
                 implementation(libs.library("jetpack-compose-ui"))
+                implementation(libs.library("jetpack-compose-ui-graphics"))
                 implementation(libs.library("jetpack-compose-material3"))
                 implementation(libs.library("jetpack-compose-ui-tooling-preview"))
                 implementation(libs.library("jetpack-lifecycle-runtime-ktx"))
