@@ -1,8 +1,12 @@
 import dsl.android
+import dsl.implementation
 import dsl.kotlinOptions
+import dsl.library
+import dsl.libs
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.dependencies
 
 @Suppress("unused")
 class KotlinConventionPlugin : Plugin<Project> {
@@ -19,6 +23,10 @@ class KotlinConventionPlugin : Plugin<Project> {
                 kotlinOptions {
                     jvmTarget = JavaVersion.VERSION_17.toString()
                 }
+            }
+            dependencies {
+                implementation(libs.library("kotlinx-coroutines-core"))
+                implementation(libs.library("kotlinx-datetime"))
             }
         }
     }
