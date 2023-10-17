@@ -19,7 +19,7 @@ jetpack-compose-compiler = "1.5.2"
 jetpack-compose-material3 = "1.1.2"
 junit = "4.13.2"
 kotlinx-coroutines-core = "1.7.3"
-kotlinx-datetime = "0.4.0"
+kotlinx-datetime = "0.4.1"
 firebase-bom = "32.3.1"
 dagger-hilt = "2.48"
 
@@ -53,7 +53,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 # kotlinx
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
-kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version = "kotlinx-datetime" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
 # firebase
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
