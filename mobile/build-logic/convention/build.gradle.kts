@@ -38,6 +38,10 @@ gradlePlugin {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.dagger"
             implementationClass = "DaggerConventionPlugin"
         }
+        register("feature") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.feature"
+            implementationClass = "FeatureConventionPlugin"
+        }
         register("firebase") {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase"
             implementationClass = "FirebaseConventionPlugin"
