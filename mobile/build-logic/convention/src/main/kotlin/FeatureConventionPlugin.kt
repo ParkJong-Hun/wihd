@@ -5,10 +5,10 @@ class FeatureConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply("arkjonghun.whatishedoingwithandroid.mobile.convention.android")
-                apply("arkjonghun.whatishedoingwithandroid.mobile.convention.kotlin")
-                apply("arkjonghun.whatishedoingwithandroid.mobile.convention.compose")
-                apply("arkjonghun.whatishedoingwithandroid.mobile.convention.dagger")
+                apply("parkjonghun.whatishedoingwithandroid.mobile.convention.android")
+                apply("parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin")
+                apply("parkjonghun.whatishedoingwithandroid.mobile.convention.compose")
+                apply("parkjonghun.whatishedoingwithandroid.mobile.convention.dagger")
             }
         }
     }
