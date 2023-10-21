@@ -38,5 +38,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature:main"))
+
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
+
     implementation(libs.jetpack.navigation.compose)
 }
