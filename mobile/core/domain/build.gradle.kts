@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":core:ui"))
     implementation(libs.jetpack.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)

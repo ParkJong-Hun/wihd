@@ -4,3 +4,7 @@ plugins {
 }
 
 android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.feature.main"
+
+dependencies {
+    implementation(project(":core:domain"))
+}

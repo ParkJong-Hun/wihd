@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":core:domain"))
     implementation(libs.jetpack.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
