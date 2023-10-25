@@ -42,7 +42,6 @@ dependencies {
 
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
-    implementation(project(":core:ui"))
 
     implementation(libs.jetpack.navigation.compose)
 }
