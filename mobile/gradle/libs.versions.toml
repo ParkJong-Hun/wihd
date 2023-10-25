@@ -76,7 +76,6 @@ kotlinPlugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 gmsPlugin = { id = "com.google.gms.google-services", version.ref = "gms" }
 daggerHiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-com-android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp" }
 
 [bundles]
 plugins = [
