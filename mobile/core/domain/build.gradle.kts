@@ -1,6 +1,5 @@
 plugins {
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.library")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.android")
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.dagger")
 }
 
