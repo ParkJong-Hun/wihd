@@ -50,5 +50,9 @@ gradlePlugin {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin"
             implementationClass = "KotlinConventionPlugin"
         }
+        register("library") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.library"
+            implementationClass = "LibraryConventionPlugin"
+        }
     }
 }
