@@ -5,6 +5,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withType
 
+@Suppress("unused")
 class LibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
