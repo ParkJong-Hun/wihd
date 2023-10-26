@@ -7,16 +7,16 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
         google()
         mavenCentral()
     }
 }
-
 rootProject.name = "What-is-He-doing-with-Android"
-include(":app")
-include(":core")
-include(":core:data")
-include(":core:domain")
-include(":feature:main")
+include(
+    ":app",
+    ":core:data",
+    ":core:domain",
+    ":feature:main"
+)
