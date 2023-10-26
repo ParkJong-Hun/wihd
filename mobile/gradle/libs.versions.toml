@@ -9,13 +9,15 @@ jetbrain-compose = "1.5.0"
 # libraries
 jetpack-core-ktx = "1.12.0"
 jetpack-activity-compose = "1.7.2"
+jetpack-fragment = "1.6.1"
 jetpack-lifecycle-runtime-ktx = "2.6.2"
 jetpack-navigation-compose = "2.7.3"
+jetpack-hilt-navigation = "1.0.0"
 jetpack-junit = "1.1.5"
 jetpack-espresso-core = "3.5.1"
-jetpack-compose-bom = "2023.09.02"
-jetpack-compose = "1.5.2"
-jetpack-compose-compiler = "1.5.2"
+jetpack-compose-bom = "2023.10.01"
+jetpack-compose = "1.5.4"
+jetpack-compose-compiler = "1.5.3"
 jetpack-compose-material3 = "1.1.2"
 junit = "4.13.2"
 kotlinx-coroutines-core = "1.7.3"
@@ -38,11 +40,13 @@ gmsPlugin = { group = "com.google.gms", name = "google-services", version.ref = 
 # jetpack
 jetpack-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "jetpack-core-ktx" }
 jetpack-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "jetpack-activity-compose" }
+jetpack-fragment = { group = "androidx.fragment", name = "fragment", version.ref = "jetpack-fragment" }
 jetpack-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "jetpack-navigation-compose" }
 jetpack-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "jetpack-lifecycle-runtime-ktx" }
 jetpack-junit = { group = "androidx.test.ext", name = "junit", version.ref = "jetpack-junit" }
 jetpack-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "jetpack-espresso-core" }
 jetpack-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "jetpack-compose-bom" }
+jetpack-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "jetpack-hilt-navigation" }
 jetpack-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "jetpack-compose" }
 jetpack-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "jetpack-compose" }
 jetpack-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "jetpack-compose" }
@@ -63,7 +67,7 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 
 # dagger
 dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-hilt" }
-dagger-hilt-testing = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger-hilt" }
+dagger-hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "dagger-hilt" }
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger-hilt" }
 annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }

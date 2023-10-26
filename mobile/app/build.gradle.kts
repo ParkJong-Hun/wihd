@@ -43,4 +43,5 @@ dependencies {
     implementation(project(":core:domain"))
 
     implementation(libs.jetpack.navigation.compose)
+    implementation(libs.jetpack.hilt.navigation)
 }

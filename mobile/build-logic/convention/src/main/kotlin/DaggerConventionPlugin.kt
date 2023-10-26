@@ -26,6 +26,7 @@ class DaggerConventionPlugin : Plugin<Project> {
             dependencies {
                 implementation(libs.library("dagger-hilt"))
                 // https://issuetracker.google.com/issues/237567009
+                implementation(libs.library("jetpack-fragment"))
                 ksp(libs.library("dagger-hilt-compiler"))
             }
         }
