@@ -22,6 +22,8 @@ java {
 
 dependencies {
     implementation(libs.bundles.plugins)
+    // https://github.com/google/dagger/issues/3068#issuecomment-1470534930
+    implementation(libs.javapoet)
 }
 
 gradlePlugin {

@@ -5,4 +5,17 @@ plugins {
     alias(libs.plugins.kotlinPlugin) apply false
     alias(libs.plugins.kspPlugin) apply false
 }
-true // Needed to make the Suppress annotation work for the plugins block
+
+tasks.register("clean", Delete::class) {
+    delete(rootProject.layout.buildDirectory)
+}
+
+buildscript {
+    configurations.all {
+        resolutionStrategy.eachDependency {
+            when {
+                requested.name == "javapoet" -> useVersion("1.13.0")
+            }
+        }
+    }
+}
