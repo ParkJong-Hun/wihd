@@ -12,14 +12,12 @@ import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import javax.inject.Singleton
 
-// FIXME
 @Module
 @InstallIn(SingletonComponent::class, ViewModelComponent::class)
+@Suppress("unused")
 class ApplicationModule {
     @Provides
-    @Singleton
     fun provideSampleDataSource(): SampleDataSource {
         return SampleDataSource()
     }
