@@ -1,9 +1,9 @@
 plugins {
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.android")
+    id("parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin")
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.compose")
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.dagger")
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.firebase")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin")
 }
 
 android {
