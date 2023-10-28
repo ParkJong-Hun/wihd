@@ -18,6 +18,6 @@ include(
     ":app",
     ":core:data",
     ":core:domain",
-    ":core:ui"
+    ":core:ui",
     ":feature:main",
 )
