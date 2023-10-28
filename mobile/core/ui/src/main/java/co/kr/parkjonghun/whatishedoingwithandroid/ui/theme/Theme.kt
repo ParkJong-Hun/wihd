@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.mobile.ui.theme
+package co.kr.parkjonghun.whatishedoingwithandroid.ui.theme
 
 import android.app.Activity
 import android.os.Build
