@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -6,13 +7,17 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
         google()
         mavenCentral()
     }
 }
-
-rootProject.name = "mobile"
-include(":app")
- 
+rootProject.name = "What-is-He-doing-with-Android"
+include(
+    ":app",
+    ":core:data",
+    ":core:domain",
+    ":core:ui",
+    ":feature:main",
+)

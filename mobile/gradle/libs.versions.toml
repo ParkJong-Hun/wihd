@@ -1,33 +1,96 @@
 [versions]
-agp = "8.1.1"
-org-jetbrains-kotlin-android = "1.8.10"
-core-ktx = "1.9.0"
+# plugins
+agp = "8.1.2"
+kotlin = "1.9.10"
+gms = "4.4.0"
+ksp = "1.9.10-1.0.13"
+jetbrain-compose = "1.5.0"
+
+# libraries
+jetpack-core-ktx = "1.12.0"
+jetpack-activity-compose = "1.7.2"
+jetpack-fragment = "1.6.1"
+jetpack-lifecycle-runtime-ktx = "2.6.2"
+jetpack-navigation-compose = "2.7.3"
+jetpack-hilt-navigation = "1.0.0"
+jetpack-junit = "1.1.5"
+jetpack-espresso-core = "3.5.1"
+jetpack-compose-bom = "2023.10.01"
+jetpack-compose = "1.5.4"
+jetpack-compose-compiler = "1.5.3"
+jetpack-compose-material3 = "1.1.2"
+jetpack-datastore-preferences = "1.0.0"
 junit = "4.13.2"
-androidx-test-ext-junit = "1.1.5"
-espresso-core = "3.5.1"
-lifecycle-runtime-ktx = "2.6.1"
-activity-compose = "1.7.0"
-compose-bom = "2023.03.00"
+kotlinx-coroutines-core = "1.7.3"
+kotlinx-datetime = "0.4.1"
+firebase-bom = "32.3.1"
+dagger-hilt = "2.48.1"
+annotation = "1.6.0"
+appcompat = "1.6.1"
+material = "1.10.0"
+javapoet = "1.13.0"
+
 
 [libraries]
-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlinPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+jetbrainCompoesPlugin = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "jetbrain-compose" }
+daggerHiltPlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "dagger-hilt" }
+kspPlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+gmsPlugin = { group = "com.google.gms", name = "google-services", version.ref = "gms" }
+
+# jetpack
+jetpack-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "jetpack-core-ktx" }
+jetpack-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "jetpack-activity-compose" }
+jetpack-fragment = { group = "androidx.fragment", name = "fragment", version.ref = "jetpack-fragment" }
+jetpack-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "jetpack-navigation-compose" }
+jetpack-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "jetpack-lifecycle-runtime-ktx" }
+jetpack-junit = { group = "androidx.test.ext", name = "junit", version.ref = "jetpack-junit" }
+jetpack-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "jetpack-espresso-core" }
+jetpack-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "jetpack-compose-bom" }
+jetpack-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "jetpack-hilt-navigation" }
+jetpack-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "jetpack-compose" }
+jetpack-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "jetpack-compose" }
+jetpack-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "jetpack-compose" }
+jetpack-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "jetpack-compose" }
+jetpack-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "jetpack-compose" }
+jetpack-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "jetpack-compose" }
+jetpack-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "jetpack-compose-material3" }
+jetpack-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "jetpack-datastore-preferences" }
+# junit
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
-ui = { group = "androidx.compose.ui", name = "ui" }
-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+# kotlinx
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
+
+# firebase
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
+
+# dagger
+dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-hilt" }
+dagger-hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "dagger-hilt" }
+dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger-hilt" }
+annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
 
 [plugins]
-com-android-application = { id = "com.android.application", version.ref = "agp" }
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
+androidGradlePlugin = { id = "com.android.application", version.ref = "agp" }
+androidGradleLibraryPlugin = { id = "com.android.library", version.ref = "agp" }
+kotlinPlugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+gmsPlugin = { id = "com.google.gms.google-services", version.ref = "gms" }
+daggerHiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }
+kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [bundles]
-
+plugins = [
+    "androidGradlePlugin",
+    "kotlinPlugin",
+    "daggerHiltPlugin",
+    "jetbrainCompoesPlugin",
+    "kspPlugin",
+    "gmsPlugin",
+]
