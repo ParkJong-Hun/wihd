@@ -10,6 +10,7 @@ dependencies {
     implementation(libs.jetpack.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.jetpack.datastore.preferences)
     testImplementation(libs.junit)
     androidTestImplementation(libs.jetpack.junit)
     androidTestImplementation(libs.jetpack.espresso.core)
