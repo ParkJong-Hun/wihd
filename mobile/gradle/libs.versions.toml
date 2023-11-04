@@ -11,6 +11,7 @@ jetpack-core-ktx = "1.12.0"
 jetpack-activity-compose = "1.8.0"
 jetpack-fragment = "1.6.1"
 jetpack-lifecycle-runtime-ktx = "2.6.2"
+jetpack-core-splashscreen = "1.0.1"
 jetpack-navigation-compose = "2.7.4"
 jetpack-hilt-navigation = "1.0.0"
 jetpack-junit = "1.1.5"
@@ -45,6 +46,7 @@ jetpack-activity-compose = { group = "androidx.activity", name = "activity-compo
 jetpack-fragment = { group = "androidx.fragment", name = "fragment", version.ref = "jetpack-fragment" }
 jetpack-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "jetpack-navigation-compose" }
 jetpack-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "jetpack-lifecycle-runtime-ktx" }
+jetpack-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "jetpack-core-splashscreen" }
 jetpack-junit = { group = "androidx.test.ext", name = "junit", version.ref = "jetpack-junit" }
 jetpack-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "jetpack-espresso-core" }
 jetpack-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "jetpack-compose-bom" }
