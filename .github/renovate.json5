@@ -1,0 +1,65 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    "github>whitesource/merge-confidence:beta",
+  ],
+  "baseBranches": [
+    "master"
+  ],
+  "rebaseWhen": "never",
+  "timezone": "Asia/Tokyo",
+  "prHourlyLimit": 0,
+  "pruneBranchAfterAutomerge": true,
+  "pruneStaleBranches": true,
+  "automergeStrategy": "merge-commit",
+  "labels": [
+    "renovate-update"
+  ],
+  "enabledManagers": [
+    "github-actions",
+    "gradle",
+    "gradle-wrapper"
+  ],
+  "packageRules": [
+    {
+      "groupName": "renovate-update",
+      "prPriority": -1,
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDatasources": [
+        "github-tags"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "automerge": true,
+      "platformAutomerge": true,
+      "pinDigests": true,
+      "schedule": [
+        "after 10am before 7pm on saturday"
+      ],
+    },
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true
+  },
+  "osvVulnerabilityAlerts": true,
+  "minor": {
+    "minimumReleaseAge": "3 days",
+  },
+  "patch": {
+    "minimumReleaseAge": "2 days",
+  }
+}
