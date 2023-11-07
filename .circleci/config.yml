@@ -24,6 +24,8 @@ jobs:
   build:
     executor:
       name: android/android-machine
+      resource-class: large
+      tag: 2023.11.1
 
     steps:
       - run:
@@ -35,4 +37,4 @@ workflows:
   ci:
     jobs:
       - test
-#      - build
+      - build
