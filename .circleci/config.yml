@@ -29,12 +29,12 @@ jobs:
   build:
     executor:
       name: android/android-machine
-      
-      steps:
-        - run:
-            name: Assemble release build
-            command: |
-              ./gradlew assembleRelease
+
+    steps:
+      - run:
+          name: Assemble release build
+          command: |
+            ./gradlew assembleRelease
 
 workflows:
   ci:
