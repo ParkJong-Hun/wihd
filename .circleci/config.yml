@@ -7,13 +7,10 @@ jobs:
   test:
     executor:
       name: android/android-machine
+    working_directory: ~/project/mobile
 
     steps:
       - checkout
-
-      - run:
-          name: Change to App Directory
-          command: cd mobile
 
       - run:
           name: Show Current Directory
