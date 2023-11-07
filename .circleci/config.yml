@@ -1,0 +1,44 @@
+version: 2.1
+
+orbs:
+  android: circleci/android@2.3.0
+
+jobs:
+  test:
+    executor:
+      name: android/android-machine
+      resource-class: large
+      tag: 2023.11.1
+    working_directory: ~/project/mobile
+    steps:
+      - checkout:
+          path: ~/project
+
+      - android/run-tests:
+          test-command: ./gradlew lint testDebug --continue
+
+      - android/start-emulator-and-run-tests:
+          test-command: ./gradlew connectedDebugAndroidTest
+          system-image: system-images;android-25;google_apis;x86
+  
+  build:
+    executor:
+      name: android/android-machine
+      resource-class: large
+      tag: 2023.11.1
+    working_directory: ~/project/mobile
+
+    steps:
+      - checkout:
+          path: ~/project
+
+      - run:
+          name: Assemble release build
+          command: |
+            ./gradlew assembleRelease
+
+workflows:
+  ci:
+    jobs:
+      - test
+      - build
