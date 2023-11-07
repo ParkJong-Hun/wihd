@@ -20,6 +20,9 @@ jobs:
             ls -l
 
       - android/run-tests:
+          command: |
+            current_directory=$(pwd)
+            echo "Current Directory: $current_directory"
           test-command: ./gradlew lint testDebug --continue
 
       - android/start-emulator-and-run-tests:
