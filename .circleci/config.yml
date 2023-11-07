@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   build-and-test:
-    working_directory: ~/project/mobile
+    working_directory: ~/mobile
     executor:
       name: android/android-machine
 
