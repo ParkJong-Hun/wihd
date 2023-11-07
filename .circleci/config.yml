@@ -7,18 +7,16 @@ jobs:
   test:
     executor:
       name: android/android-machine
-
+    working_directory: /mobile
     steps:
       - checkout
 
       - android/run-tests:
           test-command: ./gradlew lint testDebug --continue
-          working_directory: mobile
 
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew connectedDebugAndroidTest
           system-image: system-images;android-25;google_apis;x86
-          working_directory: mobile
   
   build:
     executor:
@@ -29,7 +27,6 @@ jobs:
           name: Assemble release build
           command: |
             ./gradlew assembleRelease
-          working_directory: mobile
 
 workflows:
   ci:
