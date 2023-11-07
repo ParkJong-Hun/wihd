@@ -29,6 +29,9 @@ jobs:
     working_directory: ~/project/mobile
 
     steps:
+      - checkout:
+          path: ~/project
+
       - run:
           name: Assemble release build
           command: |
