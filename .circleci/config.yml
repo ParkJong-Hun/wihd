@@ -12,17 +12,17 @@ jobs:
       - checkout
 
       - run:
-          name: Change Directory
+          name: Change to App Directory
+          command: cd mobile
+
+      - run:
+          name: Show Current Directory
           command: |
-            cd mobile
             current_directory=$(pwd)
             echo "Current Directory: $current_directory"
             ls -l
 
       - android/run-tests:
-          command: |
-            current_directory=$(pwd)
-            echo "Current Directory: $current_directory"
           test-command: ./gradlew lint testDebug --continue
 
       - android/start-emulator-and-run-tests:
