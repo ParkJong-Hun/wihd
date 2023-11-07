@@ -7,6 +7,8 @@ jobs:
   test:
     executor:
       name: android/android-machine
+      resource-class: large
+      tag: 2023.11.1
     working_directory: ~/project/mobile
     steps:
       - checkout:
