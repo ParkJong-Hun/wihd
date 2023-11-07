@@ -5,11 +5,13 @@ orbs:
 
 jobs:
   build-and-test:
-    working_directory: ~/mobile
     executor:
       name: android/android-machine
 
     steps:
+      - run:
+          command: |
+            ls
       - checkout
 
       - android/run-tests:
