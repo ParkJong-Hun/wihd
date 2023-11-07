@@ -7,9 +7,10 @@ jobs:
   test:
     executor:
       name: android/android-machine
-    working_directory: /mobile
+    working_directory: ~/project/mobile
     steps:
-      - checkout
+      - checkout:
+          path: ~/project
 
       - android/run-tests:
           test-command: ./gradlew lint testDebug --continue
