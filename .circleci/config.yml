@@ -5,7 +5,6 @@ orbs:
 
 jobs:
   build-and-test:
-    working_directory: ~/project/mobile
     executor:
       name: android/android-machine
 
@@ -13,10 +12,11 @@ jobs:
       - checkout
 
       - run:
-          name: Check Working Directory
+          name: Change Directory
           command: |
+            cd mobile
             current_directory=$(pwd)
-            echo "Current Working Directory: $current_directory"
+            echo "Current Directory: $current_directory"
             ls -l
 
       - android/run-tests:
