@@ -4,7 +4,7 @@ orbs:
   android: circleci/android@1.0.3
 
 jobs:
-  build-and-test:
+  test:
     executor:
       name: android/android-machine
 
@@ -25,13 +25,19 @@ jobs:
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew connectedDebugAndroidTest
           system-image: system-images;android-25;google_apis;x86
-
-      - run:
-          name: Assemble release build
-          command: |
-            ./gradlew assembleRelease
+  
+  build:
+    executor:
+      name: android/android-machine
+      
+      steps:
+        - run:
+            name: Assemble release build
+            command: |
+              ./gradlew assembleRelease
 
 workflows:
   ci:
     jobs:
-      - build-and-test
+      - test
+#      - build
