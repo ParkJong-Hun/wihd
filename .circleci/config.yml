@@ -9,10 +9,14 @@ jobs:
       name: android/android-machine
 
     steps:
-      - run:
-          command: |
-            ls
       - checkout
+
+      - run:
+          name: Check Working Directory
+          command: |
+            current_directory=$(pwd)
+            echo "Current Working Directory: $current_directory"
+            ls -l
 
       - android/run-tests:
           test-command: ./gradlew lint testDebug --continue
