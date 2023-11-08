@@ -44,12 +44,12 @@ workflows:
           filters:
             branches:
               only:
-                - renovate/*
-                - develop/*
+                - /^renovate/*$/
+                - /^develop/*$/
       - build:
           requires:
             - test
           filters:
             branches:
               only:
-                - develop/*
+                - /^develop/*$/
