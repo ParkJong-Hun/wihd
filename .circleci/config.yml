@@ -41,7 +41,7 @@ workflows:
   ci:
     jobs:
       - test:
-          filter:
+          filters:
             branches:
               only:
                 - renovate/*
@@ -49,7 +49,7 @@ workflows:
       - build:
           requires:
             - test
-          filter:
+          filters:
             branches:
               only:
                 - develop/*
