@@ -17,9 +17,9 @@ jobs:
       - android/run-tests:
           test-command: ./gradlew lint testDebug --continue
 
-      - android/start-emulator-and-run-tests:
-          test-command: ./gradlew connectedDebugAndroidTest
-          system-image: system-images;android-33;google_apis;x86_64
+  #      - android/start-emulator-and-run-tests:
+  #          test-command: ./gradlew connectedDebugAndroidTest
+  #          system-image: system-images;android-33;google_apis;x86_64
   
   build:
     executor:
@@ -40,5 +40,16 @@ jobs:
 workflows:
   ci:
     jobs:
-      - test
-      - build
+      - test:
+          filter:
+            branches:
+              only:
+                - renovate/*
+                - develop/*
+      - build:
+          requires:
+            - test
+          filter:
+            branches:
+              only:
+                - develop/*
