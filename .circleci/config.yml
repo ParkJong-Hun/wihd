@@ -4,7 +4,7 @@ orbs:
   android: circleci/android@2.3.0
 
 jobs:
-  test:
+  lint:
     executor:
       name: android/android-machine
       resource-class: large
@@ -40,7 +40,7 @@ jobs:
 workflows:
   ci:
     jobs:
-      - test:
+      - lint:
           filters:
             branches:
               only:
