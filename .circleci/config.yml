@@ -48,7 +48,7 @@ workflows:
                 - /develop\/.*/
       - build:
           requires:
-            - test
+            - lint
           filters:
             branches:
               only:
