@@ -16,3 +16,7 @@ I plan to build my own server someday.
 ### Firebase
 
 https://console.firebase.google.com/u/0/project/whatishedoingwithandroid
+
+### CI
+
+https://app.circleci.com/pipelines/github/ParkJong-Hun/whatIsHeDoingWithAndroid
