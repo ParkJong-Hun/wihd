@@ -58,7 +58,7 @@ jetpack-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui
 jetpack-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "jetpack-compose" }
 jetpack-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "jetpack-compose" }
 jetpack-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "jetpack-compose-material3" }
-jetpack-compose-material3-window-size = { group = "androidx.compose.material3", name = "material3.window.size.class", version.ref = "jetpack-compose-material3" }
+jetpack-compose-material3-windowsizeclass = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "jetpack-compose-material3" }
 jetpack-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "jetpack-datastore-preferences" }
 # junit
 junit = { group = "junit", name = "junit", version.ref = "junit" }
