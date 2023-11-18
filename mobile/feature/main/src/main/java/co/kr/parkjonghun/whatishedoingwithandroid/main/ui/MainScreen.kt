@@ -2,8 +2,6 @@ package co.kr.parkjonghun.whatishedoingwithandroid.main.ui
 
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -32,12 +30,11 @@ fun MainScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        MainScreen(uiState = state)
+    LaunchedEffect(Unit) {
+        Log.d("main", "uiState : $state")
     }
+
+    MainScreen(uiState = state)
 }
 
 @Composable
@@ -45,11 +42,11 @@ private fun MainScreen(
     // FIXME thsi is temp data
     uiState: String
 ) {
-    LaunchedEffect(Unit) {
-        Log.d("main", "uiState : $uiState")
-    }
 
-    Greeting(name = uiState)
+    Greeting(
+        name = uiState,
+        modifier = Modifier.fillMaxSize(),
+    )
 }
 
 @WihdPreview
