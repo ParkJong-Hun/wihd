@@ -1,9 +1,13 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.main.ui
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
@@ -26,13 +30,26 @@ fun MainScreen(
     // TODO
     viewModel: MainViewModel = hiltViewModel(),
 ) {
-    // A surface container using the 'background' color from the theme
+    val state by viewModel.uiState.collectAsState()
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        Greeting("Android")
+        MainScreen(uiState = state)
     }
+}
+
+@Composable
+private fun MainScreen(
+    // FIXME thsi is temp data
+    uiState: String
+) {
+    LaunchedEffect(Unit) {
+        Log.d("main", "uiState : $uiState")
+    }
+
+    Greeting(name = uiState)
 }
 
 @WihdPreview
