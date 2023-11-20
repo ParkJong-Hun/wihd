@@ -40,13 +40,6 @@ private fun WihdNavHost(
     navController: NavHostController = rememberNavController(),
     // TODO
 ) {
-    LaunchedEffect(Unit) {
-        while (true) {
-            delay(500)
-            Log.d("app", navController.currentDestination?.route.toString())
-        }
-    }
-
     NavHost(
         navController = navController,
         startDestination = mainScreenRoute,
