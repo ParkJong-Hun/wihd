@@ -1,5 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.main.ui
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -36,10 +37,12 @@ private fun MainScreen(
     // FIXME this is temp data
     uiState: String
 ) {
-    Greeting(
-        name = uiState,
-        modifier = Modifier.fillMaxSize(),
-    )
+    Row {
+        Greeting(
+            name = uiState,
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
 }
 
 @WihdPreview
