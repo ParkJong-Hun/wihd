@@ -49,6 +49,8 @@ private fun MainScreen(
 @Composable
 private fun MainScreenPreview() {
     MobileTheme {
-        MainScreen()
+        MainScreen(
+            uiState = "test test"
+        )
     }
 }
