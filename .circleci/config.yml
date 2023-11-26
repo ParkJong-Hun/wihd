@@ -44,7 +44,9 @@ workflows:
           filters:
             branches:
               only:
+                - /master\/.*/
                 - /renovate\/.*/
+                - /pull\/.*/
                 - /develop\/.*/
       - build:
           requires:
@@ -53,3 +55,6 @@ workflows:
             branches:
               only:
                 - /master\/.*/
+                - /renovate\/.*/
+                - /pull\/.*/
+                - /develop\/.*/
