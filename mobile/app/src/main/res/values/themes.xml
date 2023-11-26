@@ -10,7 +10,7 @@
 
     <style name="Theme.Mobile.Splash" parent="NightAdjusted.Theme.Splash">
         <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="31">2000</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/main_logo_1280x_round</item>
         <item name="postSplashScreenTheme">@style/Theme.Mobile</item>
     </style>
 </resources>
