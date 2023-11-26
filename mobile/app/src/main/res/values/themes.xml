@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.Mobile" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="NightAdjusted.Theme.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <style name="Theme.Mobile.Splash" parent="NightAdjusted.Theme.Splash">
+        <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="31">2000</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/main_logo_1280x_round</item>
+        <item name="postSplashScreenTheme">@style/Theme.Mobile</item>
+    </style>
 </resources>

@@ -1,4 +1,6 @@
-# whatIsHeDoingWithAndroid
+# What is he doing with android?
+
+![main_logo_320x](https://github.com/ParkJong-Hun/whatIsHeDoingWithAndroid/assets/81838716/05c094a1-6c43-41e1-a5d2-3d1f57661d50)
 
 Challenges JongHun Park faces during Android app development.
 
@@ -16,3 +18,7 @@ I plan to build my own server someday.
 ### Firebase
 
 https://console.firebase.google.com/u/0/project/whatishedoingwithandroid
+
+### CI
+
+https://app.circleci.com/pipelines/github/ParkJong-Hun/whatIsHeDoingWithAndroid

@@ -1,2 +1,9 @@
 <resources>
+    <!-- TODO separate this into each module. -->
+    <string name="main_news_label">News</string>
+    <string name="main_post_label">Post</string>
+    <string name="main_profile_label">Profile</string>
+    <string name="main_news_description">News</string>
+    <string name="main_post_description">Post</string>
+    <string name="main_profile_description">Profile</string>
 </resources>

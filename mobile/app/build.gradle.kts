@@ -41,7 +41,10 @@ dependencies {
 
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
+    implementation(project(":core:ui"))
 
+    implementation(libs.jetpack.core.splashscreen)
     implementation(libs.jetpack.navigation.compose)
     implementation(libs.jetpack.hilt.navigation)
+    implementation(libs.jetpack.compose.material3.windowsizeclass)
 }
