@@ -30,6 +30,7 @@ annotation = "1.7.0"
 appcompat = "1.6.1"
 material = "1.10.0"
 javapoet = "1.13.0"
+timber = "5.0.1"
 
 
 [libraries]
@@ -79,6 +80,7 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
 [plugins]
 androidGradlePlugin = { id = "com.android.application", version.ref = "agp" }

@@ -8,4 +8,5 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:ui"))
     implementation(libs.jetpack.hilt.navigation)
+    implementation(libs.timber)
 }
