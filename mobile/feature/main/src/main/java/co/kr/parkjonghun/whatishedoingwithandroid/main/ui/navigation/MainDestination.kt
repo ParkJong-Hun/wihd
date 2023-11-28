@@ -11,7 +11,7 @@ import androidx.compose.material.icons.rounded.Person
 import androidx.compose.ui.graphics.vector.ImageVector
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.main.R
 
-enum class MainNavigationRailItem(
+enum class MainDestination(
     val icon: ImageVector,
     val selectedIcon: ImageVector,
     @StringRes val iconTextRes: Int,

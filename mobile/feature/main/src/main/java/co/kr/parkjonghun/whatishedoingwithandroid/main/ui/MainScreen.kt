@@ -1,62 +1,93 @@
+@file:JvmName("MainStateKt")
+
 package co.kr.parkjonghun.whatishedoingwithandroid.main.ui
 
+import android.annotation.SuppressLint
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation.MainDestination
 import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation.MainNavigationRail
-import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation.MainNavigationRailItem
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.extension.WihdPreview
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
 
 const val mainScreenRoute = "main"
 
 fun NavGraphBuilder.mainScreen(
-    // TODO
+    windowSizeClass: WindowSizeClass,
+    navController: NavController,
 ) {
     composable(mainScreenRoute) {
-        MainScreen()
+        MainScreen(
+            windowSizeClass = windowSizeClass
+        )
+        // TODO Maybe dialog? or bottomSheet?
     }
 }
 
 @Composable
 fun MainScreen(
-    // TODO
-    viewModel: MainViewModel = hiltViewModel(),
+    windowSizeClass: WindowSizeClass,
+    mainState: MainState = rememberMainState(windowSizeClass = windowSizeClass),
 ) {
-    val state by viewModel.uiState.collectAsState()
+    val currentMainDestination: MainDestination =
+        mainState.navController.currentBackStackEntryAsState().value
+            ?.destination
+            ?.let { mainState.routeToDestination(route = it.route) }
+            ?: MainDestination.NEWS
 
-    MainScreen(
-        uiState = state,
-        onRailItemSelected = viewModel::onRailItemSelected,
-        routeToItem = viewModel::routeToItem,
+    MainBody(
+        shouldShowNavRail = mainState.shouldShowNavRail,
+        shouldShowBottomBar = mainState.shouldShowBottomBar,
+        navigateToMain = mainState::navigateToMain,
+        currentMainDestination = currentMainDestination,
     )
 }
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-private fun MainScreen(
-    // FIXME this is temp data
-    uiState: String,
-    onRailItemSelected: (NavController, MainNavigationRailItem) -> Unit,
-    routeToItem: String.() -> MainNavigationRailItem?,
+private fun MainBody(
+    shouldShowNavRail: Boolean,
+    shouldShowBottomBar: Boolean,
+    navigateToMain: (MainDestination) -> Unit,
+    currentMainDestination: MainDestination,
 ) {
     val mainNavController = rememberNavController()
-    val navBackStackEntry by mainNavController.currentBackStackEntryAsState()
-    val currentTab = navBackStackEntry?.destination?.route?.routeToItem()
-    Row {
-        MainNavigationRail(
-            mainRailItems = MainNavigationRailItem.entries,
-            onRailItemSelected = { item ->
-                onRailItemSelected(mainNavController, item)
+    Row(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        AnimatedVisibility(visible = shouldShowNavRail) {
+            MainNavigationRail(
+                mainRailItems = MainDestination.entries,
+                onRailItemSelected = navigateToMain,
+                selectedRailItem = currentMainDestination,
+            )
+        }
+        Scaffold(
+            bottomBar = {
+                AnimatedVisibility(visible = shouldShowBottomBar) {
+                    // TODO bottomBar
+                }
             },
-            selectedRailItem = currentTab ?: MainNavigationRailItem.NEWS
-        )
+        ) {
+            NavHost(
+                navController = mainNavController,
+                startDestination = "news",
+                modifier = Modifier,
+            ) {
+                // TODO
+            }
+        }
     }
 }
 
@@ -64,10 +95,11 @@ private fun MainScreen(
 @Composable
 private fun MainScreenPreview() {
     MobileTheme {
-        MainScreen(
-            uiState = "test test",
-            onRailItemSelected = { _, _ -> },
-            routeToItem = { MainNavigationRailItem.POST },
+        MainBody(
+            shouldShowNavRail = false,
+            shouldShowBottomBar = true,
+            navigateToMain = {},
+            currentMainDestination = MainDestination.NEWS,
         )
     }
 }

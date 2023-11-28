@@ -11,9 +11,9 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun MainNavigationRail(
     // TODO: to ImmutableList
-    mainRailItems: List<MainNavigationRailItem>,
-    onRailItemSelected: (MainNavigationRailItem) -> Unit,
-    selectedRailItem: MainNavigationRailItem,
+    mainRailItems: List<MainDestination>,
+    onRailItemSelected: (MainDestination) -> Unit,
+    selectedRailItem: MainDestination,
     modifier: Modifier = Modifier,
 ) {
     NavigationRail(
