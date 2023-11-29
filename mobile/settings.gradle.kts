@@ -21,3 +21,4 @@ include(
     ":core:ui",
     ":feature:main",
 )
+include(":feature:news")

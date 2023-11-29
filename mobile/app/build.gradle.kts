@@ -38,6 +38,7 @@ android {
 
 dependencies {
     implementation(project(":feature:main"))
+    implementation(project(":feature:news"))
 
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
