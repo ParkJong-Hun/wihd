@@ -1,9 +1,8 @@
-@file:JvmName("MainStateKt")
-
 package co.kr.parkjonghun.whatishedoingwithandroid.main.ui
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
@@ -18,18 +17,17 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation.MainDestination
 import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation.MainNavigationRail
-import co.kr.parkjonghun.whatishedoingwithandroid.ui.extension.WihdPreview
-import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
 
 const val mainScreenRoute = "main"
 
 fun NavGraphBuilder.mainScreen(
     windowSizeClass: WindowSizeClass,
-    navController: NavController,
+    mainNestedNavGraph: NavGraphBuilder.(mainNestedNavController: NavController, PaddingValues) -> Unit,
 ) {
     composable(mainScreenRoute) {
         MainScreen(
-            windowSizeClass = windowSizeClass
+            windowSizeClass = windowSizeClass,
+            mainNestedNavGraph = mainNestedNavGraph,
         )
         // TODO Maybe dialog? or bottomSheet?
     }
@@ -38,6 +36,7 @@ fun NavGraphBuilder.mainScreen(
 @Composable
 fun MainScreen(
     windowSizeClass: WindowSizeClass,
+    mainNestedNavGraph: NavGraphBuilder.(NavController, PaddingValues) -> Unit,
     mainState: MainState = rememberMainState(windowSizeClass = windowSizeClass),
 ) {
     val currentMainDestination: MainDestination =
@@ -47,20 +46,22 @@ fun MainScreen(
             ?: MainDestination.NEWS
 
     MainBody(
+        currentMainDestination = currentMainDestination,
         shouldShowNavRail = mainState.shouldShowNavRail,
         shouldShowBottomBar = mainState.shouldShowBottomBar,
         navigateToMain = mainState::navigateToMain,
-        currentMainDestination = currentMainDestination,
+        mainNestedNavGraph = mainNestedNavGraph,
     )
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 private fun MainBody(
+    currentMainDestination: MainDestination,
     shouldShowNavRail: Boolean,
     shouldShowBottomBar: Boolean,
     navigateToMain: (MainDestination) -> Unit,
-    currentMainDestination: MainDestination,
+    mainNestedNavGraph: NavGraphBuilder.(NavController, PaddingValues) -> Unit,
 ) {
     val mainNavController = rememberNavController()
     Row(
@@ -79,27 +80,14 @@ private fun MainBody(
                     // TODO bottomBar
                 }
             },
-        ) {
+        ) { padding ->
             NavHost(
                 navController = mainNavController,
                 startDestination = "news",
                 modifier = Modifier,
             ) {
-                // TODO
+                mainNestedNavGraph(mainNavController, padding)
             }
         }
-    }
-}
-
-@WihdPreview
-@Composable
-private fun MainScreenPreview() {
-    MobileTheme {
-        MainBody(
-            shouldShowNavRail = false,
-            shouldShowBottomBar = true,
-            navigateToMain = {},
-            currentMainDestination = MainDestination.NEWS,
-        )
     }
 }
