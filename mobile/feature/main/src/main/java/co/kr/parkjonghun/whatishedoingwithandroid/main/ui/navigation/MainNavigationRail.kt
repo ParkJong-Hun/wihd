@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import co.kr.parkjonghun.whatishedoingwithandroid.ui.extension.WihdPreview
 
 @Composable
 fun MainNavigationRail(
@@ -46,4 +47,15 @@ fun MainNavigationRail(
             )
         }
     }
+}
+
+@WihdPreview
+@Composable
+private fun MainNavigationRailPreview() {
+    MainNavigationRail(
+        mainRailItems = MainDestination.entries,
+        onRailItemSelected = {},
+        selectedRailItem = MainDestination.NEWS,
+        modifier = Modifier,
+    )
 }
