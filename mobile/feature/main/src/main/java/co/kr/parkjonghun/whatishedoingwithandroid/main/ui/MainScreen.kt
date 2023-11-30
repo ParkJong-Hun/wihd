@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation.MainBottomBar
 import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation.MainDestination
 import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation.MainNavigationRail
 
@@ -77,7 +78,11 @@ private fun MainBody(
         Scaffold(
             bottomBar = {
                 AnimatedVisibility(visible = shouldShowBottomBar) {
-                    // TODO bottomBar
+                    MainBottomBar(
+                        mainTabs = MainDestination.entries,
+                        onRailItemSelected = navigateToMain,
+                        selectedRailItem = currentMainDestination,
+                    )
                 }
             },
         ) { padding ->
