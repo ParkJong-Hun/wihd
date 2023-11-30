@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.news
+package co.kr.parkjonghun.whatishedoingwithandroid.post
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.Text
@@ -9,22 +9,22 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
-const val newsScreenRoute = "news"
+const val postScreenRoute = "post"
 
-fun NavGraphBuilder.newsScreen(
+fun NavGraphBuilder.postScreen(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues,
 ) {
-    composable(newsScreenRoute) {
-        NewsScreen(
+    composable(postScreenRoute) {
+        PostScreen(
             modifier = modifier,
             contentPadding = contentPadding,
         )
     }
 }
 
-fun NavController.navigateToNewsScreen() {
-    navigate(newsScreenRoute) {
+fun NavController.navigateToPostScreen() {
+    navigate(postScreenRoute) {
         popUpTo(id = graph.findStartDestination().id) {
             saveState = true
         }
@@ -34,17 +34,17 @@ fun NavController.navigateToNewsScreen() {
 }
 
 @Composable
-fun NewsScreen(
+fun PostScreen(
     // TODO state holder
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(),
 ) {
-    NewsBody()
+    PostBody()
 }
 
 @Composable
-fun NewsBody(
+fun PostBody(
 
 ) {
-    Text("news")
+    Text("post")
 }

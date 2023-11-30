@@ -13,6 +13,8 @@ import androidx.navigation.compose.rememberNavController
 import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.mainScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.mainScreenRoute
 import co.kr.parkjonghun.whatishedoingwithandroid.news.newsScreen
+import co.kr.parkjonghun.whatishedoingwithandroid.post.postScreen
+import co.kr.parkjonghun.whatishedoingwithandroid.profile.profileScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
 
 /**
@@ -55,6 +57,14 @@ private fun NavGraphBuilder.appScreen(
         windowSizeClass = windowSizeClass
     ) { mainNavController, contentPadding ->
         newsScreen(
+            modifier = Modifier,
+            contentPadding = contentPadding,
+        )
+        postScreen(
+            modifier = Modifier,
+            contentPadding = contentPadding,
+        )
+        profileScreen(
             modifier = Modifier,
             contentPadding = contentPadding,
         )

@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.news
+package co.kr.parkjonghun.whatishedoingwithandroid.profile
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.Text
@@ -9,22 +9,22 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
-const val newsScreenRoute = "news"
+const val profileScreenRoute = "profile"
 
-fun NavGraphBuilder.newsScreen(
+fun NavGraphBuilder.profileScreen(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues,
 ) {
-    composable(newsScreenRoute) {
-        NewsScreen(
+    composable(profileScreenRoute) {
+        ProfileScreen(
             modifier = modifier,
             contentPadding = contentPadding,
         )
     }
 }
 
-fun NavController.navigateToNewsScreen() {
-    navigate(newsScreenRoute) {
+fun NavController.navigateToProfileScreen() {
+    navigate(profileScreenRoute) {
         popUpTo(id = graph.findStartDestination().id) {
             saveState = true
         }
@@ -34,17 +34,17 @@ fun NavController.navigateToNewsScreen() {
 }
 
 @Composable
-fun NewsScreen(
+fun ProfileScreen(
     // TODO state holder
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(),
 ) {
-    NewsBody()
+    ProfileBody()
 }
 
 @Composable
-fun NewsBody(
+fun ProfileBody(
 
 ) {
-    Text("news")
+    Text("profile")
 }

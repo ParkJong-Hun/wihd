@@ -19,6 +19,10 @@ include(
     ":core:data",
     ":core:domain",
     ":core:ui",
-    ":feature:main",
 )
-include(":feature:news")
+include(
+    ":feature:main",
+    ":feature:news",
+    ":feature:post",
+    ":feature:profile",
+)

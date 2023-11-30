@@ -39,6 +39,9 @@ android {
 dependencies {
     implementation(project(":feature:main"))
     implementation(project(":feature:news"))
+    implementation(project(":feature:post"))
+    implementation(project(":feature:profile"))
+
 
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
