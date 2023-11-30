@@ -21,7 +21,6 @@ include(
     ":core:ui",
 )
 include(
-    ":feature:main",
     ":feature:news",
     ":feature:post",
     ":feature:profile",

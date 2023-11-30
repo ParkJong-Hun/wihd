@@ -10,8 +10,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.mainScreen
-import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.mainScreenRoute
+import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.mainScreen
+import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.mainScreenRoute
 import co.kr.parkjonghun.whatishedoingwithandroid.news.newsScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.post.postScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.profile.profileScreen
@@ -44,13 +44,13 @@ private fun WihdNavHost(
         navController = appNavController,
         startDestination = mainScreenRoute,
     ) {
-        appScreen(
+        app(
             windowSizeClass = windowSizeClass,
         )
     }
 }
 
-private fun NavGraphBuilder.appScreen(
+private fun NavGraphBuilder.app(
     windowSizeClass: WindowSizeClass,
 ) {
     mainScreen(

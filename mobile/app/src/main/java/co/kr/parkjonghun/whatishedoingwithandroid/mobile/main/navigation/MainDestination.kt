@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation
+package co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
@@ -9,7 +9,7 @@ import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.material.icons.rounded.List
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.ui.graphics.vector.ImageVector
-import co.kr.parkjonghun.whatishedoingwithandroid.feature.main.R
+import co.kr.parkjonghun.whatishedoingwithandroid.mobile.R
 
 enum class MainDestination(
     val icon: ImageVector,

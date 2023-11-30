@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.main.ui
+package co.kr.parkjonghun.whatishedoingwithandroid.mobile.main
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
@@ -15,9 +15,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation.MainBottomBar
-import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation.MainDestination
-import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation.MainNavigationRail
+import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainBottomBar
+import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination
+import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainNavigationRail
 
 const val mainScreenRoute = "main"
 

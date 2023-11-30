@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.main.ui
+package co.kr.parkjonghun.whatishedoingwithandroid.mobile.main
 
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
@@ -9,7 +9,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import co.kr.parkjonghun.whatishedoingwithandroid.main.ui.navigation.MainDestination
+import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination
 
 /**
  *  Global state of this app.

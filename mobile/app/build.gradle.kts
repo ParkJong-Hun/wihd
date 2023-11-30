@@ -37,7 +37,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:main"))
     implementation(project(":feature:news"))
     implementation(project(":feature:post"))
     implementation(project(":feature:profile"))
