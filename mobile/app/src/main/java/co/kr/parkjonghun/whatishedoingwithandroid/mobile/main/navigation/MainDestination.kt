@@ -9,7 +9,9 @@ import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.material.icons.rounded.List
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.ui.graphics.vector.ImageVector
-import co.kr.parkjonghun.whatishedoingwithandroid.mobile.R
+import co.kr.parkjonghun.whatishedoingwithandroid.news.NewsString
+import co.kr.parkjonghun.whatishedoingwithandroid.post.PostString
+import co.kr.parkjonghun.whatishedoingwithandroid.profile.ProfileString
 
 enum class MainDestination(
     val icon: ImageVector,
@@ -20,19 +22,19 @@ enum class MainDestination(
     NEWS(
         icon = Icons.Outlined.List,
         selectedIcon = Icons.Rounded.List,
-        iconTextRes = R.string.main_news_description,
-        labelTextRes = R.string.main_news_label,
+        iconTextRes = NewsString.destination_description,
+        labelTextRes = NewsString.destination_label,
     ),
     POST(
         icon = Icons.Outlined.AddCircle,
         selectedIcon = Icons.Rounded.AddCircle,
-        iconTextRes = R.string.main_post_description,
-        labelTextRes = R.string.main_post_label,
+        iconTextRes = PostString.destination_description,
+        labelTextRes = PostString.destination_label,
     ),
     PROFILE(
         icon = Icons.Outlined.Person,
         selectedIcon = Icons.Rounded.Person,
-        iconTextRes = R.string.main_profile_description,
-        labelTextRes = R.string.main_profile_label,
+        iconTextRes = ProfileString.destination_description,
+        labelTextRes = ProfileString.destination_label,
     ),
 }
