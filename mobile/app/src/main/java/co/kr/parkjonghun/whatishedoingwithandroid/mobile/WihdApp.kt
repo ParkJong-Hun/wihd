@@ -6,9 +6,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.mainScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.mainScreenRoute
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
@@ -20,27 +18,30 @@ import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
 fun WihdApp(
     windowSizeClass: WindowSizeClass,
 ) {
+    val appState: AppState = rememberAppState(
+        windowSizeClass = windowSizeClass,
+    )
+
     MobileTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background,
         ) {
-            WihdNavHost(windowSizeClass)
+            WihdNavHost(appState)
         }
     }
 }
 
 @Composable
 private fun WihdNavHost(
-    windowSizeClass: WindowSizeClass,
-    appNavController: NavHostController = rememberNavController(),
+    appState: AppState,
 ) {
     NavHost(
-        navController = appNavController,
+        navController = appState.appNavController,
         startDestination = mainScreenRoute,
     ) {
         mainScreen(
-            windowSizeClass = windowSizeClass,
+            windowSizeClass = appState.windowSizeClass,
         )
     }
 }

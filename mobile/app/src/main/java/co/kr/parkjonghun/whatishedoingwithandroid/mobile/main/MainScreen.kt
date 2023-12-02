@@ -37,10 +37,11 @@ fun NavGraphBuilder.mainScreen(
 @Composable
 fun MainScreen(
     windowSizeClass: WindowSizeClass,
-    mainState: MainState = rememberMainState(
-        windowSizeClass = windowSizeClass
-    ),
 ) {
+    val mainState = rememberMainState(
+        windowSizeClass = windowSizeClass
+    )
+
     val currentMainDestination: MainDestination =
         mainState.navController.currentBackStackEntryAsState().value
             ?.destination

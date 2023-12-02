@@ -16,6 +16,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDes
 import co.kr.parkjonghun.whatishedoingwithandroid.news.navigateToNewsScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.post.navigateToPostScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.profile.navigateToProfileScreen
+import co.kr.parkjonghun.whatishedoingwithandroid.ui.extension.Route
 
 /**
  *  Global state of this app.
@@ -66,14 +67,12 @@ class MainState(
     fun routeToDestination(route: Route): MainDestination {
         return when (route) {
             // TODO const val on other module
-            "news" -> MainDestination.NEWS
-            "post" -> MainDestination.POST
-            "profile" -> MainDestination.PROFILE
+            "news" -> NEWS
+            "post" -> POST
+            "profile" -> PROFILE
 
             // impossible
-            else -> MainDestination.NEWS
+            else -> NEWS
         }
     }
 }
-
-typealias Route = String?
