@@ -10,6 +10,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination
+import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination.NEWS
+import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination.POST
+import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination.PROFILE
+import co.kr.parkjonghun.whatishedoingwithandroid.news.navigateToNewsScreen
+import co.kr.parkjonghun.whatishedoingwithandroid.post.navigateToPostScreen
+import co.kr.parkjonghun.whatishedoingwithandroid.profile.navigateToProfileScreen
 
 /**
  *  Global state of this app.
@@ -45,10 +51,16 @@ class MainState(
     val shouldShowNavRail: Boolean
         get() = !shouldShowBottomBar
 
-    fun navigateToMain(
+    fun navigateToMainDestination(
         item: MainDestination,
     ) {
-        // TODO navigate to rail item's screen
+        with(navController) {
+            when (item) {
+                NEWS -> navigateToNewsScreen()
+                POST -> navigateToPostScreen()
+                PROFILE -> navigateToProfileScreen()
+            }
+        }
     }
 
     fun routeToDestination(route: Route): MainDestination {

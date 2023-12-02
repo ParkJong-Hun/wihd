@@ -6,15 +6,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.mainScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.mainScreenRoute
-import co.kr.parkjonghun.whatishedoingwithandroid.news.newsScreen
-import co.kr.parkjonghun.whatishedoingwithandroid.post.postScreen
-import co.kr.parkjonghun.whatishedoingwithandroid.profile.profileScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
 
 /**
@@ -38,35 +34,13 @@ fun WihdApp(
 private fun WihdNavHost(
     windowSizeClass: WindowSizeClass,
     appNavController: NavHostController = rememberNavController(),
-    // TODO
 ) {
     NavHost(
         navController = appNavController,
         startDestination = mainScreenRoute,
     ) {
-        app(
+        mainScreen(
             windowSizeClass = windowSizeClass,
-        )
-    }
-}
-
-private fun NavGraphBuilder.app(
-    windowSizeClass: WindowSizeClass,
-) {
-    mainScreen(
-        windowSizeClass = windowSizeClass
-    ) { mainNavController, contentPadding ->
-        newsScreen(
-            modifier = Modifier,
-            contentPadding = contentPadding,
-        )
-        postScreen(
-            modifier = Modifier,
-            contentPadding = contentPadding,
-        )
-        profileScreen(
-            modifier = Modifier,
-            contentPadding = contentPadding,
         )
     }
 }

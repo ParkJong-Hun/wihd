@@ -2,43 +2,44 @@ package co.kr.parkjonghun.whatishedoingwithandroid.mobile.main
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainBottomBar
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainNavigationRail
+import co.kr.parkjonghun.whatishedoingwithandroid.news.newsScreen
+import co.kr.parkjonghun.whatishedoingwithandroid.news.newsScreenRoute
+import co.kr.parkjonghun.whatishedoingwithandroid.post.postScreen
+import co.kr.parkjonghun.whatishedoingwithandroid.profile.profileScreen
 
 const val mainScreenRoute = "main"
 
 fun NavGraphBuilder.mainScreen(
     windowSizeClass: WindowSizeClass,
-    mainNestedNavGraph: NavGraphBuilder.(mainNestedNavController: NavController, PaddingValues) -> Unit,
 ) {
     composable(mainScreenRoute) {
         MainScreen(
             windowSizeClass = windowSizeClass,
-            mainNestedNavGraph = mainNestedNavGraph,
         )
-        // TODO Maybe dialog? or bottomSheet?
     }
 }
 
 @Composable
 fun MainScreen(
     windowSizeClass: WindowSizeClass,
-    mainNestedNavGraph: NavGraphBuilder.(NavController, PaddingValues) -> Unit,
-    mainState: MainState = rememberMainState(windowSizeClass = windowSizeClass),
+    mainState: MainState = rememberMainState(
+        windowSizeClass = windowSizeClass
+    ),
 ) {
     val currentMainDestination: MainDestination =
         mainState.navController.currentBackStackEntryAsState().value
@@ -47,26 +48,27 @@ fun MainScreen(
             ?: MainDestination.NEWS
 
     MainBody(
+        mainNavController = mainState.navController,
         currentMainDestination = currentMainDestination,
         shouldShowNavRail = mainState.shouldShowNavRail,
         shouldShowBottomBar = mainState.shouldShowBottomBar,
-        navigateToMain = mainState::navigateToMain,
-        mainNestedNavGraph = mainNestedNavGraph,
+        navigateToMain = mainState::navigateToMainDestination,
     )
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 private fun MainBody(
+    mainNavController: NavHostController,
     currentMainDestination: MainDestination,
     shouldShowNavRail: Boolean,
     shouldShowBottomBar: Boolean,
     navigateToMain: (MainDestination) -> Unit,
-    mainNestedNavGraph: NavGraphBuilder.(NavController, PaddingValues) -> Unit,
 ) {
-    val mainNavController = rememberNavController()
     Row(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .statusBarsPadding()
+            .fillMaxSize()
     ) {
         AnimatedVisibility(visible = shouldShowNavRail) {
             MainNavigationRail(
@@ -88,10 +90,21 @@ private fun MainBody(
         ) { padding ->
             NavHost(
                 navController = mainNavController,
-                startDestination = "news",
+                startDestination = newsScreenRoute,
                 modifier = Modifier,
             ) {
-                mainNestedNavGraph(mainNavController, padding)
+                newsScreen(
+                    modifier = Modifier,
+                    contentPadding = padding,
+                )
+                postScreen(
+                    modifier = Modifier,
+                    contentPadding = padding,
+                )
+                profileScreen(
+                    modifier = Modifier,
+                    contentPadding = padding,
+                )
             }
         }
     }
