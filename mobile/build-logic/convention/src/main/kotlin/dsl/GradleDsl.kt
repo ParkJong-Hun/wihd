@@ -55,7 +55,7 @@ fun DependencyHandlerScope.detektPlugins(
     add("detektPlugins", artifact)
 }
 
-private fun DependencyHandlerScope.api(
+fun DependencyHandlerScope.api(
     artifact: MinimalExternalModuleDependency,
 ) {
     add("api", artifact)

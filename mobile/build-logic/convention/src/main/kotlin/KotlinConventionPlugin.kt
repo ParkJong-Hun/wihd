@@ -1,4 +1,5 @@
 import dsl.android
+import dsl.api
 import dsl.implementation
 import dsl.kotlinOptions
 import dsl.library
@@ -27,7 +28,7 @@ class KotlinConventionPlugin : Plugin<Project> {
             dependencies {
                 implementation(libs.library("kotlinx-coroutines-core"))
                 implementation(libs.library("kotlinx-datetime"))
-                implementation(libs.library("kotlinx-collections-immutable"))
+                api(libs.library("kotlinx-collections-immutable"))
             }
         }
     }
