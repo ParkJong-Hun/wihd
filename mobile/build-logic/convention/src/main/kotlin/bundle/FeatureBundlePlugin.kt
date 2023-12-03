@@ -1,8 +1,10 @@
+package bundle
+
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 @Suppress("unused")
-class FeatureConventionPlugin : Plugin<Project> {
+class FeatureBundlePlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {

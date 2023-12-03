@@ -41,8 +41,8 @@ gradlePlugin {
             implementationClass = "DaggerConventionPlugin"
         }
         register("feature") {
-            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.feature"
-            implementationClass = "FeatureConventionPlugin"
+            id = "parkjonghun.whatishedoingwithandroid.mobile.bundle.feature"
+            implementationClass = "FeatureBundlePlugin"
         }
         register("firebase") {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase"

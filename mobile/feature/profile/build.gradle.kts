@@ -1,5 +1,5 @@
 plugins {
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.feature")
+    id("parkjonghun.whatishedoingwithandroid.mobile.bundle.feature")
 }
 
 android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.feature.profile"
