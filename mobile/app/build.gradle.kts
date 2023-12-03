@@ -26,7 +26,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -41,7 +41,6 @@ dependencies {
     implementation(project(":feature:news"))
     implementation(project(":feature:post"))
     implementation(project(":feature:profile"))
-
 
     implementation(project(":core:data"))
     implementation(project(":core:domain"))

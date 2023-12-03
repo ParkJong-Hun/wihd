@@ -1,3 +1,5 @@
+@file:Suppress("PreviewNaming")
+
 package co.kr.parkjonghun.whatishedoingwithandroid.ui.extension
 
 import android.content.res.Configuration
