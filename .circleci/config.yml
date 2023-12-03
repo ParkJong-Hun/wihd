@@ -9,7 +9,6 @@ machines:
       name: android/android-docker
       resource-class: large
       tag: 2023.11.1
-    working_directory: ~/project/mobile
 
 commands:
   gradle:
@@ -21,7 +20,10 @@ commands:
     steps:
       - run:
           name: <<parameters.title>>
+          # FIXME: I want to change run command on mobile directory.
+          # Working directory: ~/project/mobile
           command: |
+            cd mobile
             ./gradlew <<parameters.task>> --no-daemon
 
 jobs:
@@ -30,10 +32,10 @@ jobs:
     steps:
       - checkout
       - gradle:
-          title: lint
+          title: Lint check
           task: :app:lint
       - gradle:
-          title: detekt
+          title: Detekt
           task: detekt
   # TODO: run unit test when it is needed
   unit_test:
@@ -46,10 +48,9 @@ jobs:
   build:
     <<: *android
     steps:
-      - checkout:
-          path: ~/project
+      - checkout
       - gradle:
-          title: Assemble release build
+          title: Build
           task: assembleRelease
 
 workflows:
@@ -63,6 +64,14 @@ workflows:
                 - /renovate\/.*/
                 - /pull\/.*/
                 - /develop\/.*/
+#      - unit_test:
+#          filters:
+#            branches:
+#              only:
+#                - /master\/.*/
+#                - /renovate\/.*/
+#                - /pull\/.*/
+#                - /develop\/.*/
 #      - build:
 #          requires:
 #            - lint
