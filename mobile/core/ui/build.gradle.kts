@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.wihd.library)
-    alias(libs.plugins.wihd.dagger)
+    alias(libs.plugins.wihd.compose)
     alias(libs.plugins.wihd.detekt)
 }
 
