@@ -33,6 +33,7 @@ fun NavController.navigateToPostScreen() {
     }
 }
 
+@Suppress("UnusedParameter")
 @Composable
 fun PostScreen(
     // TODO state holder
@@ -43,8 +44,6 @@ fun PostScreen(
 }
 
 @Composable
-fun PostBody(
-
-) {
+fun PostBody() {
     Text("post")
 }
