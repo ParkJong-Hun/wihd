@@ -11,6 +11,29 @@ exceptions:
   active: true
   TooGenericExceptionCaught:
     active: false
+  SwallowedException:
+    active: false
+
+formatting:
+  active: true
+  android: true
+  autoCorrect: true
+  MaximumLineLength:
+    active: false
+  ArgumentListWrapping:
+    maxLineLength: 999
+  ParameterListWrapping:
+    maxLineLength: 999
+  NoWildcardImports:
+    active: false
+  TrailingCommaOnDeclarationSite:
+    active: true
+    useTrailingCommaOnDeclarationSite: true
+  TrailingCommaOnCallSite:
+    active: true
+    useTrailingCommaOnCallSite: true
+  PackageName:
+    active: false
 
 naming:
   active: true
@@ -56,27 +79,8 @@ style:
   UnusedPrivateMember:
     active: true
     ignoreAnnotated:
-      - 'RelaxedMockK'
-      - 'InjectMockKs'
       - 'Preview'
+      - 'WihdPreview'
 
 potential-bugs:
   active: true
-
-formatting:
-  active: true
-  autoCorrect: true
-  MaximumLineLength:
-    active: false
-  ArgumentListWrapping:
-    maxLineLength: 999
-  ParameterListWrapping:
-    maxLineLength: 999
-  NoWildcardImports:
-    active: false
-  TrailingCommaOnDeclarationSite:
-    active: true
-  TrailingCommaOnCallSite:
-    active: true
-  PackageName:
-    active: false
