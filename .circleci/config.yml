@@ -19,7 +19,7 @@ commands:
         type: string
     steps:
       - run:
-          name: <<parameters.title>>
+          name: <<parameters.name>>
           commands: ./gradlew <<parameters.task>> --no-daemon
 
 jobs:
