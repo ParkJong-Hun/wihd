@@ -4,13 +4,15 @@ orbs:
   android: circleci/android@2.3.0
 
 machines:
-  executor:
-    name: android/android-machine
-    resource-class: large
-    tag: 2023.11.1
+  android: &android
+    executor:
+      name: android/android-machine
+      resource-class: large
+      tag: 2023.11.1
 
 jobs:
   lint:
+    <<: *android
     working_directory: ~/project/mobile
     steps:
       - checkout:
