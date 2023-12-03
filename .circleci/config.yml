@@ -20,7 +20,9 @@ commands:
     steps:
       - run:
           name: <<parameters.title>>
-          command: ./gradlew <<parameters.task>> --no-daemon
+          command: |
+            ls
+            ./gradlew <<parameters.task>> --no-daemon
 
 jobs:
   lint:
