@@ -34,7 +34,13 @@ jobs:
       - gradle:
           title: detekt
           task: detekt
-  
+  unit_test:
+    <<: *android
+    steps:
+      - checkout
+      - gradle:
+          title: Unit Test
+          task: testDebugUnitTest
   build:
     <<: *android
     working_directory: ~/project/mobile
