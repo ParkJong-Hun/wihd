@@ -13,13 +13,13 @@ machines:
 commands:
   gradle:
     parameters:
-      name:
+      title:
         type: string
       task:
         type: string
     steps:
       - run:
-          name: <<parameters.name>>
+          name: <<parameters.title>>
           commands: ./gradlew <<parameters.task>> --no-daemon
 
 jobs:
@@ -31,11 +31,11 @@ jobs:
           path: ~/project
 
       - gradle:
-          name: lint
+          title: lint
           task: :app:lint
 
       - gradle:
-          name: detekt
+          title: detekt
           task: detekt
   
   build:
@@ -47,7 +47,7 @@ jobs:
           path: ~/project
 
       - gradle:
-          name: Assemble release build
+          title: Assemble release build
           task: assembleRelease
 
 workflows:
