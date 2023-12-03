@@ -34,6 +34,7 @@ jobs:
       - gradle:
           title: detekt
           task: detekt
+  # TODO: run unit test when it is needed
   unit_test:
     <<: *android
     steps:
