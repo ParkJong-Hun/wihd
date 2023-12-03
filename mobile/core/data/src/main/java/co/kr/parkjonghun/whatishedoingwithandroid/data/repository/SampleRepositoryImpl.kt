@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 
 class SampleRepositoryImpl(
     private val dataSource: SampleDataSource,
-    private val scope: CoroutineScope
+    private val scope: CoroutineScope,
 ) : SampleRepository {
     override suspend fun getSampleData(): Sample {
         return withContext(scope.coroutineContext) {

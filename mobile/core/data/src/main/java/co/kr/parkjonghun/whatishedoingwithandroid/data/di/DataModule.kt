@@ -14,7 +14,7 @@ import dagger.hilt.components.SingletonComponent
 object DataModule {
     @Provides
     fun providePreferencesDataSource(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ): PreferencesDataSource {
         return PreferencesDataSource(context)
     }
