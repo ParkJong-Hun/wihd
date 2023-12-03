@@ -14,6 +14,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
 /**
  * Top level composable.
  */
+@Suppress("ModifierMissing")
 @Composable
 fun WihdApp(
     windowSizeClass: WindowSizeClass,

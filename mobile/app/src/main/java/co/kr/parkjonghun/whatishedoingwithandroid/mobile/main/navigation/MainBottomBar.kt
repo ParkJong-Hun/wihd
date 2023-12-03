@@ -8,13 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.extension.WihdPreview
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 fun MainBottomBar(
-    // TODO: to ImmutableList
-    mainTabs: List<MainDestination>,
-    onRailItemSelected: (MainDestination) -> Unit,
     selectedRailItem: MainDestination,
+    mainTabs: PersistentList<MainDestination>,
+    onRailItemSelected: (MainDestination) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     NavigationBar(
@@ -53,9 +54,9 @@ fun MainBottomBar(
 @Composable
 private fun MainBottomBarPreview() {
     MainBottomBar(
-        mainTabs = MainDestination.entries,
-        onRailItemSelected = {},
         selectedRailItem = MainDestination.NEWS,
+        mainTabs = MainDestination.entries.toPersistentList(),
+        onRailItemSelected = {},
         modifier = Modifier,
     )
 }

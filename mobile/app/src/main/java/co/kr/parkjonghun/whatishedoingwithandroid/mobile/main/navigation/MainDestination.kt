@@ -8,11 +8,13 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.material.icons.rounded.List
 import androidx.compose.material.icons.rounded.Person
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.vector.ImageVector
 import co.kr.parkjonghun.whatishedoingwithandroid.news.NewsString
 import co.kr.parkjonghun.whatishedoingwithandroid.post.PostString
 import co.kr.parkjonghun.whatishedoingwithandroid.profile.ProfileString
 
+@Immutable
 enum class MainDestination(
     val icon: ImageVector,
     val selectedIcon: ImageVector,

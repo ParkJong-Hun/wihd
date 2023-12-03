@@ -8,13 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.extension.WihdPreview
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.toPersistentList
 
 @Composable
 fun MainNavigationRail(
-    // TODO: to ImmutableList
-    mainRailItems: List<MainDestination>,
-    onRailItemSelected: (MainDestination) -> Unit,
     selectedRailItem: MainDestination,
+    mainRailItems: PersistentList<MainDestination>,
+    onRailItemSelected: (MainDestination) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     NavigationRail(
@@ -53,9 +54,9 @@ fun MainNavigationRail(
 @Composable
 private fun MainNavigationRailPreview() {
     MainNavigationRail(
-        mainRailItems = MainDestination.entries,
-        onRailItemSelected = {},
         selectedRailItem = MainDestination.NEWS,
+        mainRailItems = MainDestination.entries.toPersistentList(),
+        onRailItemSelected = {},
         modifier = Modifier,
     )
 }

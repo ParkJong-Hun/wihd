@@ -21,6 +21,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.news.newsScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.news.newsScreenRoute
 import co.kr.parkjonghun.whatishedoingwithandroid.post.postScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.profile.profileScreen
+import kotlinx.collections.immutable.toPersistentList
 
 const val mainScreenRoute = "main"
 
@@ -73,7 +74,7 @@ private fun MainBody(
     ) {
         AnimatedVisibility(visible = shouldShowNavRail) {
             MainNavigationRail(
-                mainRailItems = MainDestination.entries,
+                mainRailItems = MainDestination.entries.toPersistentList(),
                 onRailItemSelected = navigateToMain,
                 selectedRailItem = currentMainDestination,
             )
@@ -82,7 +83,7 @@ private fun MainBody(
             bottomBar = {
                 AnimatedVisibility(visible = shouldShowBottomBar) {
                     MainBottomBar(
-                        mainTabs = MainDestination.entries,
+                        mainTabs = MainDestination.entries.toPersistentList(),
                         onRailItemSelected = navigateToMain,
                         selectedRailItem = currentMainDestination,
                     )
