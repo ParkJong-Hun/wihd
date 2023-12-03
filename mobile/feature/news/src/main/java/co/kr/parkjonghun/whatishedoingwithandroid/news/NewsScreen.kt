@@ -33,6 +33,7 @@ fun NavController.navigateToNewsScreen() {
     }
 }
 
+@Suppress("UnusedParameter")
 @Composable
 fun NewsScreen(
     // TODO state holder
@@ -43,8 +44,6 @@ fun NewsScreen(
 }
 
 @Composable
-fun NewsBody(
-
-) {
+fun NewsBody() {
     Text("news")
 }
