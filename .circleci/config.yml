@@ -29,11 +29,9 @@ jobs:
     steps:
       - checkout:
           path: ~/project
-
       - gradle:
           title: lint
           task: :app:lint
-
       - gradle:
           title: detekt
           task: detekt
@@ -41,11 +39,9 @@ jobs:
   build:
     <<: *android
     working_directory: ~/project/mobile
-
     steps:
       - checkout:
           path: ~/project
-
       - gradle:
           title: Assemble release build
           task: assembleRelease
