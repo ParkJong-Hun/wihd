@@ -17,6 +17,10 @@ jobs:
       - android/run-tests:
           test-command: ./gradlew lint testDebug --continue
 
+      - gradle:
+          title: detekt
+          task: detekt
+
   #      - android/start-emulator-and-run-tests:
   #          test-command: ./gradlew connectedDebugAndroidTest
   #          system-image: system-images;android-33;google_apis;x86_64
@@ -48,13 +52,13 @@ workflows:
                 - /renovate\/.*/
                 - /pull\/.*/
                 - /develop\/.*/
-      - build:
-          requires:
-            - lint
-          filters:
-            branches:
-              only:
-                - /master\/.*/
-                - /renovate\/.*/
-                - /pull\/.*/
-                - /develop\/.*/
+#      - build:
+#          requires:
+#            - lint
+#          filters:
+#            branches:
+#              only:
+#                - /master\/.*/
+#                - /renovate\/.*/
+#                - /pull\/.*/
+#                - /develop\/.*/
