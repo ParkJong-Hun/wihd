@@ -56,5 +56,9 @@ gradlePlugin {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.library"
             implementationClass = "LibraryConventionPlugin"
         }
+        register("detekt") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.detekt"
+            implementationClass = "DetektConventionPlugin"
+        }
     }
 }

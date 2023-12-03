@@ -10,6 +10,7 @@ class FeatureConventionPlugin : Plugin<Project> {
                 apply("parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin")
                 apply("parkjonghun.whatishedoingwithandroid.mobile.convention.compose")
                 apply("parkjonghun.whatishedoingwithandroid.mobile.convention.dagger")
+                apply("parkjonghun.whatishedoingwithandroid.mobile.convention.detekt")
             }
         }
     }

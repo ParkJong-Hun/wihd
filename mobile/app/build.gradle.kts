@@ -4,6 +4,7 @@ plugins {
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.compose")
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.dagger")
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.firebase")
+    id("parkjonghun.whatishedoingwithandroid.mobile.convention.detekt")
 }
 
 android {

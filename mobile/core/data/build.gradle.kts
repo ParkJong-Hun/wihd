@@ -1,6 +1,7 @@
 plugins {
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.library")
     id("parkjonghun.whatishedoingwithandroid.mobile.convention.dagger")
+    id("parkjonghun.whatishedoingwithandroid.mobile.convention.detekt")
 }
 
 android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.data"
