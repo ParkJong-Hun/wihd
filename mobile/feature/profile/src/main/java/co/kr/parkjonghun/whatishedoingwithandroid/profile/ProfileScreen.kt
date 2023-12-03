@@ -33,6 +33,7 @@ fun NavController.navigateToProfileScreen() {
     }
 }
 
+@Suppress("UnusedParameter")
 @Composable
 fun ProfileScreen(
     // TODO state holder
@@ -43,8 +44,6 @@ fun ProfileScreen(
 }
 
 @Composable
-fun ProfileBody(
-
-) {
+fun ProfileBody() {
     Text("profile")
 }
