@@ -29,10 +29,7 @@ jobs:
   #          system-image: system-images;android-33;google_apis;x86_64
   
   build:
-    executor:
-      name: android/android-machine
-      resource-class: large
-      tag: 2023.11.1
+    <<: *android
     working_directory: ~/project/mobile
 
     steps:
