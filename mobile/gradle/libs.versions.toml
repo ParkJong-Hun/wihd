@@ -106,7 +106,7 @@ wihd-compose = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.co
 wihd-firebase = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase", version = "unspecified" }
 wihd-detekt = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.detekt", version = "unspecified" }
 
-wihd-bundle-feature = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.android", version = "unspecified" }
+wihd-bundle-feature = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.feature", version = "unspecified" }
 
 [bundles]
 plugins = [
