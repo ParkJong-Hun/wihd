@@ -24,13 +24,13 @@ class ApplicationModule {
 
     @Provides
     fun provideSampleRepository(
-        dataSource: SampleDataSource
+        dataSource: SampleDataSource,
     ): SampleRepository {
         val scope = CoroutineScope(Dispatchers.Main.immediate)
 
         return SampleRepositoryImpl(
             dataSource = dataSource,
-            scope = scope
+            scope = scope,
         )
     }
 
@@ -42,7 +42,7 @@ class ApplicationModule {
 
         return SampleUseCaseImpl(
             repository = repository,
-            scope = scope
+            scope = scope,
         )
     }
 }

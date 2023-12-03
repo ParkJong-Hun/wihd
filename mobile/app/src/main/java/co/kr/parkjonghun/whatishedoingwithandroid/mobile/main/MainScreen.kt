@@ -39,7 +39,7 @@ fun MainScreen(
     windowSizeClass: WindowSizeClass,
 ) {
     val mainState = rememberMainState(
-        windowSizeClass = windowSizeClass
+        windowSizeClass = windowSizeClass,
     )
 
     val currentMainDestination: MainDestination =
@@ -69,7 +69,7 @@ private fun MainBody(
     Row(
         modifier = Modifier
             .statusBarsPadding()
-            .fillMaxSize()
+            .fillMaxSize(),
     ) {
         AnimatedVisibility(visible = shouldShowNavRail) {
             MainNavigationRail(

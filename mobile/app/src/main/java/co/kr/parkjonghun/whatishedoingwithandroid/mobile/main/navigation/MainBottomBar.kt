@@ -35,7 +35,7 @@ fun MainBottomBar(
                     } else {
                         Icon(
                             imageVector = item.icon,
-                            contentDescription = contentDescription
+                            contentDescription = contentDescription,
                         )
                     }
                 },
@@ -43,7 +43,7 @@ fun MainBottomBar(
                     Text(
                         text = stringResource(id = item.labelTextRes),
                     )
-                }
+                },
             )
         }
     }

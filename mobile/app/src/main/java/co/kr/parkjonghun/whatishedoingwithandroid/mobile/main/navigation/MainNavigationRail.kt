@@ -35,7 +35,7 @@ fun MainNavigationRail(
                     } else {
                         Icon(
                             imageVector = item.icon,
-                            contentDescription = contentDescription
+                            contentDescription = contentDescription,
                         )
                     }
                 },
@@ -43,7 +43,7 @@ fun MainNavigationRail(
                     Text(
                         text = stringResource(id = item.labelTextRes),
                     )
-                }
+                },
             )
         }
     }

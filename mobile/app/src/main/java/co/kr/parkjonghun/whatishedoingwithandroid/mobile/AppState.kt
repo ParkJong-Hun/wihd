@@ -37,8 +37,7 @@ class AppState(
         @Composable get() = appNavController
             .currentBackStackEntryAsState().value?.destination
 
-    fun navigateToHoge(
-    ) {
+    fun navigateToHoge() {
         // TODO
     }
 }

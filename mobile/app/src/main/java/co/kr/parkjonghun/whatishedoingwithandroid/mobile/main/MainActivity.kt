@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             WihdApp(
-                windowSizeClass = calculateWindowSizeClass(this)
+                windowSizeClass = calculateWindowSizeClass(this),
             )
         }
     }
