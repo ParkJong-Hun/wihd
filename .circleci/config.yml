@@ -9,6 +9,7 @@ machines:
       name: android/android-docker
       resource-class: large
       tag: 2023.11.1
+      working_directory: ~/project/mobile
 
 commands:
   gradle:
@@ -21,13 +22,12 @@ commands:
       - run:
           name: <<parameters.title>>
           command: |
-            ls
+            cd mobile
             ./gradlew <<parameters.task>> --no-daemon
 
 jobs:
   lint:
     <<: *android
-    working_directory: ~/project/mobile
     steps:
       - checkout
       - gradle:
