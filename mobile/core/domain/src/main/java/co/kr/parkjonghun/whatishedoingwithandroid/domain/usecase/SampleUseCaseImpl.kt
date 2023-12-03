@@ -11,7 +11,7 @@ interface SampleUseCase {
 
 class SampleUseCaseImpl(
     private val repository: SampleRepository,
-    private val scope: CoroutineScope
+    private val scope: CoroutineScope,
 ) : SampleUseCase {
     override suspend operator fun invoke(): Sample {
         return withContext(scope.coroutineContext) {
