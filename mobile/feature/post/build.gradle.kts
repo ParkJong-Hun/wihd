@@ -1,5 +1,5 @@
 plugins {
-    id("parkjonghun.whatishedoingwithandroid.mobile.bundle.feature")
+    alias(libs.plugins.wihd.bundle.feature)
 }
 
 android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.feature.post"

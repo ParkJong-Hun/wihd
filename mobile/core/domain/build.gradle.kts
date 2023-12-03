@@ -1,7 +1,7 @@
 plugins {
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.library")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.dagger")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.detekt")
+    alias(libs.plugins.wihd.library)
+    alias(libs.plugins.wihd.dagger)
+    alias(libs.plugins.wihd.detekt)
 }
 
 android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.domain"

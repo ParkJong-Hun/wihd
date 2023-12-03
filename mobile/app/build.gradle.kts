@@ -1,10 +1,10 @@
 plugins {
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.android")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.compose")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.dagger")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.firebase")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.detekt")
+    alias(libs.plugins.wihd.android)
+    alias(libs.plugins.wihd.kotlin)
+    alias(libs.plugins.wihd.compose)
+    alias(libs.plugins.wihd.dagger)
+    alias(libs.plugins.wihd.firebase)
+    alias(libs.plugins.wihd.detekt)
 }
 
 android {

@@ -98,6 +98,16 @@ daggerHiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "dagge
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 detektPlugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 
+wihd-kotlin = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin", version = "unspecified" }
+wihd-android = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.android", version = "unspecified" }
+wihd-library = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.library", version = "unspecified" }
+wihd-dagger = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.dagger", version = "unspecified" }
+wihd-compose = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.compose", version = "unspecified" }
+wihd-firebase = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase", version = "unspecified" }
+wihd-detekt = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.detekt", version = "unspecified" }
+
+wihd-bundle-feature = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.android", version = "unspecified" }
+
 [bundles]
 plugins = [
     "androidGradlePlugin",
