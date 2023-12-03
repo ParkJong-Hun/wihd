@@ -31,6 +31,8 @@ appcompat = "1.6.1"
 material = "1.10.0"
 javapoet = "1.13.0"
 timber = "5.0.1"
+detekt = "1.23.3"
+twitter-compose-rules = "0.0.26"
 
 
 [libraries]
@@ -40,6 +42,7 @@ jetbrainCompoesPlugin = { group = "org.jetbrains.compose", name = "compose-gradl
 daggerHiltPlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "dagger-hilt" }
 kspPlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 gmsPlugin = { group = "com.google.gms", name = "google-services", version.ref = "gms" }
+detektPlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 
 # jetpack
 jetpack-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "jetpack-core-ktx" }
@@ -82,6 +85,9 @@ material = { group = "com.google.android.material", name = "material", version.r
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
+detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
+twitter-compose-rules = { group = "com.twitter.compose.rules", name = "detekt", version.ref = "twitter-compose-rules" }
+
 [plugins]
 androidGradlePlugin = { id = "com.android.application", version.ref = "agp" }
 androidGradleLibraryPlugin = { id = "com.android.library", version.ref = "agp" }
@@ -89,6 +95,7 @@ kotlinPlugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 gmsPlugin = { id = "com.google.gms.google-services", version.ref = "gms" }
 daggerHiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+detektPlugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 
 [bundles]
 plugins = [
@@ -98,4 +105,5 @@ plugins = [
     "jetbrainCompoesPlugin",
     "kspPlugin",
     "gmsPlugin",
+    'detektPlugin',
 ]
