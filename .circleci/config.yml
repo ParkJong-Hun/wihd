@@ -10,6 +10,18 @@ machines:
       resource-class: large
       tag: 2023.11.1
 
+commands:
+  gradle:
+    parameters:
+      name:
+        type: string
+      task:
+        type: string
+    steps:
+      - run:
+          name: <<parameters.title>>
+          commands: ./gradlew <<parameters.task>> --no-daemon
+
 jobs:
   lint:
     <<: *android
@@ -19,11 +31,11 @@ jobs:
           path: ~/project
 
       - gradle:
-          title: lint
+          name: lint
           task: :app:lint
 
       - gradle:
-          title: detekt
+          name: detekt
           task: detekt
   
   build:
@@ -35,7 +47,7 @@ jobs:
           path: ~/project
 
       - gradle:
-          title: Assemble release build
+          name: Assemble release build
           task: assembleRelease
 
 workflows:
