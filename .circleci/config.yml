@@ -34,10 +34,9 @@ jobs:
       - checkout:
           path: ~/project
 
-      - run:
-          name: Assemble release build
-          command: |
-            ./gradlew assembleRelease
+      - gradle:
+          title: Assemble release build
+          task: assembleRelease
 
 workflows:
   ci:
