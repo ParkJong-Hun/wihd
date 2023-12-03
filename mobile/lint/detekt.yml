@@ -1,0 +1,82 @@
+complexity:
+  active: false
+
+coroutines:
+  active: true
+
+empty-blocks:
+  active: true
+
+exceptions:
+  active: true
+  TooGenericExceptionCaught:
+    active: false
+
+naming:
+  active: true
+  FunctionNaming:
+    ignoreAnnotated:
+      - 'Composable'
+  MatchingDeclarationName:
+    active: false
+  PackageNaming:
+    active: false
+  TopLevelPropertyNaming:
+    active: false
+
+performance:
+  active: true
+  SpreadOperator:
+    active: false
+
+style:
+  active: true
+  MaxLineLength:
+    active: false
+  MagicNumber:
+    active: false
+  ReturnCount:
+    active: false
+  ThrowsCount:
+    active: false
+  LoopWithTooManyJumpStatements:
+    active: false
+  ForbiddenComment:
+    active: false
+  DestructuringDeclarationWithTooManyEntries:
+    active: false
+  UseEmptyCounterpart:
+    active: true
+  ClassOrdering:
+    active: true
+  BracesOnIfStatements:
+    active: true
+  MandatoryBracesLoops:
+    active: true
+  UnusedPrivateMember:
+    active: true
+    ignoreAnnotated:
+      - 'RelaxedMockK'
+      - 'InjectMockKs'
+      - 'Preview'
+
+potential-bugs:
+  active: true
+
+formatting:
+  active: true
+  autoCorrect: true
+  MaximumLineLength:
+    active: false
+  ArgumentListWrapping:
+    maxLineLength: 999
+  ParameterListWrapping:
+    maxLineLength: 999
+  NoWildcardImports:
+    active: false
+  TrailingCommaOnDeclarationSite:
+    active: true
+  TrailingCommaOnCallSite:
+    active: true
+  PackageName:
+    active: false
