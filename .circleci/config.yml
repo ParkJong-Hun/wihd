@@ -20,15 +20,14 @@ commands:
     steps:
       - run:
           name: <<parameters.title>>
-          commands: ./gradlew <<parameters.task>> --no-daemon
+          command: ./gradlew <<parameters.task>> --no-daemon
 
 jobs:
   lint:
     <<: *android
     working_directory: ~/project/mobile
     steps:
-      - checkout:
-          path: ~/project
+      - checkout
       - gradle:
           title: lint
           task: :app:lint
