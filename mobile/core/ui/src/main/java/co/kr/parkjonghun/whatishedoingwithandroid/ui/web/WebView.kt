@@ -1,3 +1,5 @@
+@file:Suppress("UnstableCollections")
+
 /**
  * This is Continued use and improvement of deprecated Accompanist Web view.
  * https://google.github.io/accompanist/web/
@@ -306,7 +308,6 @@ open class WihdWebChromeClient : WebChromeClient() {
     }
 }
 
-@Suppress("UnstableCollections")
 sealed class WebContent {
     data class Url(
         val url: String,
