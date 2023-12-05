@@ -1,3 +1,8 @@
+/**
+ * This is Continued use and improvement of deprecated Accompanist Web view.
+ * https://google.github.io/accompanist/web/
+ */
+
 package co.kr.parkjonghun.whatishedoingwithandroid.ui.web
 
 import android.webkit.WebResourceError
