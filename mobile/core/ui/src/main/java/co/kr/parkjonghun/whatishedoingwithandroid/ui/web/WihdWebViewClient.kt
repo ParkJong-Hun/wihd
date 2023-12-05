@@ -11,16 +11,14 @@ import co.kr.parkjonghun.whatishedoingwithandroid.ui.web.navigation.WebViewNavig
 /**
  * WihdWebViewClient
  *
- * A parent class implementation of WebViewClient that can be subclassed to add custom behaviour.
- *
  * As Wihd Web needs to set its own web client to function, it provides this intermediary
  * class that can be overriden if further custom behaviour is required.
  */
 @Suppress("unused")
-open class WihdWebViewClient : WebViewClient() {
-    open lateinit var state: WebViewState
+class WihdWebViewClient : WebViewClient() {
+    lateinit var state: WebViewState
         internal set
-    open lateinit var navigator: WebViewNavigator
+    lateinit var navigator: WebViewNavigator
         internal set
 
     override fun onPageStarted(view: WebView, url: String?, favicon: Bitmap?) {
@@ -61,13 +59,11 @@ open class WihdWebViewClient : WebViewClient() {
 /**
  * WihdWebChromeClient
  *
- * A parent class implementation of WebChromeClient that can be subclassed to add custom behaviour.
- *
  * As Wihd Web needs to set its own web client to function, it provides this intermediary
  * class that can be overriden if further custom behaviour is required.
  */
-open class WihdWebChromeClient : WebChromeClient() {
-    open lateinit var state: WebViewState
+class WihdWebChromeClient : WebChromeClient() {
+    lateinit var state: WebViewState
         internal set
 
     override fun onReceivedTitle(view: WebView, title: String?) {
