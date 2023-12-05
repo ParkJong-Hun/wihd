@@ -306,6 +306,7 @@ open class WihdWebChromeClient : WebChromeClient() {
     }
 }
 
+@Stable
 sealed class WebContent {
     data class Url(
         val url: String,
