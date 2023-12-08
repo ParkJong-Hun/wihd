@@ -60,5 +60,9 @@ gradlePlugin {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.detekt"
             implementationClass = "DetektConventionPlugin"
         }
+        register("serialization") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.serialization"
+            implementationClass = "KotlinSerializationConventionPlugin"
+        }
     }
 }
