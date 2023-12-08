@@ -1,13 +1,20 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.data.datasource
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import co.kr.parkjonghun.whatishedoingwithandroid.data.extension.sampleDataStore
 import co.kr.parkjonghun.whatishedoingwithandroid.data.extension.userDataStore
 import javax.inject.Inject
 
-class PreferencesDataSource @Inject constructor(
+interface PreferencesDataSource {
+    val sampleDataStore: DataStore<Preferences>
+    val userDataStore: DataStore<Preferences>
+}
+
+internal class PreferencesDataSourceImpl @Inject constructor(
     private val context: Context,
-) {
-    private val sampleDataStore get() = context.sampleDataStore
-    private val userDataStore get() = context.userDataStore
+) : PreferencesDataSource {
+    override val sampleDataStore get() = context.sampleDataStore
+    override val userDataStore get() = context.userDataStore
 }
