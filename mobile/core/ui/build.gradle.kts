@@ -9,6 +9,8 @@ android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.ui"
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.supabase.auth)
+    implementation(libs.supabase.auth.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.jetpack.junit)
     androidTestImplementation(libs.jetpack.espresso.core)
