@@ -3,8 +3,8 @@ package co.kr.parkjonghun.whatishedoingwithandroid.mobile.di
 import co.kr.parkjonghun.whatishedoingwithandroid.data.datasource.SampleDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.data.repository.SampleRepositoryImpl
 import co.kr.parkjonghun.whatishedoingwithandroid.domain.gateway.repository.SampleRepository
-import co.kr.parkjonghun.whatishedoingwithandroid.domain.usecase.SampleUseCase
-import co.kr.parkjonghun.whatishedoingwithandroid.domain.usecase.SampleUseCaseImpl
+import co.kr.parkjonghun.whatishedoingwithandroid.domain.usecase.sample.SampleUseCase
+import co.kr.parkjonghun.whatishedoingwithandroid.domain.usecase.sample.SampleUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
