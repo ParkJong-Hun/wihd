@@ -29,7 +29,7 @@ fun rememberAppState(
 }
 
 @Stable
-class AppState(
+data class AppState(
     val windowSizeClass: WindowSizeClass,
     val appNavController: NavHostController,
 ) {

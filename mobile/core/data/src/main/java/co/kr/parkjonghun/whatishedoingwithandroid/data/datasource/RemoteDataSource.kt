@@ -1,6 +1,7 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.data.datasource
 
 import io.github.jan.supabase.createSupabaseClient
+import io.github.jan.supabase.gotrue.GoTrue
 import io.github.jan.supabase.postgrest.Postgrest
 
 interface RemoteDataSource
@@ -11,6 +12,7 @@ internal class RemoteDataSourceImpl : RemoteDataSource {
         supabaseKey = KEY,
     ) {
         install(Postgrest)
+        install(GoTrue)
     }
 
     companion object {
