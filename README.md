@@ -19,6 +19,10 @@ I plan to build my own server someday.
 
 https://console.firebase.google.com/u/0/project/whatishedoingwithandroid
 
+### Supabase
+
+https://supabase.com/dashboard/project/zonnknlwnkforradhexp
+
 ### CI/CD
 
 https://app.circleci.com/pipelines/github/ParkJong-Hun/whatIsHeDoingWithAndroid
