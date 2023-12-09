@@ -4,11 +4,24 @@
 
 Challenges JongHun Park faces during Android app development.
 
-## Design
+## Android
+### Design
 
 You can see design of the project on Figma.
 
 https://www.figma.com/file/8aXhdSuWKjfUy2ThQWRKsJ/Figma-basics?type=design&node-id=1669%3A162202&mode=design&t=gOnBPQqMMpdBFLM6-1
+
+### Architecture
+
+TODO
+
+### Test
+
+TODO
+
+### CI/CD
+
+https://app.circleci.com/pipelines/github/ParkJong-Hun/whatIsHeDoingWithAndroid
 
 ## Server
 
@@ -22,7 +35,3 @@ https://console.firebase.google.com/u/0/project/whatishedoingwithandroid
 ### Supabase
 
 https://supabase.com/dashboard/project/zonnknlwnkforradhexp
-
-### CI/CD
-
-https://app.circleci.com/pipelines/github/ParkJong-Hun/whatIsHeDoingWithAndroid
