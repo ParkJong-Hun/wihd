@@ -34,7 +34,7 @@ javapoet = "1.13.0"
 timber = "5.0.1"
 detekt = "1.23.4"
 twitter-compose-rules = "0.0.26"
-supabase = "1.4.4"
+supabase = "1.4.7"
 ktor = "2.3.7"
 serialization = "1.6.0"
 
