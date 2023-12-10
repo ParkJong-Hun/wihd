@@ -1,3 +1,5 @@
+@file:Suppress("Filename")
+
 package co.kr.parkjonghun.whatishedoingwithandroid.post
 
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.post.R
