@@ -19,7 +19,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
 fun WihdApp(
     windowSizeClass: WindowSizeClass,
 ) {
-    val appState: AppState = rememberAppState(
+    val appUiState: AppUiState = rememberAppUiState(
         windowSizeClass = windowSizeClass,
     )
 
@@ -28,21 +28,21 @@ fun WihdApp(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background,
         ) {
-            WihdNavHost(appState)
+            WihdNavHost(appUiState)
         }
     }
 }
 
 @Composable
 private fun WihdNavHost(
-    appState: AppState,
+    appUiState: AppUiState,
 ) {
     NavHost(
-        navController = appState.appNavController,
+        navController = appUiState.appNavController,
         startDestination = mainScreenRoute,
     ) {
         mainScreen(
-            windowSizeClass = appState.windowSizeClass,
+            windowSizeClass = appUiState.windowSizeClass,
         )
     }
 }

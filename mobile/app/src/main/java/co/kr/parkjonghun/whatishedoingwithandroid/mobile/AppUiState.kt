@@ -12,24 +12,8 @@ import androidx.navigation.compose.rememberNavController
 /**
  *  Global state of this app.
  */
-@Composable
-fun rememberAppState(
-    windowSizeClass: WindowSizeClass,
-    appNavController: NavHostController = rememberNavController(),
-): AppState {
-    return remember(
-        appNavController,
-        windowSizeClass,
-    ) {
-        AppState(
-            windowSizeClass = windowSizeClass,
-            appNavController = appNavController,
-        )
-    }
-}
-
 @Stable
-data class AppState(
+data class AppUiState(
     val windowSizeClass: WindowSizeClass,
     val appNavController: NavHostController,
 ) {
@@ -39,5 +23,21 @@ data class AppState(
 
     fun navigateToHoge() {
         // TODO
+    }
+}
+
+@Composable
+fun rememberAppUiState(
+    windowSizeClass: WindowSizeClass,
+    appNavController: NavHostController = rememberNavController(),
+): AppUiState {
+    return remember(
+        appNavController,
+        windowSizeClass,
+    ) {
+        AppUiState(
+            windowSizeClass = windowSizeClass,
+            appNavController = appNavController,
+        )
     }
 }

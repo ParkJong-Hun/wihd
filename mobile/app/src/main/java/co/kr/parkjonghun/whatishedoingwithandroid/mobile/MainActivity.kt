@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.mobile.main
+package co.kr.parkjonghun.whatishedoingwithandroid.mobile
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,7 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import co.kr.parkjonghun.whatishedoingwithandroid.mobile.WihdApp
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

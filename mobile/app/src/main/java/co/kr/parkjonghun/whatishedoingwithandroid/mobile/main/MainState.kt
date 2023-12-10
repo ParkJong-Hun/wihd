@@ -19,24 +19,8 @@ import co.kr.parkjonghun.whatishedoingwithandroid.profile.navigateToProfileScree
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.extension.Route
 
 /**
- *  Global state of this app.
+ *  state of the Main screen.
  */
-@Composable
-fun rememberMainState(
-    windowSizeClass: WindowSizeClass,
-    navController: NavHostController = rememberNavController(),
-): MainState {
-    return remember(
-        navController,
-        windowSizeClass,
-    ) {
-        MainState(
-            windowSizeClass = windowSizeClass,
-            navController = navController,
-        )
-    }
-}
-
 @Stable
 class MainState(
     val windowSizeClass: WindowSizeClass,
@@ -74,5 +58,21 @@ class MainState(
             // impossible
             else -> NEWS
         }
+    }
+}
+
+@Composable
+fun rememberMainState(
+    windowSizeClass: WindowSizeClass,
+    navController: NavHostController = rememberNavController(),
+): MainState {
+    return remember(
+        navController,
+        windowSizeClass,
+    ) {
+        MainState(
+            windowSizeClass = windowSizeClass,
+            navController = navController,
+        )
     }
 }
