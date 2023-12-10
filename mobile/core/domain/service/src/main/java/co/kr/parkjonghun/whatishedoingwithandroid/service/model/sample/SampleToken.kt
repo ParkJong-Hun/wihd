@@ -1,7 +1,7 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.domain.model.sample
+package co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample
 
-import base.Entity
+import co.kr.parkjonghun.whatishedoingwithandroid.base.model.Entity
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-internal data class SampleToken(val token: String) : base.Entity
+internal data class SampleToken(val token: String) : Entity

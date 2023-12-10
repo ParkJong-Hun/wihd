@@ -1,12 +1,12 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.domain.statemachine.sample
+package co.kr.parkjonghun.whatishedoingwithandroid.service.statemachine.sample
 
-import base.SideEffect
-import base.StateMachine
+import co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine.SideEffect
+import co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine.StateMachine
 
-internal class SampleSideEffect : base.SideEffect<SampleState, SampleAction> {
+internal class SampleSideEffect : SideEffect<SampleState, SampleAction> {
     override fun fire(
-        targetStateMachine: base.StateMachine<SampleState, SampleAction>,
-        validTransition: base.StateMachine.Transition.Valid<SampleState, SampleAction>,
+        targetStateMachine: StateMachine<SampleState, SampleAction>,
+        validTransition: StateMachine.Transition.Valid<SampleState, SampleAction>,
     ) {
         TODO("Not yet implemented")
     }

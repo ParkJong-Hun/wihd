@@ -1,11 +1,11 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.domain.statemachine.sample
+package co.kr.parkjonghun.whatishedoingwithandroid.service.statemachine.sample
 
-import co.kr.parkjonghun.whatishedoingwithandroid.domain.model.sample.SampleToken
-import base.ErrorState
-import base.State
+import co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine.ErrorState
+import co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine.State
+import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.SampleToken
 import kotlinx.parcelize.Parcelize
 
-internal sealed class SampleState : base.State {
+internal sealed class SampleState : State {
     @Parcelize
     data object None : SampleState()
 
@@ -20,5 +20,5 @@ internal sealed class SampleState : base.State {
     @Parcelize
     data class Error(
         override val throwable: Throwable,
-    ) : SampleState(), base.ErrorState
+    ) : SampleState(), ErrorState
 }

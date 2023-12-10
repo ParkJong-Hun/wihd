@@ -1,7 +1,7 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.domain.usecase.sample
+package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.sample
 
-import co.kr.parkjonghun.whatishedoingwithandroid.domain.gateway.repository.SampleRepository
-import co.kr.parkjonghun.whatishedoingwithandroid.domain.model.sample.Sample
+import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.SampleRepository
+import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.Sample
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
 

@@ -1,7 +1,7 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.domain.statemachine.sample
+package co.kr.parkjonghun.whatishedoingwithandroid.service.statemachine.sample
 
-import base.Action
+import co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine.Action
 
-sealed interface SampleAction : base.Action {
+sealed interface SampleAction : Action {
     data object HogeAction : SampleAction
 }

@@ -1,3 +1,3 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.domain.mapper
+package co.kr.parkjonghun.whatishedoingwithandroid.service.mapper
 
 // TODO
