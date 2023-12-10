@@ -1,4 +1,4 @@
-@file:Suppress("PreviewNaming")
+@file:Suppress("Filename", "PreviewNaming")
 
 package co.kr.parkjonghun.whatishedoingwithandroid.ui.extension
 
