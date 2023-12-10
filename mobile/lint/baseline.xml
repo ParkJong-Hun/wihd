@@ -1,13 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <SmellBaseline>
-  <ManuallySuppressedIssues>
-    <ID>Filename:Annotations.kt$co.kr.parkjonghun.whatishedoingwithandroid.ui.extension.Annotations.kt</ID>
-    <ID>Filename:Typealias.kt$co.kr.parkjonghun.whatishedoingwithandroid.ui.extension.Typealias.kt</ID>
-    <ID>Filename:Resources.kt$co.kr.parkjonghun.whatishedoingwithandroid.news.Resources.kt</ID>
-    <ID>Filename:Resources.kt$co.kr.parkjonghun.whatishedoingwithandroid.post.Resources.kt</ID>
-    <ID>Filename:Resources.kt$co.kr.parkjonghun.whatishedoingwithandroid.profile.Resources.kt</ID>
-    <ID>UnusedPrivateProperty:StateMachine.kt$StateMachineImpl$private val sideEffectCreator: SideEffectCreator&lt;SideEffect&lt;STATE, ACTION>, STATE, ACTION></ID>
-    <ID>ModifierOrder:StateMachine.kt$StateMachineImpl$override public</ID>
-  </ManuallySuppressedIssues>
-  <CurrentIssues/>
+  <ManuallySuppressedIssues />
+    <CurrentIssues />
 </SmellBaseline>
