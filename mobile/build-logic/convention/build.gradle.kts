@@ -23,7 +23,7 @@ java {
 dependencies {
     implementation(libs.bundles.plugins)
     // https://github.com/google/dagger/issues/3068#issuecomment-1470534930
-    implementation(libs.javapoet)
+    compileOnly(libs.javapoet)
 }
 
 gradlePlugin {
@@ -63,6 +63,10 @@ gradlePlugin {
         register("serialization") {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.serialization"
             implementationClass = "KotlinSerializationConventionPlugin"
+        }
+        register("parcelize") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.parcelize"
+            implementationClass = "KotlinParcelizeConventionPlugin"
         }
     }
 }

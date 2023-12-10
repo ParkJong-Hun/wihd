@@ -111,6 +111,7 @@ daggerHiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "dagge
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 detektPlugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlinSerializationPlugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinParcelizePlugin = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 
 wihd-kotlin = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin", version = "unspecified" }
 wihd-android = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.android", version = "unspecified" }
@@ -120,6 +121,7 @@ wihd-compose = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.co
 wihd-firebase = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase", version = "unspecified" }
 wihd-detekt = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.detekt", version = "unspecified" }
 wihd-serialization = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.serialization", version = "unspecified" }
+wihd-parcelize = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.parcelize", version = "unspecified" }
 
 wihd-bundle-feature = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.feature", version = "unspecified" }
 
