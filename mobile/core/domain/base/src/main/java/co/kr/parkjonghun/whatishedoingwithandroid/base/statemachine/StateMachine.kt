@@ -11,11 +11,11 @@ import kotlin.coroutines.CoroutineContext
 
 /**
  * https://en.wikipedia.org/wiki/Finite-state_machine
- * ref. https://github.com/Tinder/StateMachine/blob/main/src/main/kotlin/com/tinder/StateMachine.kt
  */
 interface StateMachine<STATE : State, ACTION : Action> {
     val currentState: STATE
     public val flow: SharedFlow<STATE>
+
     public fun dispatch(action: ACTION) = dispatch(action) {}
     fun dispatch(action: ACTION, after: (Transition<STATE, ACTION>) -> Unit)
 
@@ -65,12 +65,12 @@ interface StateMachine<STATE : State, ACTION : Action> {
      */
     class Diagram<STATE : State, ACTION : Action>(
         val initialState: STATE,
-        val relationMap: Map<Matcher<STATE, STATE>, Relation<STATE, ACTION>>,
+        val fromStateMap: Map<Matcher<STATE, STATE>, FromState<STATE, ACTION>>,
     ) {
-        class Relation<STATE : State, ACTION : Action> {
+        class FromState<STATE : State, ACTION : Action> {
             class TransitionTo<STATE : State>(val toState: STATE)
 
-            val transitionMap =
+            val transitionToStateMap =
                 mutableMapOf<Matcher<ACTION, ACTION>, (STATE, ACTION) -> TransitionTo<STATE>>()
         }
     }
@@ -78,56 +78,60 @@ interface StateMachine<STATE : State, ACTION : Action> {
     /**
      * Creating a diagram of each state machine.
      */
-    class DiagramBuilder<STATE : State, ACTION : Action>(
-        private val initialState: STATE,
+    class DiagramBuilder<SEALED_STATE : State, SEALED_ACTION : Action>(
+        private val initialState: SEALED_STATE,
     ) {
+        /**
+         * Relationships between states.
+         */
         private val relationMap =
-            LinkedHashMap<Matcher<STATE, STATE>, Diagram.Relation<STATE, ACTION>>()
+            LinkedHashMap<Matcher<SEALED_STATE, SEALED_STATE>, Diagram.FromState<SEALED_STATE, SEALED_ACTION>>()
 
         @Deprecated(message = "It is not for service.")
-        fun <TARGET_STATE : STATE> state(
-            stateMatcher: Matcher<STATE, TARGET_STATE>,
-            config: RelationConfigBuilder<TARGET_STATE>.() -> Unit,
+        fun <TARGET_STATE : SEALED_STATE> fromState(
+            stateMatcher: Matcher<SEALED_STATE, TARGET_STATE>,
+            config: RelationBuilder<TARGET_STATE>.() -> Unit,
         ) {
-            relationMap[stateMatcher] = RelationConfigBuilder<TARGET_STATE>().apply(config).build()
+            relationMap[stateMatcher] = RelationBuilder<TARGET_STATE>().apply(config).build()
         }
 
-        public inline fun <reified TARGET_STATE : STATE> state(
-            noinline config: RelationConfigBuilder<TARGET_STATE>.() -> Unit,
-        ) = state(Matcher.any(), config)
+        public inline fun <reified TARGET_STATE : SEALED_STATE> fromState(
+            noinline config: RelationBuilder<TARGET_STATE>.() -> Unit,
+        ) = fromState(Matcher.any(), config)
 
-        fun build(): Diagram<STATE, ACTION> = Diagram(initialState, relationMap.toMap())
+        fun build(): Diagram<SEALED_STATE, SEALED_ACTION> =
+            Diagram(initialState, relationMap.toMap())
 
         /**
          * Creating specifications for what actions should be used when going from one state of each state machine to another.
          */
-        inner class RelationConfigBuilder<TARGET_STATE : STATE> {
-            private val relationFactor = Diagram.Relation<STATE, ACTION>()
+        inner class RelationBuilder<TARGET_STATE : SEALED_STATE> {
+            private val fromStateFactor = Diagram.FromState<SEALED_STATE, SEALED_ACTION>()
 
             @Suppress("UNCHECKED_CAST")
             @Deprecated(message = "It is not for service.")
-            fun <TARGET_ACTION : ACTION> on(
-                actionMatcher: Matcher<ACTION, TARGET_ACTION>,
-                transition: TARGET_STATE.(TARGET_ACTION) -> Diagram.Relation.TransitionTo<STATE>,
+            fun <TARGET_ACTION : SEALED_ACTION> on(
+                actionMatcher: Matcher<SEALED_ACTION, TARGET_ACTION>,
+                transition: TARGET_STATE.(TARGET_ACTION) -> Diagram.FromState.TransitionTo<SEALED_STATE>,
             ) {
-                relationFactor.transitionMap[actionMatcher] = { state, action ->
+                fromStateFactor.transitionToStateMap[actionMatcher] = { state, action ->
                     transition(state as TARGET_STATE, action as TARGET_ACTION)
                 }
             }
 
-            public inline fun <reified TARGET_ACTION : ACTION> on(
-                noinline transition: TARGET_STATE.(TARGET_ACTION) -> Diagram.Relation.TransitionTo<STATE>,
+            public inline fun <reified TARGET_ACTION : SEALED_ACTION> on(
+                noinline transition: TARGET_STATE.(TARGET_ACTION) -> Diagram.FromState.TransitionTo<SEALED_STATE>,
             ) {
                 on(Matcher.any(), transition)
             }
 
-            public fun TARGET_STATE.transitionTo(newState: STATE) =
-                Diagram.Relation.TransitionTo(newState)
+            public fun TARGET_STATE.transitionTo(newState: SEALED_STATE) =
+                Diagram.FromState.TransitionTo(newState)
 
-            public fun TARGET_STATE.noTransition(): Diagram.Relation.TransitionTo<TARGET_STATE> =
-                Diagram.Relation.TransitionTo(this)
+            public fun TARGET_STATE.transitionToSelf(): Diagram.FromState.TransitionTo<TARGET_STATE> =
+                Diagram.FromState.TransitionTo(this)
 
-            fun build() = relationFactor
+            fun build() = fromStateFactor
         }
     }
 }
@@ -139,11 +143,11 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
     private val sideEffectCreator:
     StateMachine.SideEffectCreator<StateMachine.SideEffect<STATE, ACTION>, STATE, ACTION>,
 ) : StateMachine<STATE, ACTION> {
-    private val _stateFlow = MutableSharedFlow<STATE>(replay = 1).also { it.tryEmit(initialState) }
+    private val _flow = MutableSharedFlow<STATE>(replay = 1).also { it.tryEmit(initialState) }
     private val MutableSharedFlow<STATE>.value get() = replayCache.first()
 
-    override val currentState: STATE = _stateFlow.value
-    override val flow: SharedFlow<STATE> = _stateFlow
+    override val currentState: STATE = _flow.value
+    override val flow: SharedFlow<STATE> = _flow
 
     private val coroutineContext: CoroutineContext =
         CoroutineName(name) + SupervisorJob() + Dispatchers.Main.immediate

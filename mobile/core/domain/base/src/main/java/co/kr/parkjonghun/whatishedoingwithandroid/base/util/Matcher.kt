@@ -2,12 +2,15 @@ package co.kr.parkjonghun.whatishedoingwithandroid.base.util
 
 import kotlin.reflect.KClass
 
+/**
+ * Determines whether siblings share the same sealed class.
+ */
 class Matcher<T : Any, out R : T> private constructor(
     private val kClass: KClass<R>,
 ) {
     private val predicates = mutableListOf<(T) -> Boolean>({ kClass.isInstance(it) })
 
-    public fun matchAll(target: T): Boolean = predicates.all { it(target) }
+    fun matchAll(target: T): Boolean = predicates.all { it(target) }
 
     companion object {
         fun <T : Any, R : T> any(kClass: KClass<R>): Matcher<T, R> = Matcher(kClass)
