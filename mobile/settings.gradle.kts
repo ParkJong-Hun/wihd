@@ -17,7 +17,8 @@ rootProject.name = "What-is-He-doing-with-Android"
 include(
     ":app",
     ":core:data",
-    ":core:domain",
+    ":core:domain:service",
+    ":core:domain:base",
     ":core:ui",
 )
 include(

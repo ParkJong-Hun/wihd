@@ -1,10 +1,10 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.data.di
 
 import android.content.Context
-import co.kr.parkjonghun.whatishedoingwithandroid.data.datasource.PreferencesDataSource
-import co.kr.parkjonghun.whatishedoingwithandroid.data.datasource.PreferencesDataSourceImpl
-import co.kr.parkjonghun.whatishedoingwithandroid.data.datasource.RemoteDataSource
-import co.kr.parkjonghun.whatishedoingwithandroid.data.datasource.RemoteDataSourceImpl
+import co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource.PreferencesDataSource
+import co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource.PreferencesDataSourceImpl
+import co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource.RemoteDataSource
+import co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource.RemoteDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

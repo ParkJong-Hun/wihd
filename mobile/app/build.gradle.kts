@@ -44,7 +44,7 @@ dependencies {
     implementation(project(":feature:profile"))
 
     implementation(project(":core:data"))
-    implementation(project(":core:domain"))
+    implementation(project(":core:domain:service"))
     implementation(project(":core:ui"))
 
     implementation(libs.jetpack.core.splashscreen)
