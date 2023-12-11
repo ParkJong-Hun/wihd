@@ -1,12 +1,17 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine
 
 import co.kr.parkjonghun.whatishedoingwithandroid.base.util.Matcher
+import kotlinx.coroutines.CompletableJob
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -16,8 +21,10 @@ interface StateMachine<STATE : State, ACTION : Action> {
     val currentState: STATE
     public val flow: SharedFlow<STATE>
 
-    public fun dispatch(action: ACTION) = dispatch(action) {}
-    fun dispatch(action: ACTION, after: (Transition<STATE, ACTION>) -> Unit)
+    public fun dispatch(
+        action: ACTION,
+        after: (Transition<STATE, ACTION>) -> Unit = {},
+    )
 
     /**
      *  An action performed when an action occurs in a certain state.
@@ -26,7 +33,7 @@ interface StateMachine<STATE : State, ACTION : Action> {
     interface SideEffect<STATE : State, ACTION : Action> {
         public fun fire(
             targetStateMachine: StateMachine<STATE, ACTION>,
-            validTransition: Transition.Valid<STATE, ACTION>,
+            validTransition: ValidTransition<STATE, ACTION>,
         )
     }
 
@@ -140,8 +147,8 @@ interface StateMachine<STATE : State, ACTION : Action> {
 internal class StateMachineImpl<STATE : State, ACTION : Action>(
     name: String,
     initialState: STATE,
-    private val sideEffectCreator:
-    StateMachine.SideEffectCreator<StateMachine.SideEffect<STATE, ACTION>, STATE, ACTION>,
+    private val sideEffectCreator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
+    private val diagram: Diagram<STATE, ACTION>,
 ) : StateMachine<STATE, ACTION> {
     private val _flow = MutableSharedFlow<STATE>(replay = 1).also { it.tryEmit(initialState) }
     private val MutableSharedFlow<STATE>.value get() = replayCache.first()
@@ -149,14 +156,104 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
     override val currentState: STATE = _flow.value
     override val flow: SharedFlow<STATE> = _flow
 
-    private val coroutineContext: CoroutineContext =
+    private val stateMachineContext: CoroutineContext =
         CoroutineName(name) + SupervisorJob() + Dispatchers.Main.immediate
-    private val scope: CoroutineScope = CoroutineScope(coroutineContext)
+    private val stateMachineScope: CoroutineScope = CoroutineScope(stateMachineContext)
+
+    private val sideEffectContext: CoroutineContext =
+        CoroutineName("$name-sideEffect") + stateMachineContext
+    private val sideEffectScope: CoroutineScope = CoroutineScope(sideEffectContext)
+
+    private val mutex = Mutex()
+
+    private val stateMachineJob: CompletableJob = SupervisorJob(stateMachineContext[Job])
 
     override fun dispatch(
         action: ACTION,
-        after: (StateMachine.Transition<STATE, ACTION>) -> Unit,
+        after: (Transition<STATE, ACTION>) -> Unit,
     ) {
-        // TODO sideEffect, transition logic
+        newJob { after(transition(action)) }
+    }
+
+    private suspend fun transition(action: ACTION): Transition<STATE, ACTION> =
+        mutex.withLock {
+            _flow.value.let { currentState ->
+                diagram.fromStateMap
+                    .filterKeys { it.matchAll(currentState) }
+                    .values
+                    .flatMap { it.transitionToStateMap.entries }
+                    .find { it.key.matchAll(action) }
+                    ?.let {
+                        ValidTransition(
+                            fromState = currentState,
+                            toState = it.value(currentState, action).toState,
+                            dispatchedAction = action,
+                        )
+                    }
+                    ?.also { if (_flow.value != it.toState) _flow.emit(it.toState) }
+                    ?: InValidTransition(
+                        fromState = currentState,
+                        dispatchedAction = action,
+                    )
+            }
+        }.also { transition -> checkFireSideEffect(action, transition) }
+
+    private fun checkFireSideEffect(
+        action: ACTION,
+        transition: Transition<STATE, ACTION>,
+    ) {
+        newJob {
+            newSideEffect {
+                (transition as? ValidTransition<STATE, ACTION>)?.let { validTransition ->
+                    sideEffectCreator.create(transition.fromState, action)
+                        ?.fire(
+                            targetStateMachine = this@StateMachineImpl,
+                            validTransition = validTransition,
+                        )
+                    if (isTerminalState(validTransition.toState)) shutdown()
+                }
+            }
+        }
+    }
+
+    private fun newJob(block: suspend CoroutineScope.() -> Unit) =
+        stateMachineScope.launch { block() }
+
+    private fun newSideEffect(block: suspend CoroutineScope.() -> Unit) =
+        sideEffectScope.launch { block() }
+
+    private fun isTerminalState(state: STATE): Boolean =
+        diagram.fromStateMap
+            .filterKeys { it.matchAll(state) }
+            .values
+            .flatMap { it.transitionToStateMap.entries }
+            .isEmpty()
+
+    private fun shutdown() {
+        stateMachineJob.cancel()
     }
 }
+
+/**
+ * Create a state machine.
+ */
+public fun <STATE : State, ACTION : Action> createStateMachine(
+    name: String,
+    initialState: STATE,
+    sideEffectCreator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
+    diagramBlock: StateMachine.DiagramBuilder<STATE, ACTION>.() -> Unit,
+): StateMachine<STATE, ACTION> =
+    StateMachineImpl(
+        name = name,
+        initialState = initialState,
+        sideEffectCreator = sideEffectCreator,
+        diagram = StateMachine.DiagramBuilder<STATE, ACTION>(initialState = initialState)
+            .apply(diagramBlock)
+            .build(),
+    )
+
+typealias Diagram<S, A> = StateMachine.Diagram<S, A>
+typealias Transition<S, A> = StateMachine.Transition<S, A>
+typealias ValidTransition<S, A> = StateMachine.Transition.Valid<S, A>
+typealias InValidTransition<S, A> = StateMachine.Transition.Invalid<S, A>
+typealias SideEffect<S, A> = StateMachine.SideEffect<S, A>
