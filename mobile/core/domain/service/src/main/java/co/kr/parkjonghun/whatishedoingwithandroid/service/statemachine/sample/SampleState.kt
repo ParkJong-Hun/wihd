@@ -5,7 +5,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine.State
 import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.SampleToken
 import kotlinx.parcelize.Parcelize
 
-internal sealed class SampleState : State {
+sealed class SampleState : State {
     @Parcelize
     data object None : SampleState()
 
