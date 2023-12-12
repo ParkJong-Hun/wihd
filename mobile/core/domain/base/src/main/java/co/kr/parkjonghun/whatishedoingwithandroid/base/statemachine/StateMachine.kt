@@ -31,7 +31,7 @@ interface StateMachine<STATE : State, ACTION : Action> {
      *  After an action occurs, it always transitions to another state.
      */
     interface SideEffect<STATE : State, ACTION : Action> {
-        public fun fire(
+        public suspend fun fire(
             targetStateMachine: StateMachine<STATE, ACTION>,
             validTransition: ValidTransition<STATE, ACTION>,
         )
