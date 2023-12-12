@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 @Suppress("unused")
-object DataModule {
+object DataSourceModule {
     @Provides
     @Singleton
     fun providePreferencesDataSource(

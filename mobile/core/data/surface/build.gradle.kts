@@ -8,7 +8,6 @@ plugins {
 android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.data.surface"
 
 dependencies {
-    implementation(project(":core:data:interior"))
     implementation(libs.jetpack.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
