@@ -1,3 +1,7 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample
 
-data class Sample(val stuff: String)
+import co.kr.parkjonghun.whatishedoingwithandroid.base.model.Entity
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Sample(val stuff: String) : Entity
