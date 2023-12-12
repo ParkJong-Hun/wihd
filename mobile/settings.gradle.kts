@@ -15,12 +15,13 @@ dependencyResolutionManagement {
 }
 rootProject.name = "What-is-He-doing-with-Android"
 include(
-    ":app",
-    ":core:data",
-    ":core:domain:service",
+    ":core:data:surface",
+    ":core:data:interior",
     ":core:domain:base",
+    ":core:domain:service",
     ":core:ui",
 )
+include(":app")
 include(
     ":feature:news",
     ":feature:post",

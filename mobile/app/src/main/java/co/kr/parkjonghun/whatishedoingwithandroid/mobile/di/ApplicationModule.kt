@@ -1,7 +1,7 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.mobile.di
 
 import co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource.SampleDataSource
-import co.kr.parkjonghun.whatishedoingwithandroid.data.repository.SampleRepositoryImpl
+import co.kr.parkjonghun.whatishedoingwithandroid.inside.repository.SampleRepositoryImpl
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.SampleRepository
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.sample.SampleUseCase
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.sample.SampleUseCaseImpl
