@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.wihd.android)
     alias(libs.plugins.wihd.kotlin)
     alias(libs.plugins.wihd.compose)
-    alias(libs.plugins.wihd.hilt)
+    alias(libs.plugins.wihd.koin)
     alias(libs.plugins.wihd.firebase)
     alias(libs.plugins.wihd.detekt)
     alias(libs.plugins.wihd.serialization)
@@ -50,7 +50,5 @@ dependencies {
     implementation(project(":core:ui"))
 
     implementation(libs.jetpack.core.splashscreen)
-    implementation(libs.jetpack.navigation.compose)
-    implementation(libs.jetpack.hilt.navigation)
     implementation(libs.jetpack.compose.material3.windowsizeclass)
 }

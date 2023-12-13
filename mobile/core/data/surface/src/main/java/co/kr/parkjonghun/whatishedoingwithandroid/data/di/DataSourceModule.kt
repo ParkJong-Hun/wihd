@@ -1,32 +1,23 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.data.di
 
-import android.content.Context
 import co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource.PreferencesDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource.PreferencesDataSourceImpl
 import co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource.RemoteDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource.RemoteDataSourceImpl
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource.SampleDataSource
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-@Suppress("unused")
-object DataSourceModule {
-    @Provides
-    @Singleton
-    fun providePreferencesDataSource(
-        @ApplicationContext context: Context,
-    ): PreferencesDataSource {
-        return PreferencesDataSourceImpl(context)
+val dataSourceModule = module {
+    single<PreferencesDataSource> {
+        PreferencesDataSourceImpl(
+            context = androidContext(),
+        )
     }
 
-    @Provides
-    @Singleton
-    fun provideRemoteDataSource(): RemoteDataSource {
-        return RemoteDataSourceImpl()
+    single<RemoteDataSource> {
+        RemoteDataSourceImpl()
     }
+
+    single { SampleDataSource() }
 }
