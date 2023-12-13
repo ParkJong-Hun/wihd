@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.wihd.android)
     alias(libs.plugins.wihd.kotlin)
     alias(libs.plugins.wihd.compose)
-    alias(libs.plugins.wihd.dagger)
+    alias(libs.plugins.wihd.hilt)
     alias(libs.plugins.wihd.firebase)
     alias(libs.plugins.wihd.detekt)
     alias(libs.plugins.wihd.serialization)

@@ -36,9 +36,13 @@ gradlePlugin {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.compose"
             implementationClass = "ComposeConventionPlugin"
         }
-        register("dagger") {
-            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.dagger"
-            implementationClass = "DaggerConventionPlugin"
+        register("hilt") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.hilt"
+            implementationClass = "HiltConventionPlugin"
+        }
+        register("koin") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.koin"
+            implementationClass = "KoinConventionPlugin"
         }
         register("feature") {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.feature"
