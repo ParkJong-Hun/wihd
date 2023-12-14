@@ -50,5 +50,6 @@ dependencies {
     implementation(project(":core:ui"))
 
     implementation(libs.jetpack.core.splashscreen)
+    implementation(libs.jetpack.navigation.compose)
     implementation(libs.jetpack.compose.material3.windowsizeclass)
 }
