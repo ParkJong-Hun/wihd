@@ -27,7 +27,6 @@ fun WihdApp(
 ) {
     KoinApplication(application = {
         androidLogger()
-
         modules(
             dataSourceModule,
             repositoryModule,
