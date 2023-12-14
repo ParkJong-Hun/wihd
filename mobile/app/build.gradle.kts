@@ -52,4 +52,5 @@ dependencies {
     implementation(libs.jetpack.core.splashscreen)
     implementation(libs.jetpack.navigation.compose)
     implementation(libs.jetpack.compose.material3.windowsizeclass)
+    implementation(libs.timber)
 }

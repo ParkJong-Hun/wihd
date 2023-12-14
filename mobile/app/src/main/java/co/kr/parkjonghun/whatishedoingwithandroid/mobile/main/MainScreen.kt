@@ -8,12 +8,15 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine.StateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainBottomBar
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainNavigationRail
@@ -21,7 +24,12 @@ import co.kr.parkjonghun.whatishedoingwithandroid.news.newsScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.news.newsScreenRoute
 import co.kr.parkjonghun.whatishedoingwithandroid.post.postScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.profile.profileScreen
+import co.kr.parkjonghun.whatishedoingwithandroid.service.statemachine.sample.SampleAction
+import co.kr.parkjonghun.whatishedoingwithandroid.service.statemachine.sample.SampleState
 import kotlinx.collections.immutable.toPersistentList
+import kotlinx.coroutines.delay
+import org.koin.compose.rememberKoinInject
+import timber.log.Timber
 
 const val mainScreenRoute = "main"
 
@@ -43,11 +51,24 @@ fun MainScreen(
         windowSizeClass = windowSizeClass,
     )
 
+    val stateMachine = rememberKoinInject<StateMachine<SampleState, SampleAction>>()
+
+    Timber.tag("SampleStateMachine").d("recomposition ${stateMachine.currentState}")
+
     val currentMainDestination: MainDestination =
         mainState.navController.currentBackStackEntryAsState().value
             ?.destination
             ?.let { mainState.routeToDestination(route = it.route) }
             ?: MainDestination.NEWS
+
+    LaunchedEffect(stateMachine.flow.collectAsState(initial = SampleState.None)) {
+        Timber.tag("SampleStateMachine").d(stateMachine.currentState.toString())
+    }
+
+    LaunchedEffect(Unit) {
+        delay(500)
+        stateMachine.dispatch(SampleAction.HogeAction)
+    }
 
     MainBody(
         mainNavController = mainState.navController,
