@@ -9,7 +9,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -53,21 +52,20 @@ fun MainScreen(
 
     val stateMachine = rememberKoinInject<StateMachine<SampleState, SampleAction>>()
 
-    Timber.tag("SampleStateMachine").d("recomposition ${stateMachine.currentState}")
-
     val currentMainDestination: MainDestination =
         mainState.navController.currentBackStackEntryAsState().value
             ?.destination
             ?.let { mainState.routeToDestination(route = it.route) }
             ?: MainDestination.NEWS
 
-    LaunchedEffect(stateMachine.flow.collectAsState(initial = SampleState.None)) {
-        Timber.tag("SampleStateMachine").d(stateMachine.currentState.toString())
+    LaunchedEffect(stateMachine.flow) {
+        Timber.tag("Check").d("MainScreen launchedEffect ${stateMachine.currentState}")
     }
 
     LaunchedEffect(Unit) {
         delay(500)
         stateMachine.dispatch(SampleAction.HogeAction)
+        Timber.tag("Check").d("MainScreen dispatch")
     }
 
     MainBody(
