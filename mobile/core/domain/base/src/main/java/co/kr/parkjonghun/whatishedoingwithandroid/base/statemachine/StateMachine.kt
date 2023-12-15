@@ -1,5 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine
 
+import android.util.Log
 import co.kr.parkjonghun.whatishedoingwithandroid.base.util.Matcher
 import kotlinx.coroutines.CompletableJob
 import kotlinx.coroutines.CoroutineName
@@ -41,10 +42,10 @@ interface StateMachine<STATE : State, ACTION : Action> {
      * A condition specifier that specifies which side effect is triggered when a certain action is taken in a certain state.
      */
     interface SideEffectCreator<
-        SIDE_EFFECT : SideEffect<STATE, ACTION>,
-        STATE : State,
-        ACTION : Action,
-        > {
+            SIDE_EFFECT : SideEffect<STATE, ACTION>,
+            STATE : State,
+            ACTION : Action,
+            > {
         fun create(state: STATE, action: ACTION): SIDE_EFFECT?
     }
 
@@ -53,17 +54,17 @@ interface StateMachine<STATE : State, ACTION : Action> {
      */
     sealed interface Transition<STATE : State, ACTION : Action> {
         val fromState: STATE
-        val dispatchedAction: ACTION
+        val targetAction: ACTION
 
         data class Valid<STATE : State, ACTION : Action>(
             override val fromState: STATE,
             val toState: STATE,
-            override val dispatchedAction: ACTION,
+            override val targetAction: ACTION,
         ) : Transition<STATE, ACTION>
 
         data class Invalid<STATE : State, ACTION : Action>(
             override val fromState: STATE,
-            override val dispatchedAction: ACTION,
+            override val targetAction: ACTION,
         ) : Transition<STATE, ACTION>
     }
 
@@ -187,13 +188,13 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
                         ValidTransition(
                             fromState = currentState,
                             toState = it.value(currentState, action).toState,
-                            dispatchedAction = action,
+                            targetAction = action,
                         )
                     }
                     ?.also { if (_flow.value != it.toState) _flow.emit(it.toState) }
                     ?: InValidTransition(
                         fromState = currentState,
-                        dispatchedAction = action,
+                        targetAction = action,
                     )
             }
         }.also { transition -> checkFireSideEffect(action, transition) }
@@ -204,14 +205,25 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
     ) {
         newJob {
             newSideEffect {
+                Log.v("SideEffect", "${EMOJI}Before State: ${transition.fromState}")
                 (transition as? ValidTransition<STATE, ACTION>)?.let { validTransition ->
+                    Log.v("SideEffect", "$EMOJI  called \"${transition.targetAction}\" is 【VALID】")
                     sideEffectCreator.create(transition.fromState, action)
                         ?.fire(
                             targetStateMachine = this@StateMachineImpl,
                             validTransition = validTransition,
                         )
                     if (isTerminalState(validTransition.toState)) shutdown()
+                } ?: {
+                    Log.w(
+                        "SideEffect",
+                        "$EMOJI  called \"${transition.targetAction}\" is 【INVALID】 in ${transition.fromState}."
+                    )
                 }
+                Log.v(
+                    "SideEffect",
+                    "${EMOJI}After State: ${transition.fromState}"
+                )
             }
         }
     }
@@ -231,6 +243,10 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
 
     private fun shutdown() {
         stateMachineJob.cancel()
+    }
+
+    companion object {
+        private const val EMOJI = "\uD83C\uDFAC"
     }
 }
 
