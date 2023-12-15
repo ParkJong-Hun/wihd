@@ -58,10 +58,6 @@ fun MainScreen(
             ?.let { mainState.routeToDestination(route = it.route) }
             ?: MainDestination.NEWS
 
-    LaunchedEffect(stateMachine.flow) {
-        Timber.tag("Check").d("MainScreen launchedEffect ${stateMachine.currentState}")
-    }
-
     LaunchedEffect(Unit) {
         delay(500)
         stateMachine.dispatch(SampleAction.HogeAction)
