@@ -154,7 +154,7 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
     private val _flow = MutableSharedFlow<STATE>(replay = 1).also { it.tryEmit(initialState) }
     private val MutableSharedFlow<STATE>.value get() = replayCache.first()
 
-    override val currentState: STATE = _flow.value
+    override val currentState: STATE get() = _flow.value
     override val flow: SharedFlow<STATE> = _flow
 
     private val stateMachineContext: CoroutineContext =
@@ -173,7 +173,7 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
         action: ACTION,
         after: (Transition<STATE, ACTION>) -> Unit,
     ) {
-        newJob { after(transition(action)) }
+        stateMachineLaunch { after(transition(action)) }
     }
 
     private suspend fun transition(action: ACTION): Transition<STATE, ACTION> =
@@ -199,39 +199,44 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
             }
         }.also { transition -> checkFireSideEffect(action, transition) }
 
-    private fun checkFireSideEffect(
+    private suspend fun checkFireSideEffect(
         action: ACTION,
         transition: Transition<STATE, ACTION>,
     ) {
-        newJob {
-            newSideEffect {
+        stateMachineLaunch {
+            sideEffectLaunch {
                 Log.v("SideEffect", "${EMOJI}Before State: ${transition.fromState}")
-                (transition as? ValidTransition<STATE, ACTION>)?.let { validTransition ->
-                    Log.v("SideEffect", "$EMOJI  called \"${transition.targetAction}\" is 【VALID】")
-                    sideEffectCreator.create(transition.fromState, action)
-                        ?.fire(
-                            targetStateMachine = this@StateMachineImpl,
-                            validTransition = validTransition,
+                (transition as? ValidTransition<STATE, ACTION>)
+                    ?.let { validTransition ->
+                        Log.v(
+                            "SideEffect",
+                            "$EMOJI  called \"${transition.targetAction}\" is 【VALID】",
                         )
-                    if (isTerminalState(validTransition.toState)) shutdown()
-                } ?: {
-                    Log.w(
-                        "SideEffect",
-                        "$EMOJI  called \"${transition.targetAction}\" is 【INVALID】 in ${transition.fromState}."
-                    )
-                }
+                        sideEffectCreator.create(transition.fromState, action)
+                            ?.fire(
+                                targetStateMachine = this@StateMachineImpl,
+                                validTransition = validTransition,
+                            )
+                        if (isTerminalState(validTransition.toState)) shutdown()
+                    }
+                    ?: run {
+                        Log.w(
+                            "SideEffect",
+                            "$EMOJI  called \"${transition.targetAction}\" is 【INVALID】 in ${transition.fromState}.",
+                        )
+                    }
                 Log.v(
                     "SideEffect",
-                    "${EMOJI}After State: ${transition.fromState}"
+                    "${EMOJI}After State: $currentState",
                 )
             }
         }
     }
 
-    private fun newJob(block: suspend CoroutineScope.() -> Unit) =
+    private fun stateMachineLaunch(block: suspend CoroutineScope.() -> Unit) =
         stateMachineScope.launch { block() }
 
-    private fun newSideEffect(block: suspend CoroutineScope.() -> Unit) =
+    private fun sideEffectLaunch(block: suspend CoroutineScope.() -> Unit) =
         sideEffectScope.launch { block() }
 
     private fun isTerminalState(state: STATE): Boolean =
