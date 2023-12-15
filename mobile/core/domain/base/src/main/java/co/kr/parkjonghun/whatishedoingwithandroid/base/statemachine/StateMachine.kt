@@ -1,6 +1,8 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine
 
 import android.util.Log
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import co.kr.parkjonghun.whatishedoingwithandroid.base.util.Matcher
 import kotlinx.coroutines.CompletableJob
 import kotlinx.coroutines.CoroutineName
@@ -14,6 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlin.coroutines.CoroutineContext
+import androidx.compose.runtime.State as ComposeState
 
 /**
  * https://en.wikipedia.org/wiki/Finite-state_machine
@@ -21,6 +24,9 @@ import kotlin.coroutines.CoroutineContext
 interface StateMachine<STATE : State, ACTION : Action> {
     val currentState: STATE
     public val flow: SharedFlow<STATE>
+
+    @get:Composable
+    public val composeState: ComposeState<STATE?>
 
     public fun dispatch(
         action: ACTION,
@@ -156,6 +162,9 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
 
     override val currentState: STATE get() = _flow.value
     override val flow: SharedFlow<STATE> = _flow
+
+    override val composeState: ComposeState<STATE?>
+        @Composable get() = flow.collectAsState(null)
 
     private val stateMachineContext: CoroutineContext =
         CoroutineName(name) + SupervisorJob() + Dispatchers.Main.immediate
