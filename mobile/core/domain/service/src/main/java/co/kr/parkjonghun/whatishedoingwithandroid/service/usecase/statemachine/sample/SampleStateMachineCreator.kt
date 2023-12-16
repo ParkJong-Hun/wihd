@@ -1,7 +1,7 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.service.statemachine.sample
+package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.sample
 
-import co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine.StateMachine
-import co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine.createStateMachine
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.createStateMachine
 
 fun createSampleStateMachine(
     sideEffectCreator: StateMachine.SideEffectCreator<SampleSideEffect, SampleState, SampleAction>,

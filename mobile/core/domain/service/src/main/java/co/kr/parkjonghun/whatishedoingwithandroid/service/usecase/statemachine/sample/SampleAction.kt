@@ -1,6 +1,6 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.service.statemachine.sample
+package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.sample
 
-import co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine.Action
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.Action
 import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.SampleToken
 
 sealed class SampleAction : Action {

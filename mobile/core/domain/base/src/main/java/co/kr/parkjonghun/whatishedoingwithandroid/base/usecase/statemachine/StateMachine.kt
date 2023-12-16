@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine
+package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
 import android.util.Log
 import androidx.compose.runtime.Composable

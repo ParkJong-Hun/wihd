@@ -1,6 +1,6 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.service.statemachine.sample
+package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.sample
 
-import co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine.StateMachine
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.SampleRepository
 
 class SampleSideEffect(
