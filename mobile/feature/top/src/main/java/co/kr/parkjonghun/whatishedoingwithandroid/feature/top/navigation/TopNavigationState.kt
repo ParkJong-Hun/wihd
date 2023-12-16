@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.mobile.main
+package co.kr.parkjonghun.whatishedoingwithandroid.feature.top.navigation
 
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
@@ -9,10 +9,6 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination
-import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination.NEWS
-import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination.POST
-import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination.PROFILE
 import co.kr.parkjonghun.whatishedoingwithandroid.news.navigateToNewsScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.post.navigateToPostScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.profile.navigateToProfileScreen
@@ -22,7 +18,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.ui.extension.Route
  *  state of the Main screen.
  */
 @Stable
-class MainState(
+class TopNavigationState(
     val windowSizeClass: WindowSizeClass,
     val navController: NavHostController,
 ) {
@@ -37,40 +33,40 @@ class MainState(
         get() = !shouldShowBottomBar
 
     fun navigateToMainDestination(
-        item: MainDestination,
+        item: TopDestination,
     ) {
         with(navController) {
             when (item) {
-                NEWS -> navigateToNewsScreen()
-                POST -> navigateToPostScreen()
-                PROFILE -> navigateToProfileScreen()
+                TopDestination.NEWS -> navigateToNewsScreen()
+                TopDestination.POST -> navigateToPostScreen()
+                TopDestination.PROFILE -> navigateToProfileScreen()
             }
         }
     }
 
-    fun routeToDestination(route: Route): MainDestination {
+    fun routeToDestination(route: Route): TopDestination {
         return when (route) {
             // TODO const val on other module
-            "news" -> NEWS
-            "post" -> POST
-            "profile" -> PROFILE
+            "news" -> TopDestination.NEWS
+            "post" -> TopDestination.POST
+            "profile" -> TopDestination.PROFILE
 
             // impossible
-            else -> NEWS
+            else -> TopDestination.NEWS
         }
     }
 }
 
 @Composable
-fun rememberMainState(
+fun rememberTopState(
     windowSizeClass: WindowSizeClass,
     navController: NavHostController = rememberNavController(),
-): MainState {
+): TopNavigationState {
     return remember(
         navController,
         windowSizeClass,
     ) {
-        MainState(
+        TopNavigationState(
             windowSizeClass = windowSizeClass,
             navController = navController,
         )

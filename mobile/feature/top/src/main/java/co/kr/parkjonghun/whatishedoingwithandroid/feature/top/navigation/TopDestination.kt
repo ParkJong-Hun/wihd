@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation
+package co.kr.parkjonghun.whatishedoingwithandroid.feature.top.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
@@ -15,7 +15,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.post.PostString
 import co.kr.parkjonghun.whatishedoingwithandroid.profile.ProfileString
 
 @Immutable
-enum class MainDestination(
+enum class TopDestination(
     val icon: ImageVector,
     val selectedIcon: ImageVector,
     @StringRes val iconTextRes: Int,

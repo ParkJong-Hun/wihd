@@ -1,8 +1,8 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation
+package co.kr.parkjonghun.whatishedoingwithandroid.feature.top.navigation
 
 import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationRail
+import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,19 +12,19 @@ import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 
 @Composable
-fun MainBottomBar(
-    selectedRailItem: MainDestination,
-    mainTabs: PersistentList<MainDestination>,
-    onRailItemSelected: (MainDestination) -> Unit,
+fun TopNavigationRail(
+    selectedRailItem: TopDestination,
+    mainRailItems: PersistentList<TopDestination>,
+    onRailItemSelected: (TopDestination) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    NavigationBar(
+    NavigationRail(
         modifier = modifier,
     ) {
-        mainTabs.forEach { item ->
+        mainRailItems.forEach { item ->
             val isCurrentRailItem = item == selectedRailItem
             val contentDescription = stringResource(id = item.iconTextRes)
-            NavigationBarItem(
+            NavigationRailItem(
                 selected = item == selectedRailItem,
                 onClick = { onRailItemSelected(item) },
                 icon = {
@@ -52,10 +52,10 @@ fun MainBottomBar(
 
 @WihdPreview
 @Composable
-private fun MainBottomBarPreview() {
-    MainBottomBar(
-        selectedRailItem = MainDestination.NEWS,
-        mainTabs = MainDestination.entries.toPersistentList(),
+private fun TopNavigationRailPreview() {
+    TopNavigationRail(
+        selectedRailItem = TopDestination.NEWS,
+        mainRailItems = TopDestination.entries.toPersistentList(),
         onRailItemSelected = {},
         modifier = Modifier,
     )

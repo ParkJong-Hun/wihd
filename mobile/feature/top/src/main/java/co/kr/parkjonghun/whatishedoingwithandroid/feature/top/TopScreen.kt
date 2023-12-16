@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.mobile.main
+package co.kr.parkjonghun.whatishedoingwithandroid.feature.top
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
@@ -14,42 +14,42 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainBottomBar
-import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainDestination
-import co.kr.parkjonghun.whatishedoingwithandroid.mobile.main.navigation.MainNavigationRail
+import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.navigation.TopBottomBar
+import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.navigation.TopDestination
+import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.navigation.TopNavigationRail
+import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.navigation.rememberTopState
 import co.kr.parkjonghun.whatishedoingwithandroid.news.newsScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.news.newsScreenRoute
 import co.kr.parkjonghun.whatishedoingwithandroid.post.postScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.profile.profileScreen
 import kotlinx.collections.immutable.toPersistentList
 
-const val mainScreenRoute = "main"
+const val topScreenRoute = "top"
 
-fun NavGraphBuilder.mainScreen(
+fun NavGraphBuilder.topScreen(
     windowSizeClass: WindowSizeClass,
 ) {
-    composable(mainScreenRoute) {
-        MainScreen(
+    composable(topScreenRoute) {
+        TopScreen(
             windowSizeClass = windowSizeClass,
         )
     }
 }
 
 @Composable
-fun MainScreen(
+fun TopScreen(
     windowSizeClass: WindowSizeClass,
 ) {
-    val mainState = rememberMainState(
+    val mainState = rememberTopState(
         windowSizeClass = windowSizeClass,
     )
 
-    val currentMainDestination: MainDestination =
-        mainState.navController.currentBackStackEntryAsState().value
-            ?.destination
-            ?.let { mainState.routeToDestination(route = it.route) }
-            ?: MainDestination.NEWS
+    val currentMainDestination: TopDestination =
+        mainState.navController.currentBackStackEntryAsState().value?.destination?.let {
+            mainState.routeToDestination(route = it.route)
+        } ?: TopDestination.NEWS
 
-    MainBody(
+    TopBody(
         mainNavController = mainState.navController,
         currentMainDestination = currentMainDestination,
         shouldShowNavRail = mainState.shouldShowNavRail,
@@ -60,12 +60,12 @@ fun MainScreen(
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-private fun MainBody(
+private fun TopBody(
     mainNavController: NavHostController,
-    currentMainDestination: MainDestination,
+    currentMainDestination: TopDestination,
     shouldShowNavRail: Boolean,
     shouldShowBottomBar: Boolean,
-    navigateToMain: (MainDestination) -> Unit,
+    navigateToMain: (TopDestination) -> Unit,
 ) {
     Row(
         modifier = Modifier
@@ -73,8 +73,8 @@ private fun MainBody(
             .fillMaxSize(),
     ) {
         AnimatedVisibility(visible = shouldShowNavRail) {
-            MainNavigationRail(
-                mainRailItems = MainDestination.entries.toPersistentList(),
+            TopNavigationRail(
+                mainRailItems = TopDestination.entries.toPersistentList(),
                 onRailItemSelected = navigateToMain,
                 selectedRailItem = currentMainDestination,
             )
@@ -82,8 +82,8 @@ private fun MainBody(
         Scaffold(
             bottomBar = {
                 AnimatedVisibility(visible = shouldShowBottomBar) {
-                    MainBottomBar(
-                        mainTabs = MainDestination.entries.toPersistentList(),
+                    TopBottomBar(
+                        mainTabs = TopDestination.entries.toPersistentList(),
                         onRailItemSelected = navigateToMain,
                         selectedRailItem = currentMainDestination,
                     )

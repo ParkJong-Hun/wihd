@@ -1,43 +1,95 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.mobile
 
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
-import androidx.navigation.NavDestination
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
+import co.kr.parkjonghun.whatishedoingwithandroid.base.statemachine.StateMachine
+import co.kr.parkjonghun.whatishedoingwithandroid.service.statemachine.sample.SampleAction
+import co.kr.parkjonghun.whatishedoingwithandroid.service.statemachine.sample.SampleState
+import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.Intent
+import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.UiState
+import kotlinx.coroutines.flow.map
+import org.koin.compose.rememberKoinInject
 
-/**
- *  Global state of this app.
- */
-@Stable
+@Immutable
 data class AppUiState(
-    val windowSizeClass: WindowSizeClass,
-    val appNavController: NavHostController,
-) {
-    val currentDestination: NavDestination?
-        @Composable get() = appNavController
-            .currentBackStackEntryAsState().value?.destination
-
-    fun navigateToHoge() {
-        // TODO
-    }
+    val isShowLoading: Boolean,
+    val error: Throwable?,
+    val isShowSomething: Boolean,
+) : UiState {
+    val isShowError: Boolean = error != null
 }
 
 @Composable
-fun rememberAppUiState(
-    windowSizeClass: WindowSizeClass,
-    appNavController: NavHostController = rememberNavController(),
-): AppUiState {
-    return remember(
-        appNavController,
-        windowSizeClass,
-    ) {
-        AppUiState(
-            windowSizeClass = windowSizeClass,
-            appNavController = appNavController,
-        )
+fun rememberAppUiState(): Pair<State<AppUiState>, AppIntent> {
+    val stateMachine = rememberKoinInject<StateMachine<SampleState, SampleAction>>()
+    val state = remember {
+        AppReducer(stateMachine).appUiState
+    }.collectAsState(
+        initial = AppUiState(
+            isShowLoading = false,
+            error = null,
+            isShowSomething = false,
+        ),
+    )
+    val intent = remember {
+        AppIntent(stateMachine)
+    }
+    return state to intent
+}
+
+@Stable
+class AppReducer(
+    stateMachine: StateMachine<SampleState, SampleAction>,
+) {
+    val appUiState = stateMachine.flow.map { domainState ->
+        when (domainState) {
+            is SampleState.None -> {
+                AppUiState(
+                    isShowLoading = false,
+                    error = null,
+                    isShowSomething = false,
+                )
+            }
+
+            is SampleState.Loading -> {
+                AppUiState(
+                    isShowLoading = true,
+                    error = null,
+                    isShowSomething = false,
+                )
+            }
+
+            is SampleState.Success -> {
+                AppUiState(
+                    isShowLoading = false,
+                    error = null,
+                    isShowSomething = true,
+                )
+            }
+
+            is SampleState.Error -> {
+                AppUiState(
+                    isShowLoading = false,
+                    error = null,
+                    isShowSomething = true,
+                )
+            }
+        }
+    }
+}
+
+class AppIntent(
+    private val stateMachine: StateMachine<SampleState, SampleAction>,
+) : Intent {
+    fun login() {
+        stateMachine.dispatch(SampleAction.HogeAction)
+    }
+
+    fun confirmErrorDialog() {
+        stateMachine.dispatch(SampleAction.Resolve)
     }
 }

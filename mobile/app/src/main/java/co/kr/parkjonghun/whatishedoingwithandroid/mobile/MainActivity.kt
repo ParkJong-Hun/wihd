@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
         plant(tree)
 
         setContent {
-            WihdApp(
+            App(
                 windowSizeClass = calculateWindowSizeClass(this),
             )
         }
