@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource
+package co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource
 
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.GoTrue

@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.wihd.serialization)
 }
 
-android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.data.surface"
+android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.data.dao"
 
 dependencies {
     implementation(libs.jetpack.core.ktx)

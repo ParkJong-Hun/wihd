@@ -1,6 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.inside.repository
 
-import co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource.SampleDataSource
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.SampleDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.inside.mapper.toDomainModel
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.SampleRepository
 import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.Sample

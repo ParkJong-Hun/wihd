@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.data
+package co.kr.parkjonghun.whatishedoingwithandroid.outside
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

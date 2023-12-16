@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import co.kr.parkjonghun.whatishedoingwithandroid.data.di.dataSourceModule
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.di.dataSourceModule
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.login.LoginScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreenRoute

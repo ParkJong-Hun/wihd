@@ -49,10 +49,10 @@ interface StateMachine<STATE : State, ACTION : Action> : UseCase {
      * A condition specifier that specifies which side effect is triggered when a certain action is taken in a certain state.
      */
     interface SideEffectCreator<
-            SIDE_EFFECT : SideEffect<STATE, ACTION>,
-            STATE : State,
-            ACTION : Action,
-            > {
+        SIDE_EFFECT : SideEffect<STATE, ACTION>,
+        STATE : State,
+        ACTION : Action,
+        > {
         fun create(state: STATE, action: ACTION): SIDE_EFFECT?
     }
 

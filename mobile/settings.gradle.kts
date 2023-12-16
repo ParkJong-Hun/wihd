@@ -15,7 +15,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "What-is-He-doing-with-Android"
 include(
-    ":core:data:surface",
+    ":core:data:dao",
     ":core:data:interior",
     ":core:domain:base",
     ":core:domain:service",

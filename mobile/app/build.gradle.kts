@@ -44,7 +44,7 @@ dependencies {
     implementation(project(":feature:news"))
     implementation(project(":feature:post"))
     implementation(project(":feature:profile"))
-    implementation(project(":core:data:surface"))
+    implementation(project(":core:data:dao"))
     implementation(project(":core:data:interior"))
     implementation(project(":core:domain:base"))
     implementation(project(":core:domain:service"))

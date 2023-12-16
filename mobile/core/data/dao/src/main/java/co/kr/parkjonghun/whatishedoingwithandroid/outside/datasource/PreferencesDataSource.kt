@@ -1,10 +1,10 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.data.gateway.datasource
+package co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource
 
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import co.kr.parkjonghun.whatishedoingwithandroid.data.extension.sampleDataStore
-import co.kr.parkjonghun.whatishedoingwithandroid.data.extension.userDataStore
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.datastore.sampleDataStore
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.datastore.userDataStore
 
 /**
  *  Data permanently stored on the device management source.
