@@ -11,7 +11,6 @@ import co.kr.parkjonghun.whatishedoingwithandroid.mobile.util.CrashReportingTree
 import timber.log.Timber.DebugTree
 import timber.log.Timber.Forest.plant
 
-
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
