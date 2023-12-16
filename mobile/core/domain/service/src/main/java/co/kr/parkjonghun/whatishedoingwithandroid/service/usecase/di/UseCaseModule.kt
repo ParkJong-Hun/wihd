@@ -5,6 +5,8 @@ import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.validator.di.v
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    plus(stateMachineModule)
-    plus(validatorModule)
+    includes(
+        stateMachineModule,
+        validatorModule,
+    )
 }

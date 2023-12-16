@@ -3,6 +3,7 @@ package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.UseCase
 import co.kr.parkjonghun.whatishedoingwithandroid.base.util.Matcher
 import kotlinx.coroutines.CompletableJob
 import kotlinx.coroutines.CoroutineName
@@ -19,9 +20,9 @@ import kotlin.coroutines.CoroutineContext
 import androidx.compose.runtime.State as ComposeState
 
 /**
- * https://en.wikipedia.org/wiki/Finite-state_machine
+ * Finite state machine.
  */
-interface StateMachine<STATE : State, ACTION : Action> {
+interface StateMachine<STATE : State, ACTION : Action> : UseCase {
     val currentState: STATE
     public val flow: SharedFlow<STATE>
 
@@ -48,10 +49,10 @@ interface StateMachine<STATE : State, ACTION : Action> {
      * A condition specifier that specifies which side effect is triggered when a certain action is taken in a certain state.
      */
     interface SideEffectCreator<
-        SIDE_EFFECT : SideEffect<STATE, ACTION>,
-        STATE : State,
-        ACTION : Action,
-        > {
+            SIDE_EFFECT : SideEffect<STATE, ACTION>,
+            STATE : State,
+            ACTION : Action,
+            > {
         fun create(state: STATE, action: ACTION): SIDE_EFFECT?
     }
 
