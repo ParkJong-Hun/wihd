@@ -2,7 +2,7 @@ package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.validator.sam
 
 import androidx.core.text.isDigitsOnly
 
-interface SampleValidatorUseCase {
+interface SampleValidator {
     /**
      * Check if a string is all digits
      * @param input String
@@ -11,7 +11,7 @@ interface SampleValidatorUseCase {
     operator fun invoke(input: String): Boolean
 }
 
-object SampleValidatorUseCaseImpl : SampleValidatorUseCase {
+object SampleValidatorImpl : SampleValidator {
     override operator fun invoke(input: String): Boolean {
         return input.isDigitsOnly()
     }
