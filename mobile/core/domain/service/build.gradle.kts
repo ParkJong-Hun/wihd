@@ -8,7 +8,7 @@ plugins {
 android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.domain.service"
 
 dependencies {
-    implementation(project(":core:domain:base"))
+    api(project(":core:domain:base"))
     implementation(libs.jetpack.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
