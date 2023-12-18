@@ -5,11 +5,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.login.LoginScreen
@@ -58,8 +56,6 @@ fun App(
                     isShowLoading = appState.value.isShowLoading,
                     isShowError = appState.value.isShowError to appState.value.error,
                     isShowTop = appState.value.isShowSomething,
-                    onClickLogin = appIntent::login,
-                    onClickErrorOk = appIntent::confirmErrorDialog,
                 )
             }
         }
@@ -73,8 +69,6 @@ private fun AppBody(
     isShowLoading: Boolean,
     isShowError: Pair<Boolean, Throwable?>,
     isShowTop: Boolean,
-    onClickLogin: () -> Unit,
-    onClickErrorOk: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box {
@@ -85,20 +79,13 @@ private fun AppBody(
             )
         } else {
             LoginScreen(
-                onClickLogin = onClickLogin,
+                onLoginSuccess =,
                 modifier = modifier,
             )
         }
 
         if (isShowLoading) {
             // TODO Show animation.
-        }
-
-        // TODO handle error
-        if (isShowError.first) {
-            Dialog(onDismissRequest = onClickErrorOk) {
-                Text("error occurs\n${isShowError.second}")
-            }
         }
     }
 }

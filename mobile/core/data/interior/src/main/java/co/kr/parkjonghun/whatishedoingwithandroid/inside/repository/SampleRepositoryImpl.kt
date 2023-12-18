@@ -4,7 +4,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.inside.mapper.toDomainModel
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.SampleDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.SampleRepository
 import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.Sample
-import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.SampleToken
+import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.LoginToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
 import java.util.UUID
@@ -19,9 +19,9 @@ class SampleRepositoryImpl(
         }
     }
 
-    override suspend fun getSampleToken(): SampleToken {
+    override suspend fun getSampleToken(): LoginToken {
         return withContext(scope.coroutineContext) {
-            SampleToken(token = UUID.randomUUID().toString())
+            LoginToken(token = UUID.randomUUID().toString())
         }
     }
 }

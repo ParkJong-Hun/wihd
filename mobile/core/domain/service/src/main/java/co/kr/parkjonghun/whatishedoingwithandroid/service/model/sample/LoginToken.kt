@@ -4,4 +4,4 @@ import co.kr.parkjonghun.whatishedoingwithandroid.base.model.Entity
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class SampleToken(val token: String) : Entity
+data class LoginToken(val token: String) : Entity

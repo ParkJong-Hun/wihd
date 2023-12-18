@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.mobile
+package co.kr.parkjonghun.whatishedoingwithandroid.feature.login
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
@@ -9,83 +9,86 @@ import androidx.compose.runtime.remember
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginAction
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginState
-import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.Intent
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.UiState
 import kotlinx.coroutines.flow.map
 import org.koin.compose.rememberKoinInject
 
 @Immutable
-data class AppUiState(
+data class LoginUiState(
     val isShowLoading: Boolean,
     val error: Throwable?,
-    val isShowSomething: Boolean,
+    val isLoginSuccess: Boolean,
 ) : UiState {
     val isShowError: Boolean = error != null
 }
 
 @Composable
-fun rememberAppUiState(): Pair<State<AppUiState>, AppIntent> {
+fun rememberLoginUiState(): Pair<State<LoginUiState>, LoginIntent> {
     val stateMachine = rememberKoinInject<StateMachine<LoginState, LoginAction>>()
     val state = remember {
-        AppReducer(stateMachine).appUiState
+        LoginReducer(stateMachine).appUiState
     }.collectAsState(
-        initial = AppUiState(
+        initial = LoginUiState(
             isShowLoading = false,
             error = null,
-            isShowSomething = false,
+            isLoginSuccess = false,
         ),
     )
     val intent = remember {
-        AppIntent
+        LoginIntent(stateMachine)
     }
     return state to intent
 }
 
 @Stable
-class AppReducer(
+class LoginReducer(
     stateMachine: StateMachine<LoginState, LoginAction>,
 ) {
     val appUiState = stateMachine.flow.map { domainState ->
         when (domainState) {
             is LoginState.None -> {
-                AppUiState(
+                LoginUiState(
                     isShowLoading = false,
                     error = null,
-                    isShowSomething = false,
+                    isLoginSuccess = false,
                 )
             }
 
             is LoginState.Loading -> {
-                AppUiState(
+                LoginUiState(
                     isShowLoading = true,
                     error = null,
-                    isShowSomething = false,
+                    isLoginSuccess = false,
                 )
             }
 
             is LoginState.Success -> {
-                AppUiState(
+                LoginUiState(
                     isShowLoading = false,
                     error = null,
-                    isShowSomething = true,
+                    isLoginSuccess = true,
                 )
             }
 
             is LoginState.Error -> {
-                AppUiState(
+                LoginUiState(
                     isShowLoading = false,
                     error = null,
-                    isShowSomething = true,
+                    isLoginSuccess = true,
                 )
             }
         }
     }
 }
 
-class AppIntent(
-    private val stateMachine: StateMachine<AppState, AppAction>,
-) : Intent {
-    fun loginSuccess() {
-        stateMachine.dispatch(AppAction.AfterLoginSuccess)
+class LoginIntent(
+    private val stateMachine: StateMachine<LoginState, LoginAction>,
+) {
+    fun login() {
+        stateMachine.dispatch(LoginAction.HogeAction)
+    }
+
+    fun confirmErrorDialog() {
+        stateMachine.dispatch(LoginAction.Resolve)
     }
 }
