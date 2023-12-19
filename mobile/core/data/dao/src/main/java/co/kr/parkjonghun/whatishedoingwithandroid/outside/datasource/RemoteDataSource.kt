@@ -1,37 +1,33 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource
 
-import io.github.jan.supabase.createSupabaseClient
-import io.github.jan.supabase.gotrue.GoTrue
-import io.github.jan.supabase.gotrue.gotrue
-import io.github.jan.supabase.gotrue.providers.Github
-import io.github.jan.supabase.postgrest.Postgrest
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.dao.SupabaseDao
+import io.github.jan.supabase.gotrue.user.UserInfo
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
-/**
- * API DAOs integration source.
- */
-interface RemoteDataSource
+interface RemoteDataSource {
+    fun login()
+    fun logout()
+    fun getUser(): UserInfo?
+}
 
-internal class RemoteDataSourceImpl : RemoteDataSource {
-    private val client = createSupabaseClient(
-        supabaseUrl = URL,
-        supabaseKey = KEY,
-    ) {
-        install(Postgrest)
-        install(GoTrue)
+internal class RemoteDataSourceImpl(
+    private val supabaseDao: SupabaseDao,
+    private val coroutineScope: CoroutineScope,
+) : RemoteDataSource {
+    override fun login() {
+        coroutineScope.launch {
+            supabaseDao.signInWithGithub()
+        }
     }
 
-    private val auth = client.gotrue
-
-    public suspend fun signInWithGithub() {
-        auth.signUpWith(Github)
+    override fun logout() {
+        coroutineScope.launch {
+            supabaseDao.signOut()
+        }
     }
 
-    public suspend fun signOut() {
-        auth.logout()
-    }
-
-    companion object {
-        private const val URL = "https://zonnknlwnkforradhexp.supabase.co"
-        private val KEY: String = requireNotNull(System.getenv("WIHD_SUPABASE_KEY"))
+    override fun getUser(): UserInfo? {
+        return supabaseDao.getUser()
     }
 }

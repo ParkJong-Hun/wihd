@@ -4,20 +4,21 @@ import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.Preferences
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.PreferencesDataSourceImpl
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.RemoteDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.RemoteDataSourceImpl
-import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.SampleDataSource
-import org.koin.android.ext.koin.androidContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
 
 val dataSourceModule = module {
     single<PreferencesDataSource> {
         PreferencesDataSourceImpl(
-            context = androidContext(),
+            dataStoreDao = get(),
         )
     }
 
     single<RemoteDataSource> {
-        RemoteDataSourceImpl()
+        RemoteDataSourceImpl(
+            supabaseDao = get(),
+            coroutineScope = CoroutineScope(Dispatchers.IO),
+        )
     }
-
-    single { SampleDataSource() }
 }

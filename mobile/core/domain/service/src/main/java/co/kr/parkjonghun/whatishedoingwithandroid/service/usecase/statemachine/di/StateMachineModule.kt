@@ -12,7 +12,7 @@ internal val stateMachineModule = module {
     factory<StateMachine<LoginState, LoginAction>> { initialStateHolder ->
         createSampleStateMachine(
             sideEffectCreator = LoginSideEffectCreator(
-                sampleRepository = get(),
+                userRepository = get(),
             ),
             initialState = initialStateHolder.getInitialState(),
         )

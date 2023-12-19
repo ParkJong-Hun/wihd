@@ -1,17 +1,16 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.inside.di
 
-import co.kr.parkjonghun.whatishedoingwithandroid.inside.repository.SampleRepositoryImpl
-import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.SampleRepository
+import co.kr.parkjonghun.whatishedoingwithandroid.inside.repository.UserRepositoryImpl
+import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single<SampleRepository> {
-        val scope = CoroutineScope(Dispatchers.Main.immediate)
-        SampleRepositoryImpl(
-            dataSource = get(),
-            scope = scope,
+    single<UserRepository> {
+        UserRepositoryImpl(
+            remoteDataSource = get(),
+            coroutineScope = CoroutineScope(Dispatchers.Default),
         )
     }
 }

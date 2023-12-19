@@ -1,22 +1,14 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource
 
-import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import co.kr.parkjonghun.whatishedoingwithandroid.outside.datastore.sampleDataStore
-import co.kr.parkjonghun.whatishedoingwithandroid.outside.datastore.userDataStore
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.dao.DataStoreDao
 
 /**
  *  Data permanently stored on the device management source.
  */
-interface PreferencesDataSource {
-    val sampleDataStore: DataStore<Preferences>
-    val userDataStore: DataStore<Preferences>
-}
+interface PreferencesDataSource
 
 internal class PreferencesDataSourceImpl(
-    private val context: Context,
+    private val dataStoreDao: DataStoreDao,
 ) : PreferencesDataSource {
-    override val sampleDataStore get() = context.sampleDataStore
-    override val userDataStore get() = context.userDataStore
+    // TODO
 }
