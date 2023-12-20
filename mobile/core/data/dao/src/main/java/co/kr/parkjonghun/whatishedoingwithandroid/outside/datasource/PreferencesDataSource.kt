@@ -1,14 +1,17 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource
 
-import co.kr.parkjonghun.whatishedoingwithandroid.outside.dao.DataStoreDao
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.dao.datastore.UserDataStoreDao
+import kotlinx.coroutines.flow.Flow
 
 /**
  *  Data permanently stored on the device management source.
  */
-interface PreferencesDataSource
+interface PreferencesDataSource {
+    val userId: Flow<String?>
+}
 
 internal class PreferencesDataSourceImpl(
-    private val dataStoreDao: DataStoreDao,
+    userDataStoreDao: UserDataStoreDao,
 ) : PreferencesDataSource {
-    // TODO
+    override val userId: Flow<String?> = userDataStoreDao.userId
 }

@@ -1,15 +1,18 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.inside.repository
 
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.PreferencesDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.RemoteDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.UserRepository
 import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.LoginToken
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.UUID
 
 class UserRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
+    private val preferencesDataSource: PreferencesDataSource,
     private val coroutineScope: CoroutineScope,
 ) : UserRepository {
     override suspend fun login(): LoginToken {
@@ -24,10 +27,7 @@ class UserRepositoryImpl(
         }
     }
 
-    // FIXME
-    override suspend fun getUser(): Boolean {
-        return withContext(coroutineScope.coroutineContext) {
-            remoteDataSource.getUser() != null
-        }
+    override suspend fun getUserId(): String? {
+        return preferencesDataSource.userId.first()
     }
 }

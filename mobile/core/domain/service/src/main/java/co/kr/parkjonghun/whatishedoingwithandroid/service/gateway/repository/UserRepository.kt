@@ -5,5 +5,5 @@ import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.LoginToke
 interface UserRepository {
     suspend fun login(): LoginToken
     suspend fun logout()
-    suspend fun getUser(): Boolean
+    suspend fun getUserId(): String?
 }
