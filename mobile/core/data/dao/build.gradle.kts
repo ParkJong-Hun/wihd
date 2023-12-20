@@ -13,7 +13,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.jetpack.datastore.preferences)
     implementation(libs.ktor)
-    implementation(libs.supabase.db)
+    api(libs.supabase.db)
     testImplementation(libs.junit)
     androidTestImplementation(libs.jetpack.junit)
     androidTestImplementation(libs.jetpack.espresso.core)

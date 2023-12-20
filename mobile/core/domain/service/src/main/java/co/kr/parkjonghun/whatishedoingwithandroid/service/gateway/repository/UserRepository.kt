@@ -1,9 +1,9 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository
 
-import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.LoginToken
+import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.User
 
 interface UserRepository {
-    suspend fun login(): LoginToken
+    suspend fun login()
     suspend fun logout()
-    suspend fun getUserId(): String?
+    suspend fun getUser(): User
 }

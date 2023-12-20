@@ -1,23 +1,23 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.inside.repository
 
+import co.kr.parkjonghun.whatishedoingwithandroid.inside.mapper.toUser
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.PreferencesDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.RemoteDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.UserRepository
-import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.LoginToken
+import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.UUID
 
 class UserRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     private val preferencesDataSource: PreferencesDataSource,
     private val coroutineScope: CoroutineScope,
 ) : UserRepository {
-    override suspend fun login(): LoginToken {
+    override suspend fun login() {
         return withContext(coroutineScope.coroutineContext) {
-            LoginToken(token = UUID.randomUUID().toString())
+            remoteDataSource.login()
         }
     }
 
@@ -27,7 +27,7 @@ class UserRepositoryImpl(
         }
     }
 
-    override suspend fun getUserId(): String? {
-        return preferencesDataSource.userId.first()
+    override suspend fun getUser(): User {
+        return preferencesDataSource.userInfo.first()?.toUser() ?: error("User is not logged in.")
     }
 }

@@ -4,4 +4,9 @@ import co.kr.parkjonghun.whatishedoingwithandroid.base.model.Entity
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class LoginToken(val token: String) : Entity
+data class User(
+    val id: String,
+    val email: String?,
+    val createdAt: String?,
+    val updatedAt: String?,
+) : Entity
