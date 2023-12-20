@@ -4,13 +4,13 @@ import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.Stat
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginAction
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginSideEffectCreator
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginState
-import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.createSampleStateMachine
+import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.createLoginStateMachine
 import org.koin.core.parameter.ParametersHolder
 import org.koin.dsl.module
 
 internal val stateMachineModule = module {
     factory<StateMachine<LoginState, LoginAction>> { initialStateHolder ->
-        createSampleStateMachine(
+        createLoginStateMachine(
             sideEffectCreator = LoginSideEffectCreator(
                 userRepository = get(),
             ),

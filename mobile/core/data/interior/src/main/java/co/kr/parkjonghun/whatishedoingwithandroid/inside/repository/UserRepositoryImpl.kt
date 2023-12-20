@@ -27,7 +27,7 @@ class UserRepositoryImpl(
         }
     }
 
-    override suspend fun getUser(): User {
-        return preferencesDataSource.userInfo.first()?.toUser() ?: error("User is not logged in.")
+    override suspend fun getUser(): User? {
+        return preferencesDataSource.userInfo.first()?.toUser()
     }
 }

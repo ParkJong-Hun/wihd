@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -45,6 +46,8 @@ fun App(
         )
         val (appState, appIntent) = rememberAppUiState()
 
+        LaunchedEffect(Unit) { appIntent.init() }
+
         MobileTheme {
             Surface(
                 modifier = Modifier
@@ -55,9 +58,12 @@ fun App(
                 AppBody(
                     windowSizeClass = appNavigationState.windowSizeClass,
                     appNavController = appNavigationState.appNavController,
+                    isShowInit = appState.value.isShowInitScreen,
                     isShowLoading = appState.value.isShowLoading,
+                    isShowLogin = appState.value.isShowLoginScreen,
+                    isShowTop = appState.value.isShowTop,
+                    onLoginSuccess = appIntent::loginSuccess,
                     isShowError = appState.value.isShowError to appState.value.error,
-                    isShowTop = appState.value.isShowSomething,
                 )
             }
         }
@@ -68,9 +74,12 @@ fun App(
 private fun AppBody(
     windowSizeClass: WindowSizeClass,
     appNavController: NavHostController,
+    isShowInit: Boolean,
     isShowLoading: Boolean,
-    isShowError: Pair<Boolean, Throwable?>,
+    isShowLogin: Boolean,
     isShowTop: Boolean,
+    isShowError: Pair<Boolean, Throwable?>,
+    onLoginSuccess: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box {
@@ -79,15 +88,21 @@ private fun AppBody(
                 windowSizeClass = windowSizeClass,
                 appNavController = appNavController,
             )
-        } else {
+        } else if (isShowLogin) {
             LoginScreen(
-                onLoginSuccess = {},
+                onLoginSuccess = onLoginSuccess,
                 modifier = modifier,
             )
+        } else if (isShowInit) {
+            // TODO Show init screen.
         }
 
         if (isShowLoading) {
             // TODO Show animation.
+        }
+
+        if (isShowError.first) {
+            // TODO Show error.
         }
     }
 }
