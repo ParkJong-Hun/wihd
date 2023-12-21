@@ -9,7 +9,7 @@ class AppSideEffect(
 ) : StateMachine.SideEffect<AppState, AppAction> {
     override suspend fun fire(
         targetStateMachine: StateMachine<AppState, AppAction>,
-        validTransition: ValidTransition<AppState, AppAction>
+        validTransition: ValidTransition<AppState, AppAction>,
     ) {
         runCatching { userRepository.getUser() }
             .onSuccess { result ->

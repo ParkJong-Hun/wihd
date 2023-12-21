@@ -1,6 +1,10 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.di
 
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
+import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppAction
+import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppSideEffectCreator
+import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppState
+import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.createAppStateMachineCreator
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginAction
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginSideEffectCreator
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginState
@@ -9,6 +13,15 @@ import org.koin.core.parameter.ParametersHolder
 import org.koin.dsl.module
 
 internal val stateMachineModule = module {
+    single<StateMachine<AppState, AppAction>> { initialStateHolder ->
+        createAppStateMachineCreator(
+            sideEffectCreator = AppSideEffectCreator(
+                userRepository = get(),
+            ),
+            initialState = initialStateHolder.getInitialState(),
+        )
+    }
+
     factory<StateMachine<LoginState, LoginAction>> { initialStateHolder ->
         createLoginStateMachine(
             sideEffectCreator = LoginSideEffectCreator(
