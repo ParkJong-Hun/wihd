@@ -12,27 +12,25 @@ import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.l
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.UiState
 import kotlinx.coroutines.flow.map
 import org.koin.compose.rememberKoinInject
+import org.koin.core.qualifier.named
 
 @Immutable
 data class LoginUiState(
-    val isShowLoading: Boolean,
-    val error: Throwable?,
-    val isLoginSuccess: Boolean,
+    val isShowLoading: Boolean = false,
+    val error: Throwable? = null,
+    val isLoginSuccess: Boolean = false,
 ) : UiState {
     val isShowError: Boolean = error != null
 }
 
 @Composable
 fun rememberLoginUiState(): Pair<State<LoginUiState>, LoginIntent> {
-    val stateMachine = rememberKoinInject<StateMachine<LoginState, LoginAction>>()
+    val stateMachine =
+        rememberKoinInject<StateMachine<LoginState, LoginAction>>(qualifier = named("Login"))
     val state = remember {
-        LoginReducer(stateMachine).appUiState
+        LoginReducer(stateMachine).loginUiState
     }.collectAsState(
-        initial = LoginUiState(
-            isShowLoading = false,
-            error = null,
-            isLoginSuccess = false,
-        ),
+        initial = LoginUiState(),
     )
     val intent = remember {
         LoginIntent(stateMachine)
@@ -44,7 +42,7 @@ fun rememberLoginUiState(): Pair<State<LoginUiState>, LoginIntent> {
 class LoginReducer(
     stateMachine: StateMachine<LoginState, LoginAction>,
 ) {
-    val appUiState = stateMachine.flow.map { domainState ->
+    val loginUiState = stateMachine.flow.map { domainState ->
         when (domainState) {
             is LoginState.None -> {
                 LoginUiState(

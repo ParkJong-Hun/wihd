@@ -1,5 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.mobile
 
+import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -21,6 +22,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.outside.di.daoModule
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.di.dataSourceModule
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.di.useCaseModule
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
+import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.compose.KoinApplication
 
@@ -30,9 +32,11 @@ import org.koin.compose.KoinApplication
 @Suppress("ModifierMissing")
 @Composable
 fun App(
+    context: Context,
     windowSizeClass: WindowSizeClass,
 ) {
     KoinApplication(application = {
+        androidContext(context)
         androidLogger()
         modules(
             daoModule,

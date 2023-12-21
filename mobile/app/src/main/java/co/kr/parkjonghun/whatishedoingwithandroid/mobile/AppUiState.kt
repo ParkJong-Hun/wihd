@@ -13,6 +13,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.Intent
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.UiState
 import kotlinx.coroutines.flow.map
 import org.koin.compose.rememberKoinInject
+import org.koin.core.qualifier.named
 
 @Immutable
 data class AppUiState(
@@ -27,7 +28,8 @@ data class AppUiState(
 
 @Composable
 fun rememberAppUiState(): Pair<State<AppUiState>, AppIntent> {
-    val stateMachine = rememberKoinInject<StateMachine<AppState, AppAction>>()
+    val stateMachine =
+        rememberKoinInject<StateMachine<AppState, AppAction>>(qualifier = named("App"))
     val state = remember {
         AppReducer(stateMachine).appUiState
     }.collectAsState(

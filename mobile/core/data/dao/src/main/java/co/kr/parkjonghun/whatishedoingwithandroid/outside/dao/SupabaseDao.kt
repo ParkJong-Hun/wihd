@@ -32,6 +32,7 @@ internal class SupabaseDaoImpl : SupabaseDao {
 
     companion object {
         private const val URL = "https://zonnknlwnkforradhexp.supabase.co"
-        private val KEY: String = requireNotNull(System.getenv("WIHD_SUPABASE_KEY"))
+        private const val KEY: String =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpvbm5rbmx3bmtmb3JyYWRoZXhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDIwMzY1ODEsImV4cCI6MjAxNzYxMjU4MX0.9ttr_RtSeoj9uHc6gY9iX4HlVmv4k9-DNFpEUrYN4y4"
     }
 }

@@ -26,6 +26,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             App(
+                context = applicationContext,
                 windowSizeClass = calculateWindowSizeClass(this),
             )
         }

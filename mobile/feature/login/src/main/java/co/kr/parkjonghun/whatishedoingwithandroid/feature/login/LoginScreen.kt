@@ -18,7 +18,7 @@ fun LoginScreen(
     val (state, intent) = rememberLoginUiState()
 
     LaunchedEffect(state.value.isLoginSuccess) {
-        onLoginSuccess()
+        if (state.value.isLoginSuccess) onLoginSuccess()
     }
 
     LoginBody(

@@ -7,7 +7,7 @@ fun createLoginStateMachine(
     sideEffectCreator: StateMachine.SideEffectCreator<LoginSideEffect, LoginState, LoginAction>,
     initialState: LoginState?,
 ) = createStateMachine(
-    name = "Sample",
+    name = "Login",
     initialState = initialState ?: LoginState.None,
     sideEffectCreator = sideEffectCreator,
 ) {
