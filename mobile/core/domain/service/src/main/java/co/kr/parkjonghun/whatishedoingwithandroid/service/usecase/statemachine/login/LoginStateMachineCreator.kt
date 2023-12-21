@@ -3,7 +3,7 @@ package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.createStateMachine
 
-fun createSampleStateMachine(
+fun createLoginStateMachine(
     sideEffectCreator: StateMachine.SideEffectCreator<LoginSideEffect, LoginState, LoginAction>,
     initialState: LoginState?,
 ) = createStateMachine(
@@ -12,14 +12,14 @@ fun createSampleStateMachine(
     sideEffectCreator = sideEffectCreator,
 ) {
     fromState<LoginState.None> {
-        on<LoginAction.HogeAction> {
+        on<LoginAction.Login> {
             transitionTo(LoginState.Loading)
         }
     }
 
     fromState<LoginState.Loading> {
         on<LoginAction.Succeed> {
-            transitionTo(LoginState.Success(it.token))
+            transitionTo(LoginState.Success)
         }
         on<LoginAction.Fail> {
             transitionTo(LoginState.Error(it.throwable))

@@ -8,7 +8,7 @@ internal class LoginSideEffectCreator(
 ) : StateMachine.SideEffectCreator<LoginSideEffect, LoginState, LoginAction> {
     override fun create(state: LoginState, action: LoginAction): LoginSideEffect? =
         when (action) {
-            is LoginAction.HogeAction -> LoginSideEffect(userRepository = userRepository)
+            is LoginAction.Login -> LoginSideEffect(userRepository = userRepository)
             else -> null
         }
 }

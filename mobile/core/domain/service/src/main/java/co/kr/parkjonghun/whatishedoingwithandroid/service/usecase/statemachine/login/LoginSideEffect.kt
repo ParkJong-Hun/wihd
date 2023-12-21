@@ -11,8 +11,8 @@ class LoginSideEffect(
         validTransition: StateMachine.Transition.Valid<LoginState, LoginAction>,
     ) {
         runCatching { userRepository.login() }
-            .onSuccess { token ->
-                targetStateMachine.dispatch(LoginAction.Succeed(token))
+            .onSuccess {
+                targetStateMachine.dispatch(LoginAction.Succeed)
             }
             .onFailure { throwable ->
                 targetStateMachine.dispatch(LoginAction.Fail(throwable))

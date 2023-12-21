@@ -85,7 +85,7 @@ class LoginIntent(
     private val stateMachine: StateMachine<LoginState, LoginAction>,
 ) {
     fun login() {
-        stateMachine.dispatch(LoginAction.HogeAction)
+        stateMachine.dispatch(LoginAction.Login)
     }
 
     fun confirmErrorDialog() {

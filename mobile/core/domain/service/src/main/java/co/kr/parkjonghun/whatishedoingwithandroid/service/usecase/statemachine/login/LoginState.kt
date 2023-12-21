@@ -2,7 +2,6 @@ package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.
 
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.ErrorState
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.State
-import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.LoginToken
 import kotlinx.parcelize.Parcelize
 
 sealed class LoginState : State {
@@ -13,9 +12,7 @@ sealed class LoginState : State {
     data object Loading : LoginState()
 
     @Parcelize
-    data class Success(
-        val token: LoginToken,
-    ) : LoginState()
+    data object Success : LoginState()
 
     @Parcelize
     data class Error(
