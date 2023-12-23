@@ -15,11 +15,14 @@ interface SupabaseDao {
 
 internal class SupabaseDaoImpl : SupabaseDao {
     private val client = createSupabaseClient(
-        supabaseUrl = URL,
-        supabaseKey = KEY,
+        supabaseUrl = SERVER_URL,
+        supabaseKey = SERVER_KEY,
     ) {
         install(Postgrest)
-        install(GoTrue)
+        install(GoTrue) {
+            scheme = OAUTH_CALLBACK_SCHEME
+            host = OAUTH_CALLBACK_HOST
+        }
     }
 
     private val auth = client.gotrue
@@ -31,8 +34,11 @@ internal class SupabaseDaoImpl : SupabaseDao {
     override fun getUser() = auth.currentUserOrNull()
 
     companion object {
-        private const val URL = "https://zonnknlwnkforradhexp.supabase.co"
-        private const val KEY: String =
+        private const val SERVER_URL = "https://zonnknlwnkforradhexp.supabase.co"
+        private const val SERVER_KEY: String =
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpvbm5rbmx3bmtmb3JyYWRoZXhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDIwMzY1ODEsImV4cCI6MjAxNzYxMjU4MX0.9ttr_RtSeoj9uHc6gY9iX4HlVmv4k9-DNFpEUrYN4y4"
+
+        private const val OAUTH_CALLBACK_SCHEME = "https"
+        private const val OAUTH_CALLBACK_HOST = "zonnknlwnkforradhexp.supabase.co"
     }
 }
