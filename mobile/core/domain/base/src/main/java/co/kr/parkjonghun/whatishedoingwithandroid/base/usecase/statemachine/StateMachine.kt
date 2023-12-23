@@ -49,10 +49,10 @@ interface StateMachine<STATE : State, ACTION : Action> : UseCase {
      * A condition specifier that specifies which side effect is triggered when a certain action is taken in a certain state.
      */
     interface SideEffectCreator<
-        SIDE_EFFECT : SideEffect<STATE, ACTION>,
-        STATE : State,
-        ACTION : Action,
-        > {
+            SIDE_EFFECT : SideEffect<STATE, ACTION>,
+            STATE : State,
+            ACTION : Action,
+            > {
         fun create(state: STATE, action: ACTION): SIDE_EFFECT?
     }
 
@@ -153,7 +153,7 @@ interface StateMachine<STATE : State, ACTION : Action> : UseCase {
 
 @Suppress("UnusedPrivateProperty")
 internal class StateMachineImpl<STATE : State, ACTION : Action>(
-    name: String,
+    private val name: String,
     initialState: STATE,
     private val sideEffectCreator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
     private val diagram: Diagram<STATE, ACTION>,
@@ -168,7 +168,7 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
         @Composable get() = flow.collectAsState(null)
 
     private val stateMachineContext: CoroutineContext =
-        CoroutineName(name) + SupervisorJob() + Dispatchers.Main.immediate
+        CoroutineName(name) + SupervisorJob() + Dispatchers.Default
     private val stateMachineScope: CoroutineScope = CoroutineScope(stateMachineContext)
 
     private val sideEffectContext: CoroutineContext =
@@ -215,12 +215,12 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
     ) {
         stateMachineLaunch {
             sideEffectLaunch {
-                Log.v("SideEffect", "${EMOJI}Before State: ${transition.fromState}")
+                Log.v("SideEffect", "$name ${EMOJI}Before State: ${transition.fromState}")
                 (transition as? ValidTransition<STATE, ACTION>)
                     ?.let { validTransition ->
                         Log.v(
                             "SideEffect",
-                            "$EMOJI  called \"${transition.targetAction}\" is 【VALID】",
+                            "$name $EMOJI  called \"$name ${transition.targetAction}\" is 【VALID】",
                         )
                         sideEffectCreator.create(transition.fromState, action)
                             ?.fire(
@@ -232,12 +232,12 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
                     ?: run {
                         Log.w(
                             "SideEffect",
-                            "$EMOJI  called \"${transition.targetAction}\" is 【INVALID】 in ${transition.fromState}.",
+                            "$name $EMOJI  called \"${transition.targetAction}\" is 【INVALID】 in ${transition.fromState}.",
                         )
                     }
                 Log.v(
                     "SideEffect",
-                    "${EMOJI}After State: $currentState",
+                    "$name ${EMOJI}After State: $currentState",
                 )
             }
         }
