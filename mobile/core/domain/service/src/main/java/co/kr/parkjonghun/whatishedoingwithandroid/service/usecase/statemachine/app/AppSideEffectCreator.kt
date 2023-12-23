@@ -7,8 +7,8 @@ internal class AppSideEffectCreator(
     private val userRepository: UserRepository,
 ) : StateMachine.SideEffectCreator<AppSideEffect, AppState, AppAction> {
     override fun create(state: AppState, action: AppAction): AppSideEffect? {
-        return when (state) {
-            is AppState.Loading -> {
+        return when (action) {
+            is AppAction.CheckLogin -> {
                 AppSideEffect(userRepository)
             }
 
