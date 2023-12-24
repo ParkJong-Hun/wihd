@@ -220,7 +220,7 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
                     ?.let { validTransition ->
                         Log.v(
                             "SideEffect",
-                            "$name $EMOJI  called \"$name ${transition.targetAction}\" is 【VALID】",
+                            "$name $EMOJI  called \"${transition.targetAction}\" action is 【VALID】",
                         )
                         sideEffectCreator.create(transition.fromState, action)
                             ?.fire(
@@ -232,7 +232,7 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
                     ?: run {
                         Log.w(
                             "SideEffect",
-                            "$name $EMOJI  called \"${transition.targetAction}\" is 【INVALID】 in ${transition.fromState}.",
+                            "$name $EMOJI  called \"${transition.targetAction}\" action is 【INVALID】 from ${transition.fromState}.",
                         )
                     }
                 Log.v(
