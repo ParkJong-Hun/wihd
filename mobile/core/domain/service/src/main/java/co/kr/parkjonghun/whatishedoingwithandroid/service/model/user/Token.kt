@@ -1,6 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.service.model.user
 
-import android.os.Parcelable
+import co.kr.parkjonghun.whatishedoingwithandroid.base.model.Entity
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -14,4 +14,4 @@ data class Token internal constructor(
     val expiresAt: Long,
     val expiresIn: Long,
     val tokenType: String,
-) : Parcelable
+) : Entity
