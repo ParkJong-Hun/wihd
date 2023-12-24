@@ -7,14 +7,11 @@ import co.kr.parkjonghun.whatishedoingwithandroid.outside.datastore.userDataStor
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.fromJson
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.json
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.TokenInfo
-import io.github.jan.supabase.gotrue.user.UserInfo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 interface UserDataStoreDao {
-    val userInfo: Flow<UserInfo?>
     val tokenInfo: Flow<TokenInfo?>
-    suspend fun saveUserInfo(userInfo: UserInfo)
     suspend fun saveTokenInfo(tokenInfo: TokenInfo)
 }
 
@@ -23,18 +20,8 @@ internal class UserDataStoreDaoImpl(
 ) : UserDataStoreDao {
     private val userDataStore get() = context.userDataStore
 
-    override val userInfo: Flow<UserInfo?> = userDataStore.data.map {
-        it[KEY_USER_INFO]?.fromJson()
-    }
-
     override val tokenInfo: Flow<TokenInfo?> = userDataStore.data.map {
         it[KEY_TOKEN_INFO]?.fromJson()
-    }
-
-    override suspend fun saveUserInfo(userInfo: UserInfo) {
-        userDataStore.edit {
-            it[KEY_USER_INFO] = userInfo.json()
-        }
     }
 
     override suspend fun saveTokenInfo(tokenInfo: TokenInfo) {
@@ -44,7 +31,6 @@ internal class UserDataStoreDaoImpl(
     }
 
     companion object {
-        private val KEY_USER_INFO = stringPreferencesKey("user_info")
         private val KEY_TOKEN_INFO = stringPreferencesKey("token_info")
     }
 }

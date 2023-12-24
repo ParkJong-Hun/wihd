@@ -52,10 +52,10 @@ class MainActivity : ComponentActivity() {
                     providerToken = requireNotNull(uri.getFUCKINGQueryParameter(KEY_PROVIDER_TOKEN)),
                     refreshToken = requireNotNull(uri.getFUCKINGQueryParameter(KEY_REFRESH_TOKEN)),
                     expiresAt = requireNotNull(
-                        uri.getFUCKINGQueryParameter(KEY_EXPIRES_AT)?.toLong()
+                        uri.getFUCKINGQueryParameter(KEY_EXPIRES_AT)?.toLong(),
                     ),
                     expiresIn = requireNotNull(
-                        uri.getFUCKINGQueryParameter(KEY_EXPIRES_IN)?.toLong()
+                        uri.getFUCKINGQueryParameter(KEY_EXPIRES_IN)?.toLong(),
                     ),
                     tokenType = requireNotNull(uri.getFUCKINGQueryParameter(KEY_TOKEN_TYPE)),
                 )
@@ -66,9 +66,9 @@ class MainActivity : ComponentActivity() {
     private fun Uri.getFUCKINGQueryParameter(key: String): String? {
         val queries = this.toString().substringAfter('#')
         val queryParameter = queries
-            ?.split('&')
-            ?.map { it.split("=") }
-            ?.firstOrNull { it.first() == key }
+            .split('&')
+            .map { it.split("=") }
+            .firstOrNull { it.first() == key }
         return queryParameter?.last()
     }
 

@@ -5,5 +5,4 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 
-val Context.sampleDataStore: DataStore<Preferences> by preferencesDataStore(name = DataStores.Sample)
 val Context.userDataStore: DataStore<Preferences> by preferencesDataStore(name = DataStores.User)
