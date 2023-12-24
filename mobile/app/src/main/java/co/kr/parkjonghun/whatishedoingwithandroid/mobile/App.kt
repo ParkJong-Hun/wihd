@@ -20,6 +20,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.AppNavigatio
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.rememberAppNavigationState
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.di.daoModule
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.di.dataSourceModule
+import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.TokenDto
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.di.useCaseModule
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
 import org.koin.android.ext.koin.androidContext
@@ -34,6 +35,7 @@ import org.koin.compose.KoinApplication
 fun App(
     context: Context,
     windowSizeClass: WindowSizeClass,
+    newTokenDto: TokenDto?,
 ) {
     KoinApplication(application = {
         androidContext(context)
@@ -50,7 +52,12 @@ fun App(
         )
         val (appState, appIntent) = rememberAppUiState()
 
-        LaunchedEffect(Unit) { appIntent.init() }
+        // Launch init action.
+        LaunchedEffect(true) {
+            newTokenDto
+                ?.let { appIntent.keepToken(it) }
+                ?: run { appIntent.init() }
+        }
 
         MobileTheme {
             Surface(
