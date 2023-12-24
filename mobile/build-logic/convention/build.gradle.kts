@@ -22,8 +22,6 @@ java {
 
 dependencies {
     implementation(libs.bundles.plugins)
-    // https://github.com/google/dagger/issues/3068#issuecomment-1470534930
-    compileOnly(libs.javapoet)
 }
 
 gradlePlugin {
@@ -35,10 +33,6 @@ gradlePlugin {
         register("compose") {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.compose"
             implementationClass = "ComposeConventionPlugin"
-        }
-        register("hilt") {
-            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.hilt"
-            implementationClass = "HiltConventionPlugin"
         }
         register("koin") {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.koin"

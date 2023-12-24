@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.wihd.bundle.feature)
-    alias(libs.plugins.wihd.koin)
 }
 
 android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.feature.news"

@@ -13,7 +13,6 @@ jetpack-fragment = "1.6.2"
 jetpack-lifecycle-runtime-ktx = "2.6.2"
 jetpack-core-splashscreen = "1.0.1"
 jetpack-navigation-compose = "2.7.6"
-jetpack-hilt-navigation = "1.1.0"
 jetpack-junit = "1.1.5"
 jetpack-espresso-core = "3.5.1"
 jetpack-compose-bom = "2023.10.01"
@@ -26,7 +25,6 @@ kotlinx-coroutines-core = "1.7.3"
 kotlinx-datetime = "0.5.0"
 kotlinx-collections-immutable = "0.3.6"
 firebase-bom = "32.7.0"
-dagger-hilt = "2.49"
 koin = "3.5.3"
 annotation = "1.7.1"
 appcompat = "1.6.1"
@@ -43,7 +41,6 @@ serialization = "1.6.2"
 androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlinPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 jetbrainCompoesPlugin = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "jetbrain-compose" }
-daggerHiltPlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "dagger-hilt" }
 kspPlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 gmsPlugin = { group = "com.google.gms", name = "google-services", version.ref = "gms" }
 detektPlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
@@ -59,7 +56,6 @@ jetpack-core-splashscreen = { group = "androidx.core", name = "core-splashscreen
 jetpack-junit = { group = "androidx.test.ext", name = "junit", version.ref = "jetpack-junit" }
 jetpack-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "jetpack-espresso-core" }
 jetpack-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "jetpack-compose-bom" }
-jetpack-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "jetpack-hilt-navigation" }
 jetpack-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "jetpack-compose" }
 jetpack-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "jetpack-compose" }
 jetpack-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "jetpack-compose" }
@@ -92,11 +88,6 @@ supabase-auth-ui = { group = "io.github.jan-tennert.supabase", name = "compose-a
 # ktor
 ktor = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
 
-# hilt
-dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-hilt" }
-dagger-hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "dagger-hilt" }
-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger-hilt" }
-
 # koin
 koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
 
@@ -114,7 +105,6 @@ androidGradlePlugin = { id = "com.android.application", version.ref = "agp" }
 androidGradleLibraryPlugin = { id = "com.android.library", version.ref = "agp" }
 kotlinPlugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 gmsPlugin = { id = "com.google.gms.google-services", version.ref = "gms" }
-daggerHiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 detektPlugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlinSerializationPlugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
@@ -123,7 +113,6 @@ kotlinParcelizePlugin = { id = "org.jetbrains.kotlin.plugin.parcelize", version.
 wihd-kotlin = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin", version = "unspecified" }
 wihd-android = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.android", version = "unspecified" }
 wihd-library = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.library", version = "unspecified" }
-wihd-hilt = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.hilt", version = "unspecified" }
 wihd-koin = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.koin", version = "unspecified" }
 wihd-compose = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.compose", version = "unspecified" }
 wihd-firebase = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase", version = "unspecified" }
@@ -137,7 +126,6 @@ wihd-bundle-feature = { id = "parkjonghun.whatishedoingwithandroid.mobile.conven
 plugins = [
     "androidGradlePlugin",
     "kotlinPlugin",
-    "daggerHiltPlugin",
     "jetbrainCompoesPlugin",
     "kspPlugin",
     "gmsPlugin",

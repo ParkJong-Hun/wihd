@@ -9,7 +9,7 @@ class FeatureBundlePlugin : Plugin<Project> {
                 apply("parkjonghun.whatishedoingwithandroid.mobile.convention.library")
                 apply("parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin")
                 apply("parkjonghun.whatishedoingwithandroid.mobile.convention.compose")
-                apply("parkjonghun.whatishedoingwithandroid.mobile.convention.hilt")
+                apply("parkjonghun.whatishedoingwithandroid.mobile.convention.koin")
                 apply("parkjonghun.whatishedoingwithandroid.mobile.convention.detekt")
             }
         }
