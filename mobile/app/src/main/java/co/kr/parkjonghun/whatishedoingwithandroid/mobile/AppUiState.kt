@@ -7,6 +7,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
+import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.TokenDto
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppAction
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppState
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.Intent
@@ -104,6 +105,10 @@ class AppIntent(
 
     fun loginSuccess() {
         checkUser()
+    }
+
+    fun keepToken(tokenDto: TokenDto) {
+        stateMachine.dispatch(AppAction.Process(tokenDto))
     }
 
     private fun checkUser() {

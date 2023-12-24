@@ -1,18 +1,23 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource
 
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.dao.datastore.UserDataStoreDao
-import io.github.jan.supabase.gotrue.user.UserInfo
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.TokenInfo
 import kotlinx.coroutines.flow.Flow
 
 /**
  *  Data permanently stored on the device management source.
  */
 interface PreferencesDataSource {
-    val userInfo: Flow<UserInfo?>
+    val token: Flow<TokenInfo?>
+    suspend fun saveToken(token: TokenInfo)
 }
 
 internal class PreferencesDataSourceImpl(
-    userDataStoreDao: UserDataStoreDao,
+    private val userDataStoreDao: UserDataStoreDao,
 ) : PreferencesDataSource {
-    override val userInfo: Flow<UserInfo?> = userDataStoreDao.userInfo
+    override val token: Flow<TokenInfo?> = userDataStoreDao.tokenInfo
+
+    override suspend fun saveToken(token: TokenInfo) {
+        userDataStoreDao.saveTokenInfo(token)
+    }
 }

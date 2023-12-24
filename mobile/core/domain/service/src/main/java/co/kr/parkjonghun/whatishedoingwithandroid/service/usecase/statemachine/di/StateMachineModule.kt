@@ -14,9 +14,8 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 internal val stateMachineModule = module {
-    single<StateMachine<AppState, AppAction>>(
+    factory<StateMachine<AppState, AppAction>>(
         qualifier = named("App"),
-        createdAtStart = true,
     ) { initialStateHolder ->
         createAppStateMachineCreator(
             sideEffectCreator = AppSideEffectCreator(

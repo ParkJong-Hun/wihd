@@ -9,7 +9,11 @@ internal class AppSideEffectCreator(
     override fun create(state: AppState, action: AppAction): AppSideEffect? {
         return when (action) {
             is AppAction.CheckLogin -> {
-                AppSideEffect(userRepository)
+                AppSideEffect.GetUser(userRepository)
+            }
+
+            is AppAction.Process -> {
+                AppSideEffect.SaveToken(userRepository)
             }
 
             else -> null

@@ -11,4 +11,5 @@ android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.data.interior"
 dependencies {
     implementation(project(":core:domain:service"))
     implementation(project(":core:data:dao"))
+    implementation(libs.supabase.db)
 }

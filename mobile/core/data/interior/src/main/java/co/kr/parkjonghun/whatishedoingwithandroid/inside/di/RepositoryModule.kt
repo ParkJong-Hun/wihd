@@ -11,7 +11,7 @@ val repositoryModule = module {
         UserRepositoryImpl(
             remoteDataSource = get(),
             preferencesDataSource = get(),
-            coroutineScope = CoroutineScope(Dispatchers.Default),
+            ioScope = CoroutineScope(Dispatchers.Default),
         )
     }
 }

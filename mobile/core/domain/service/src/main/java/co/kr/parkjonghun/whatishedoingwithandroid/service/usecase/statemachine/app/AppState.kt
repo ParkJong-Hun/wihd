@@ -2,7 +2,7 @@ package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.
 
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.ErrorState
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.State
-import co.kr.parkjonghun.whatishedoingwithandroid.service.model.sample.User
+import co.kr.parkjonghun.whatishedoingwithandroid.service.model.user.User
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

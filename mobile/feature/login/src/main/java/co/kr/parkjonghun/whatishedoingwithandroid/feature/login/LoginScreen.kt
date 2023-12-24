@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
 
 @Composable
-@Suppress("UnusedParameter")
 fun LoginScreen(
     onLoginSuccess: () -> Unit,
     modifier: Modifier = Modifier,

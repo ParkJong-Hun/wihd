@@ -29,6 +29,12 @@ fun createAppStateMachineCreator(
         }
     }
 
+    fromState<AppState.NotLoggedIn> {
+        on<AppAction.Process> {
+            transitionTo(AppState.Loading)
+        }
+    }
+
     fromState<AppState.Error> {
         on<AppAction.ResolveError> {
             transitionTo(AppState.None)

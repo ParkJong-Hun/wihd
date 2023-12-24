@@ -6,13 +6,16 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datastore.userDataStore
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.fromJson
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.json
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.TokenInfo
 import io.github.jan.supabase.gotrue.user.UserInfo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 interface UserDataStoreDao {
     val userInfo: Flow<UserInfo?>
-    suspend fun saveUserId(userInfo: UserInfo)
+    val tokenInfo: Flow<TokenInfo?>
+    suspend fun saveUserInfo(userInfo: UserInfo)
+    suspend fun saveTokenInfo(tokenInfo: TokenInfo)
 }
 
 internal class UserDataStoreDaoImpl(
@@ -21,16 +24,27 @@ internal class UserDataStoreDaoImpl(
     private val userDataStore get() = context.userDataStore
 
     override val userInfo: Flow<UserInfo?> = userDataStore.data.map {
-        it[KEY_USER_ID]?.fromJson()
+        it[KEY_USER_INFO]?.fromJson()
     }
 
-    override suspend fun saveUserId(userInfo: UserInfo) {
+    override val tokenInfo: Flow<TokenInfo?> = userDataStore.data.map {
+        it[KEY_TOKEN_INFO]?.fromJson()
+    }
+
+    override suspend fun saveUserInfo(userInfo: UserInfo) {
         userDataStore.edit {
-            it[KEY_USER_ID] = userInfo.json()
+            it[KEY_USER_INFO] = userInfo.json()
+        }
+    }
+
+    override suspend fun saveTokenInfo(tokenInfo: TokenInfo) {
+        userDataStore.edit {
+            it[KEY_TOKEN_INFO] = tokenInfo.json()
         }
     }
 
     companion object {
-        private val KEY_USER_ID = stringPreferencesKey("user_id")
+        private val KEY_USER_INFO = stringPreferencesKey("user_info")
+        private val KEY_TOKEN_INFO = stringPreferencesKey("token_info")
     }
 }
