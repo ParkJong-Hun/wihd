@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.map
 interface UserDataStoreDao {
     val tokenInfo: Flow<TokenInfo?>
     suspend fun saveTokenInfo(tokenInfo: TokenInfo)
+    suspend fun resetTokenInfo()
 }
 
 internal class UserDataStoreDaoImpl(
@@ -27,6 +28,12 @@ internal class UserDataStoreDaoImpl(
     override suspend fun saveTokenInfo(tokenInfo: TokenInfo) {
         userDataStore.edit {
             it[KEY_TOKEN_INFO] = tokenInfo.json()
+        }
+    }
+
+    override suspend fun resetTokenInfo() {
+        userDataStore.edit {
+            it.remove(KEY_TOKEN_INFO)
         }
     }
 

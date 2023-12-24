@@ -34,7 +34,7 @@ class UserRepositoryImpl(
 
     override suspend fun getUser(token: Token): User {
         return withContext(ioScope.coroutineContext) {
-            remoteDataSource.getUser(token.toTokenInfo()).toUserDto().domainModel()
+            getUserInternal(token)
         }
     }
 
@@ -47,7 +47,17 @@ class UserRepositoryImpl(
     override suspend fun saveTokenAndRetrieveUser(token: Token): User {
         return withContext(ioScope.coroutineContext) {
             preferencesDataSource.saveToken(token.toTokenInfo())
-            remoteDataSource.getUser(token.toTokenInfo()).toUserDto().domainModel()
+            getUserInternal(token)
+        }
+    }
+
+    private suspend fun getUserInternal(token: Token): User {
+        return withContext(ioScope.coroutineContext) {
+            runCatching {
+                remoteDataSource.getUser(token.toTokenInfo()).toUserDto().domainModel()
+            }.onFailure {
+                preferencesDataSource.resetToken()
+            }.getOrThrow()
         }
     }
 }

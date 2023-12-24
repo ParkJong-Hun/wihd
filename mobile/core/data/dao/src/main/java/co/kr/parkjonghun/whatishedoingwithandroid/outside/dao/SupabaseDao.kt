@@ -43,12 +43,13 @@ internal class SupabaseDaoImpl : SupabaseDao {
             .recover { auth.retrieveUser(token.accessToken) }
             .onSuccess {
                 Timber.tag("Supabase")
-                    .d("retreiving userInfo with refresh token is successful: $it")
+                    .d("retreiving userInfo with access token is successful: $it")
             }
             .onFailure {
                 Timber.tag("Supabase")
-                    .e("retrieving userInfo with refresh token is failed.\n${it.stackTraceToString()}")
+                    .e("retrieving userInfo with access token is failed.\n${it.stackTraceToString()}")
             }
+            // FIXME it is weired. separate refresh token when this is failed.
             .recover {
                 auth.retrieveUser(token.refreshToken)
             }

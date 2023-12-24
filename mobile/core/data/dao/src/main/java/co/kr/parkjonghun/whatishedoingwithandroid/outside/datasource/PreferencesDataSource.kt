@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.Flow
 interface PreferencesDataSource {
     val token: Flow<TokenInfo?>
     suspend fun saveToken(token: TokenInfo)
+    suspend fun resetToken()
 }
 
 internal class PreferencesDataSourceImpl(
@@ -19,5 +20,9 @@ internal class PreferencesDataSourceImpl(
 
     override suspend fun saveToken(token: TokenInfo) {
         userDataStoreDao.saveTokenInfo(token)
+    }
+
+    override suspend fun resetToken() {
+        userDataStoreDao.resetTokenInfo()
     }
 }
