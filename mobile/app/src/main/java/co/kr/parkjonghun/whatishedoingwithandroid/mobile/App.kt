@@ -73,7 +73,6 @@ fun App(
                     isShowLoading = appState.value.isShowLoading,
                     isShowLogin = appState.value.isShowLoginScreen,
                     isShowTop = appState.value.isShowTop,
-                    onLoginSuccess = appIntent::loginSuccess,
                     isShowError = appState.value.isShowError to appState.value.error,
                 )
             }
@@ -90,7 +89,6 @@ private fun AppBody(
     isShowLogin: Boolean,
     isShowTop: Boolean,
     isShowError: Pair<Boolean, Throwable?>,
-    onLoginSuccess: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box {
@@ -101,7 +99,6 @@ private fun AppBody(
             )
         } else if (isShowLogin) {
             LoginScreen(
-                onLoginSuccess = onLoginSuccess,
                 modifier = modifier,
             )
         } else if (isShowInit) {

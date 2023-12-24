@@ -18,7 +18,6 @@ import org.koin.core.qualifier.named
 data class LoginUiState(
     val isShowLoading: Boolean = false,
     val error: Throwable? = null,
-    val isLoginSuccess: Boolean = false,
 ) : UiState {
     val isShowError: Boolean = error != null
 }
@@ -48,7 +47,6 @@ class LoginReducer(
                 LoginUiState(
                     isShowLoading = false,
                     error = null,
-                    isLoginSuccess = false,
                 )
             }
 
@@ -56,7 +54,6 @@ class LoginReducer(
                 LoginUiState(
                     isShowLoading = true,
                     error = null,
-                    isLoginSuccess = false,
                 )
             }
 
@@ -64,7 +61,6 @@ class LoginReducer(
                 LoginUiState(
                     isShowLoading = false,
                     error = null,
-                    isLoginSuccess = true,
                 )
             }
 
@@ -72,7 +68,6 @@ class LoginReducer(
                 LoginUiState(
                     isShowLoading = false,
                     error = null,
-                    isLoginSuccess = true,
                 )
             }
         }

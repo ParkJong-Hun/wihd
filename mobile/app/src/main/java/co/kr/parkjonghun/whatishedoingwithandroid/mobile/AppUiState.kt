@@ -103,10 +103,6 @@ class AppIntent(
         checkUser()
     }
 
-    fun loginSuccess() {
-        checkUser()
-    }
-
     fun keepToken(tokenDto: TokenDto) {
         stateMachine.dispatch(AppAction.Process(tokenDto))
     }

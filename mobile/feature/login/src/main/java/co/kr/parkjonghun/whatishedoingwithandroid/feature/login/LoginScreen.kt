@@ -5,20 +5,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
 
 @Composable
 fun LoginScreen(
-    onLoginSuccess: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val (state, intent) = rememberLoginUiState()
-
-    LaunchedEffect(state.value.isLoginSuccess) {
-        if (state.value.isLoginSuccess) onLoginSuccess()
-    }
 
     LoginBody(
         isShowError = state.value.isShowError to state.value.error,
