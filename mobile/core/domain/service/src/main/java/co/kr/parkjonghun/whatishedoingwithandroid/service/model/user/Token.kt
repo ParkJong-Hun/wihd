@@ -9,7 +9,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Token internal constructor(
     val accessToken: String,
+    val providerToken: String,
     val refreshToken: String,
+    val expiresAt: Long,
     val expiresIn: Long,
     val tokenType: String,
 ) : Parcelable

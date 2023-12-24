@@ -15,6 +15,9 @@ fun createAppStateMachineCreator(
         on<AppAction.CheckLogin> {
             transitionTo(AppState.Loading)
         }
+        on<AppAction.Process> {
+            transitionTo(AppState.Loading)
+        }
     }
 
     fromState<AppState.Loading> {
@@ -26,12 +29,6 @@ fun createAppStateMachineCreator(
         }
         on<AppAction.Fail> {
             transitionTo(AppState.Error(it.throwable))
-        }
-    }
-
-    fromState<AppState.NotLoggedIn> {
-        on<AppAction.Process> {
-            transitionTo(AppState.Loading)
         }
     }
 

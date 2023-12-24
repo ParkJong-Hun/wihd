@@ -1,5 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.mobile
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -34,7 +35,6 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun tryToGetToken(): TokenDto? {
-        Timber.d(intent.data?.queryParameterNames?.toString())
         return intent.data?.let { uri ->
             uri.getQueryParameter(KEY_ERROR)?.let { error ->
                 val errorCode = uri.getQueryParameter(KEY_ERROR_CODE)
@@ -46,26 +46,42 @@ class MainActivity : ComponentActivity() {
                     .create()
                     .show()
             }
-            uri.getQueryParameter("access_token")?.let { accessToken ->
-                @Suppress("UnusedPrivateProperty")
-                val providerToken = uri.getQueryParameter("provider_token")
-                val refreshToken = uri.getQueryParameter("refresh_token")
-                val expiresIn = uri.getQueryParameter("expires_in")?.toLong()
-                val tokenType = uri.getQueryParameter("token_type")
+            uri.getFUCKINGQueryParameter(KEY_ACCESS_TOKEN)?.let { accessToken ->
                 TokenDto(
                     accessToken = accessToken,
-                    refreshToken = requireNotNull(refreshToken),
-                    expiresIn = requireNotNull(expiresIn),
-                    tokenType = requireNotNull(tokenType),
+                    providerToken = requireNotNull(uri.getFUCKINGQueryParameter(KEY_PROVIDER_TOKEN)),
+                    refreshToken = requireNotNull(uri.getFUCKINGQueryParameter(KEY_REFRESH_TOKEN)),
+                    expiresAt = requireNotNull(
+                        uri.getFUCKINGQueryParameter(KEY_EXPIRES_AT)?.toLong()
+                    ),
+                    expiresIn = requireNotNull(
+                        uri.getFUCKINGQueryParameter(KEY_EXPIRES_IN)?.toLong()
+                    ),
+                    tokenType = requireNotNull(uri.getFUCKINGQueryParameter(KEY_TOKEN_TYPE)),
                 )
             }
         }
+    }
+
+    private fun Uri.getFUCKINGQueryParameter(key: String): String? {
+        val queries = this.toString().substringAfter('#')
+        val queryParameter = queries
+            ?.split('&')
+            ?.map { it.split("=") }
+            ?.firstOrNull { it.first() == key }
+        return queryParameter?.last()
     }
 
     companion object {
         // TODO check build variant
         private const val IS_DEBUG = true
 
+        private const val KEY_ACCESS_TOKEN = "access_token"
+        private const val KEY_PROVIDER_TOKEN = "provider_token"
+        private const val KEY_REFRESH_TOKEN = "refresh_token"
+        private const val KEY_EXPIRES_AT = "expires_at"
+        private const val KEY_EXPIRES_IN = "expires_in"
+        private const val KEY_TOKEN_TYPE = "token_type"
         private const val KEY_ERROR = "error"
         private const val KEY_ERROR_CODE = "error_code"
         private const val KEY_ERROR_DESCRIPTION = "error_description"

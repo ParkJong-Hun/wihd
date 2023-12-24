@@ -3,7 +3,7 @@ package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.ValidTransition
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.UserRepository
-import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.mapper.doaminMode
+import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.mapper.domainMode
 
 sealed interface AppSideEffect : StateMachine.SideEffect<AppState, AppAction> {
     class SaveToken(
@@ -14,7 +14,7 @@ sealed interface AppSideEffect : StateMachine.SideEffect<AppState, AppAction> {
             validTransition: ValidTransition<AppState, AppAction>,
         ) {
             val newToken =
-                (validTransition.targetAction as AppAction.Process).tokenDto.doaminMode()
+                (validTransition.targetAction as AppAction.Process).tokenDto.domainMode()
             runCatching {
                 userRepository.saveTokenAndRetrieveUser(token = newToken)
             }.onSuccess { user ->

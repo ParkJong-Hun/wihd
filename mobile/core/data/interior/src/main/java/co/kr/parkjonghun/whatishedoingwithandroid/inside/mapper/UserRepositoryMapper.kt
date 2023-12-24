@@ -19,14 +19,18 @@ internal fun UserInfo.toUserDto(): UserDto = UserDto(
 
 internal fun Token.toTokenInfo(): TokenInfo = TokenInfo(
     accessToken = accessToken,
+    providerToken = providerToken,
     refreshToken = refreshToken,
+    expiresAt = expiresAt,
     expiresIn = expiresIn,
     tokenType = tokenType,
 )
 
 internal fun TokenInfo.toTokenDto(): TokenDto = TokenDto(
     accessToken = accessToken,
+    providerToken = providerToken,
     refreshToken = refreshToken,
+    expiresAt = expiresAt,
     expiresIn = expiresIn,
     tokenType = tokenType,
 )

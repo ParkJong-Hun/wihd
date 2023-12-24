@@ -12,9 +12,11 @@ fun UserDto.domainModel() = User(
     updatedAt = updatedAt,
 )
 
-fun TokenDto.doaminMode() = Token(
+fun TokenDto.domainMode() = Token(
     accessToken = accessToken,
+    providerToken = providerToken,
     refreshToken = refreshToken,
+    expiresAt = expiresAt,
     expiresIn = expiresIn,
     tokenType = tokenType,
 )

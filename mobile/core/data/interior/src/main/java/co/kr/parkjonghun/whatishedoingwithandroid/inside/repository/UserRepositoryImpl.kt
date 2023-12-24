@@ -6,7 +6,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.inside.mapper.toUserDto
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.PreferencesDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.RemoteDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.UserRepository
-import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.mapper.doaminMode
+import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.mapper.domainMode
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.mapper.domainModel
 import co.kr.parkjonghun.whatishedoingwithandroid.service.model.user.Token
 import co.kr.parkjonghun.whatishedoingwithandroid.service.model.user.User
@@ -40,7 +40,7 @@ class UserRepositoryImpl(
 
     override suspend fun getToken(): Token? {
         return withContext(ioScope.coroutineContext) {
-            preferencesDataSource.token.first()?.toTokenDto()?.doaminMode()
+            preferencesDataSource.token.first()?.toTokenDto()?.domainMode()
         }
     }
 
