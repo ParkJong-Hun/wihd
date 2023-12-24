@@ -9,6 +9,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.json
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.TokenInfo
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import timber.log.Timber
 
 interface UserDataStoreDao {
     val tokenInfo: Flow<TokenInfo?>
@@ -32,6 +33,7 @@ internal class UserDataStoreDaoImpl(
     }
 
     override suspend fun resetTokenInfo() {
+        Timber.w("your token is invalid. So, will reset the token stored in the device.")
         userDataStore.edit {
             it.remove(KEY_TOKEN_INFO)
         }
