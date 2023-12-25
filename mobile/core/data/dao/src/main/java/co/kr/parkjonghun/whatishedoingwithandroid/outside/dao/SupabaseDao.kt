@@ -38,27 +38,26 @@ internal class SupabaseDaoImpl : SupabaseDao {
     }
 
     private suspend fun retrieveUserInfo(token: TokenInfo): UserInfo {
-        return runCatching { auth.currentUserOrNull() ?: error("current user is null.") }
-            .onSuccess { Timber.tag("Supabase").d("saved userInfo is here: $it") }
-            .recover { auth.retrieveUser(token.accessToken) }
+        return runCatching { auth.retrieveUser(token.accessToken) }
             .onSuccess {
-                Timber.tag("Supabase")
-                    .d("retreiving userInfo with access token is successful: $it")
+                Timber.tag(LOG_TAG)
+                    .d("retreiving userInfo with access token is successful")
+                Timber.tag(LOG_TAG)
+                    .v("$it")
             }
             .onFailure {
-                Timber.tag("Supabase")
+                Timber.tag(LOG_TAG)
                     .e("retrieving userInfo with access token is failed.\n${it.stackTraceToString()}")
             }
-            // FIXME it is weired. separate refresh token when this is failed.
-            .recover {
-                auth.retrieveUser(token.refreshToken)
-            }
+            .recover { auth.retrieveUser(token.refreshToken) }
             .onSuccess {
-                Timber.tag("Supabase")
-                    .d("retreiving userInfo with refresh token is successful: $it")
+                Timber.tag(LOG_TAG)
+                    .d("retreiving userInfo with refresh token is successful")
+                Timber.tag(LOG_TAG)
+                    .v("$it")
             }
             .onFailure {
-                Timber.tag("Supabase")
+                Timber.tag(LOG_TAG)
                     .e("retrieving userInfo with refresh token is failed.\n${it.stackTraceToString()}")
             }
             .getOrThrow()
@@ -71,5 +70,7 @@ internal class SupabaseDaoImpl : SupabaseDao {
 
         private const val OAUTH_CALLBACK_SCHEME = "wihd"
         private const val OAUTH_CALLBACK_HOST = "auth.callback"
+
+        private const val LOG_TAG = "Supabase"
     }
 }
