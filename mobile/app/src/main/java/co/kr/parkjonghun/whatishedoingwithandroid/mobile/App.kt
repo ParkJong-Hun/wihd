@@ -50,7 +50,7 @@ fun App(
         val appNavigationState: AppNavigationState = rememberAppNavigationState(
             windowSizeClass = windowSizeClass,
         )
-        val (appState, appIntent) = rememberAppUiState()
+        val (appState, appIntent) = rememberAppProcessor()
 
         // Launch init action.
         LaunchedEffect(true) {

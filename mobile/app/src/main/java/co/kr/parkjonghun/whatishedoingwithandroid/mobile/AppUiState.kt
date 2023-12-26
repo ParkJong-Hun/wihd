@@ -3,7 +3,6 @@ package co.kr.parkjonghun.whatishedoingwithandroid.mobile
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -12,6 +11,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppAction
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppState
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.Intent
+import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.Processor
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.UiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +22,7 @@ import org.koin.compose.koinInject
 import org.koin.core.qualifier.named
 
 @Composable
-fun rememberAppUiState(): Pair<State<AppUiState>, AppIntent> {
+fun rememberAppProcessor(): Processor<AppUiState, AppIntent> {
     val scope = rememberCoroutineScope()
     val stateMachine = koinInject<StateMachine<AppState, AppAction>>(
         qualifier = named("App"),
