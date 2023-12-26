@@ -11,7 +11,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.l
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginState
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.UiState
 import kotlinx.coroutines.flow.map
-import org.koin.compose.rememberKoinInject
+import org.koin.compose.koinInject
 import org.koin.core.qualifier.named
 
 @Immutable
@@ -24,8 +24,9 @@ data class LoginUiState(
 
 @Composable
 fun rememberLoginUiState(): Pair<State<LoginUiState>, LoginIntent> {
-    val stateMachine =
-        rememberKoinInject<StateMachine<LoginState, LoginAction>>(qualifier = named("Login"))
+    val stateMachine = koinInject<StateMachine<LoginState, LoginAction>>(
+        qualifier = named("Login"),
+    )
     val state = remember {
         LoginReducer(stateMachine).loginUiState
     }.collectAsState(
