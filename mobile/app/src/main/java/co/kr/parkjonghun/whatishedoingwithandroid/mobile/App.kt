@@ -37,16 +37,18 @@ fun App(
     windowSizeClass: WindowSizeClass,
     newTokenDto: TokenDto?,
 ) {
-    KoinApplication(application = {
-        androidContext(context)
-        androidLogger()
-        modules(
-            daoModule,
-            dataSourceModule,
-            repositoryModule,
-            useCaseModule,
-        )
-    }) {
+    KoinApplication(
+        {
+            androidContext(context)
+            androidLogger()
+            modules(
+                daoModule,
+                dataSourceModule,
+                repositoryModule,
+                useCaseModule,
+            )
+        }
+    ) {
         val appNavigationState: AppNavigationState = rememberAppNavigationState(
             windowSizeClass = windowSizeClass,
         )
@@ -69,11 +71,11 @@ fun App(
                 AppBody(
                     windowSizeClass = appNavigationState.windowSizeClass,
                     appNavController = appNavigationState.appNavController,
-                    isShowInit = appState.value.isShowInitScreen,
-                    isShowLoading = appState.value.isShowLoading,
-                    isShowLogin = appState.value.isShowLoginScreen,
-                    isShowTop = appState.value.isShowTop,
-                    isShowError = appState.value.isShowError to appState.value.error,
+                    isShowInit = appState.isShowInitScreen,
+                    isShowLoading = appState.isShowLoading,
+                    isShowLogin = appState.isShowLoginScreen,
+                    isShowTop = appState.isShowTop,
+                    isShowError = appState.isShowError to appState.error,
                 )
             }
         }

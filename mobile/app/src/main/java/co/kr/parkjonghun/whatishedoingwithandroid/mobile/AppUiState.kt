@@ -22,6 +22,7 @@ import org.koin.compose.koinInject
 import org.koin.core.qualifier.named
 
 @Composable
+@Suppress("VariableNaming")
 fun rememberAppProcessor(): Processor<AppUiState, AppIntent> {
     val scope = rememberCoroutineScope()
     val stateMachine = koinInject<StateMachine<AppState, AppAction>>(
@@ -30,7 +31,7 @@ fun rememberAppProcessor(): Processor<AppUiState, AppIntent> {
     val state = remember { MutableStateFlow(AppUiState()) }
     val intent = remember { AppIntent(stateMachine) }
     remember { AppReducer(stateMachine, state, scope) }
-    return state.collectAsState() to intent
+    return state.collectAsState().value to intent
 }
 
 @Immutable
