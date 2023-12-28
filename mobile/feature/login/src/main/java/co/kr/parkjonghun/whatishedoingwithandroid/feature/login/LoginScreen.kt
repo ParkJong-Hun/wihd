@@ -12,7 +12,7 @@ import androidx.compose.ui.window.Dialog
 fun LoginScreen(
     modifier: Modifier = Modifier,
 ) {
-    val (state, intent) = rememberLoginUiState()
+    val (state, intent) = rememberLoginProcessor()
 
     LoginBody(
         isShowError = state.value.isShowError to state.value.error,
