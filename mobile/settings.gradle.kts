@@ -22,10 +22,11 @@ include(
     ":core:ui",
 )
 include(":app")
+include(":app-components-catalog")
 include(
+    ":feature:login",
+    ":feature:top",
     ":feature:news",
     ":feature:post",
     ":feature:profile",
 )
-include(":feature:top")
-include(":feature:login")
