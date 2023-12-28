@@ -10,8 +10,8 @@ import org.gradle.kotlin.dsl.withType
 fun Project.setupDetekt(extension: DetektExtension) {
     extension.apply {
         parallel = true
-        config.setFrom(files("${project.rootDir}/lint/detekt.yml"))
-        baseline = file("${project.rootDir}/lint/baseline.xml")
+        config.setFrom(files("${project.rootDir}/.detekt/detekt.yml"))
+        baseline = file("${project.rootDir}/.detekt/baseline.xml")
         buildUponDefaultConfig = true
         ignoreFailures = false
         autoCorrect = false
