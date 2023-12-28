@@ -15,7 +15,7 @@ fun LoginScreen(
     val (state, intent) = rememberLoginProcessor()
 
     LoginBody(
-        isShowError = state.value.isShowError to state.value.error,
+        isShowError = state.isShowError to state.error,
         onClickLogin = intent::login,
         onClickErrorOk = intent::confirmErrorDialog,
         modifier = modifier,
