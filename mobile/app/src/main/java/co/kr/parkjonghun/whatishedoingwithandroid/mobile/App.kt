@@ -47,7 +47,7 @@ fun App(
                 repositoryModule,
                 useCaseModule,
             )
-        }
+        },
     ) {
         val appNavigationState: AppNavigationState = rememberAppNavigationState(
             windowSizeClass = windowSizeClass,
