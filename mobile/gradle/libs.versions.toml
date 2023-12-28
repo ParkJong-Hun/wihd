@@ -5,6 +5,7 @@ kotlin = "1.9.21"
 gms = "4.4.0"
 ksp = "1.9.21-1.0.16"
 jetbrain-compose = "1.5.11"
+dependencyguard = "0.4.3"
 
 # libraries
 jetpack-core-ktx = "1.12.0"
@@ -109,6 +110,7 @@ kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 detektPlugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlinSerializationPlugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinParcelizePlugin = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+dependencyGuardPlugin = { id = "com.dropbox.dependency-guard", version.ref = "dependencyguard" }
 
 wihd-kotlin = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin", version = "unspecified" }
 wihd-android = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.android", version = "unspecified" }

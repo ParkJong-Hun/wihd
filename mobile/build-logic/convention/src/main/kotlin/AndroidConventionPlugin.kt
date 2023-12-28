@@ -9,6 +9,7 @@ class AndroidConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.application")
+                apply("com.dropbox.dependency-guard")
             }
 
             androidApplication {
