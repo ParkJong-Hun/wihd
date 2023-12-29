@@ -16,6 +16,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.feature.login.LoginScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreenRoute
 import co.kr.parkjonghun.whatishedoingwithandroid.inside.di.repositoryModule
+import co.kr.parkjonghun.whatishedoingwithandroid.mobile.di.dispatchersModule
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.AppNavigationState
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.rememberAppNavigationState
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.di.dataModule
@@ -41,6 +42,7 @@ fun App(
             androidContext(context)
             androidLogger()
             modules(
+                dispatchersModule,
                 dataModule,
                 repositoryModule,
                 useCaseModule,
