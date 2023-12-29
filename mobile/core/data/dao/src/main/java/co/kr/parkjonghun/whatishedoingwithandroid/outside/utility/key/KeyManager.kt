@@ -86,13 +86,13 @@ internal class KeyManagerImpl : KeyManager {
             init(
                 KeyGenParameterSpec.Builder(
                     KeyAlias.AES.alias,
-                    KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
+                    KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT,
                 )
                     .setKeySize(KeyAlias.AES.keySize)
                     .setBlockModes(BLOCK_MODE)
                     .setEncryptionPaddings(ENCRYPTION_PADDING)
                     .setRandomizedEncryptionRequired(false)
-                    .build()
+                    .build(),
             )
             generateKey()
         }
