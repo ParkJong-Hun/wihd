@@ -18,8 +18,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreenRoute
 import co.kr.parkjonghun.whatishedoingwithandroid.inside.di.repositoryModule
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.AppNavigationState
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.rememberAppNavigationState
-import co.kr.parkjonghun.whatishedoingwithandroid.outside.di.daoModule
-import co.kr.parkjonghun.whatishedoingwithandroid.outside.di.dataSourceModule
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.di.dataModule
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.TokenDto
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.di.useCaseModule
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
@@ -42,8 +41,7 @@ fun App(
             androidContext(context)
             androidLogger()
             modules(
-                daoModule,
-                dataSourceModule,
+                dataModule,
                 repositoryModule,
                 useCaseModule,
             )

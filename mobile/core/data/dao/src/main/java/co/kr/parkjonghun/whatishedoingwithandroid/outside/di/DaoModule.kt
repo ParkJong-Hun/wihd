@@ -7,7 +7,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.outside.dao.datastore.UserData
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
-val daoModule = module {
+internal val daoModule = module {
     single<UserDataStoreDao> {
         UserDataStoreDaoImpl(context = androidContext())
     }

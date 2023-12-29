@@ -6,7 +6,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.RemoteDataS
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.RemoteDataSourceImpl
 import org.koin.dsl.module
 
-val dataSourceModule = module {
+internal val dataSourceModule = module {
     single<PreferencesDataSource> {
         PreferencesDataSourceImpl(
             userDataStoreDao = get(),
