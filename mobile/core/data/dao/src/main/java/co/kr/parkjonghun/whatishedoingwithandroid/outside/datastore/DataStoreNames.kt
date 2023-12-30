@@ -1,5 +1,5 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.outside.datastore
 
-object DataStores {
+object DataStoreNames {
     const val User = "user"
 }

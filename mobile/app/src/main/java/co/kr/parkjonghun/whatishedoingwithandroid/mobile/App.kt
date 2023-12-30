@@ -1,6 +1,5 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.mobile
 
-import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -15,40 +14,24 @@ import androidx.navigation.compose.NavHost
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.login.LoginScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreenRoute
-import co.kr.parkjonghun.whatishedoingwithandroid.inside.di.repositoryModule
-import co.kr.parkjonghun.whatishedoingwithandroid.mobile.di.dispatchersModule
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.AppNavigationState
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.rememberAppNavigationState
-import co.kr.parkjonghun.whatishedoingwithandroid.outside.di.dataModule
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.TokenDto
-import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.di.useCaseModule
 import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.compose.KoinApplication
+import org.koin.androidx.compose.KoinAndroidContext
+import org.koin.core.annotation.KoinExperimentalAPI
 
 /**
  * Top level composable.
  */
+@OptIn(KoinExperimentalAPI::class)
 @Suppress("ModifierMissing")
 @Composable
 fun App(
-    context: Context,
     windowSizeClass: WindowSizeClass,
     newTokenDto: TokenDto?,
 ) {
-    KoinApplication(
-        {
-            androidContext(context)
-            androidLogger()
-            modules(
-                dispatchersModule,
-                dataModule,
-                repositoryModule,
-                useCaseModule,
-            )
-        },
-    ) {
+    KoinAndroidContext {
         val appNavigationState: AppNavigationState = rememberAppNavigationState(
             windowSizeClass = windowSizeClass,
         )
