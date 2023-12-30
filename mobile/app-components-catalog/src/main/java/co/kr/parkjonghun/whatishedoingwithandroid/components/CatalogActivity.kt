@@ -1,4 +1,4 @@
-package com.example.app_components_catalog
+package co.kr.parkjonghun.whatishedoingwithandroid.components
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
