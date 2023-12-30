@@ -1,6 +1,7 @@
 plugins {
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.library")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.compose")
+    alias(libs.plugins.wihd.library)
+    alias(libs.plugins.wihd.compose)
+    alias(libs.plugins.wihd.detekt)
 }
 
 android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.ui"
@@ -8,7 +9,6 @@ android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.ui"
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.jetpack.junit)
-    androidTestImplementation(libs.jetpack.espresso.core)
+    implementation(libs.supabase.auth)
+    implementation(libs.supabase.auth.ui)
 }

@@ -3,39 +3,55 @@ version: 2.1
 orbs:
   android: circleci/android@2.3.0
 
+machines:
+  android: &android
+    executor:
+      name: android/android-docker
+      resource-class: large
+      tag: 2023.11.1
+
+commands:
+  gradle:
+    parameters:
+      title:
+        type: string
+      task:
+        type: string
+    steps:
+      - run:
+          name: <<parameters.title>>
+          # FIXME: I want to change run command on mobile directory.
+          # Working directory: ~/project/mobile
+          command: |
+            cd mobile
+            ./gradlew <<parameters.task>> --no-daemon
+
 jobs:
   lint:
-    executor:
-      name: android/android-machine
-      resource-class: large
-      tag: 2023.11.1
-    working_directory: ~/project/mobile
+    <<: *android
     steps:
-      - checkout:
-          path: ~/project
-
-      - android/run-tests:
-          test-command: ./gradlew lint testDebug --continue
-
-  #      - android/start-emulator-and-run-tests:
-  #          test-command: ./gradlew connectedDebugAndroidTest
-  #          system-image: system-images;android-33;google_apis;x86_64
-  
+      - checkout
+      - gradle:
+          title: Lint check
+          task: :app:lint
+      - gradle:
+          title: Detekt
+          task: detekt
+  # TODO: run unit test when it is needed
+  unit_test:
+    <<: *android
+    steps:
+      - checkout
+      - gradle:
+          title: Unit Test
+          task: testDebugUnitTest
   build:
-    executor:
-      name: android/android-machine
-      resource-class: large
-      tag: 2023.11.1
-    working_directory: ~/project/mobile
-
+    <<: *android
     steps:
-      - checkout:
-          path: ~/project
-
-      - run:
-          name: Assemble release build
-          command: |
-            ./gradlew assembleRelease
+      - checkout
+      - gradle:
+          title: Build
+          task: assembleRelease
 
 workflows:
   ci:
@@ -48,13 +64,21 @@ workflows:
                 - /renovate\/.*/
                 - /pull\/.*/
                 - /develop\/.*/
-      - build:
-          requires:
-            - lint
-          filters:
-            branches:
-              only:
-                - /master\/.*/
-                - /renovate\/.*/
-                - /pull\/.*/
-                - /develop\/.*/
+#      - unit_test:
+#          filters:
+#            branches:
+#              only:
+#                - /master\/.*/
+#                - /renovate\/.*/
+#                - /pull\/.*/
+#                - /develop\/.*/
+#      - build:
+#          requires:
+#            - lint
+#          filters:
+#            branches:
+#              only:
+#                - /master\/.*/
+#                - /renovate\/.*/
+#                - /pull\/.*/
+#                - /develop\/.*/

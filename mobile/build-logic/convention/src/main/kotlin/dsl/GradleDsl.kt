@@ -49,7 +49,13 @@ fun DependencyHandlerScope.lintChecks(
     add("lintChecks", artifact)
 }
 
-private fun DependencyHandlerScope.api(
+fun DependencyHandlerScope.detektPlugins(
+    artifact: MinimalExternalModuleDependency,
+) {
+    add("detektPlugins", artifact)
+}
+
+fun DependencyHandlerScope.api(
     artifact: MinimalExternalModuleDependency,
 ) {
     add("api", artifact)

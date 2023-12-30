@@ -1,9 +1,11 @@
 plugins {
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.android")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.compose")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.dagger")
-    id("parkjonghun.whatishedoingwithandroid.mobile.convention.firebase")
+    alias(libs.plugins.wihd.android)
+    alias(libs.plugins.wihd.kotlin)
+    alias(libs.plugins.wihd.compose)
+    alias(libs.plugins.wihd.koin)
+    alias(libs.plugins.wihd.firebase)
+    alias(libs.plugins.wihd.detekt)
+    alias(libs.plugins.wihd.serialization)
 }
 
 android {
@@ -25,7 +27,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -37,14 +39,19 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:main"))
-
-    implementation(project(":core:data"))
-    implementation(project(":core:domain"))
+    implementation(project(":feature:login"))
+    implementation(project(":feature:top"))
+    implementation(project(":feature:news"))
+    implementation(project(":feature:post"))
+    implementation(project(":feature:profile"))
+    implementation(project(":core:data:dao"))
+    implementation(project(":core:data:interior"))
+    implementation(project(":core:domain:base"))
+    implementation(project(":core:domain:service"))
     implementation(project(":core:ui"))
 
     implementation(libs.jetpack.core.splashscreen)
     implementation(libs.jetpack.navigation.compose)
-    implementation(libs.jetpack.hilt.navigation)
     implementation(libs.jetpack.compose.material3.windowsizeclass)
+    implementation(libs.timber)
 }

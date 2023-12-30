@@ -22,8 +22,6 @@ java {
 
 dependencies {
     implementation(libs.bundles.plugins)
-    // https://github.com/google/dagger/issues/3068#issuecomment-1470534930
-    implementation(libs.javapoet)
 }
 
 gradlePlugin {
@@ -36,13 +34,13 @@ gradlePlugin {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.compose"
             implementationClass = "ComposeConventionPlugin"
         }
-        register("dagger") {
-            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.dagger"
-            implementationClass = "DaggerConventionPlugin"
+        register("koin") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.koin"
+            implementationClass = "KoinConventionPlugin"
         }
         register("feature") {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.feature"
-            implementationClass = "FeatureConventionPlugin"
+            implementationClass = "FeatureBundlePlugin"
         }
         register("firebase") {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase"
@@ -55,6 +53,18 @@ gradlePlugin {
         register("library") {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.library"
             implementationClass = "LibraryConventionPlugin"
+        }
+        register("detekt") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.detekt"
+            implementationClass = "DetektConventionPlugin"
+        }
+        register("serialization") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.serialization"
+            implementationClass = "KotlinSerializationConventionPlugin"
+        }
+        register("parcelize") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.parcelize"
+            implementationClass = "KotlinParcelizeConventionPlugin"
         }
     }
 }

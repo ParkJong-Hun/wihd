@@ -1,44 +1,52 @@
 [versions]
 # plugins
-agp = "8.1.4"
-kotlin = "1.9.20"
+agp = "8.2.0"
+kotlin = "1.9.21"
 gms = "4.4.0"
-ksp = "1.9.10-1.0.13"
+ksp = "1.9.21-1.0.16"
 jetbrain-compose = "1.5.11"
+dependencyguard = "0.4.3"
 
 # libraries
 jetpack-core-ktx = "1.12.0"
-jetpack-activity-compose = "1.8.1"
+jetpack-activity-compose = "1.8.2"
 jetpack-fragment = "1.6.2"
 jetpack-lifecycle-runtime-ktx = "2.6.2"
 jetpack-core-splashscreen = "1.0.1"
-jetpack-navigation-compose = "2.7.5"
-jetpack-hilt-navigation = "1.1.0"
+jetpack-navigation-compose = "2.7.6"
 jetpack-junit = "1.1.5"
 jetpack-espresso-core = "3.5.1"
 jetpack-compose-bom = "2023.10.01"
 jetpack-compose = "1.5.4"
-jetpack-compose-compiler = "1.5.4"
+jetpack-compose-compiler = "1.5.6"
 jetpack-compose-material3 = "1.1.2"
 jetpack-datastore-preferences = "1.0.0"
 junit = "4.13.2"
 kotlinx-coroutines-core = "1.7.3"
-kotlinx-datetime = "0.4.1"
-firebase-bom = "32.6.0"
-dagger-hilt = "2.48.1"
-annotation = "1.7.0"
+kotlinx-datetime = "0.5.0"
+kotlinx-collections-immutable = "0.3.6"
+firebase-bom = "32.7.0"
+koin = "3.5.3"
+annotation = "1.7.1"
 appcompat = "1.6.1"
-material = "1.10.0"
+material = "1.11.0"
 javapoet = "1.13.0"
-
+timber = "5.0.1"
+detekt = "1.23.4"
+twitter-compose-rules = "0.0.26"
+supabase = "1.4.7"
+ktor = "2.3.7"
+serialization = "1.6.2"
+mockk = "1.13.8"
 
 [libraries]
 androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 kotlinPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 jetbrainCompoesPlugin = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "jetbrain-compose" }
-daggerHiltPlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "dagger-hilt" }
 kspPlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 gmsPlugin = { group = "com.google.gms", name = "google-services", version.ref = "gms" }
+detektPlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
+kotlinSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
 
 # jetpack
 jetpack-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "jetpack-core-ktx" }
@@ -50,7 +58,6 @@ jetpack-core-splashscreen = { group = "androidx.core", name = "core-splashscreen
 jetpack-junit = { group = "androidx.test.ext", name = "junit", version.ref = "jetpack-junit" }
 jetpack-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "jetpack-espresso-core" }
 jetpack-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "jetpack-compose-bom" }
-jetpack-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "jetpack-hilt-navigation" }
 jetpack-compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "jetpack-compose" }
 jetpack-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "jetpack-compose" }
 jetpack-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "jetpack-compose" }
@@ -60,40 +67,76 @@ jetpack-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-tes
 jetpack-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "jetpack-compose-material3" }
 jetpack-compose-material3-windowsizeclass = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "jetpack-compose-material3" }
 jetpack-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "jetpack-datastore-preferences" }
+annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
 # junit
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 # kotlinx
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
+kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 
 # firebase
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 
-# dagger
-dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-hilt" }
-dagger-hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "dagger-hilt" }
-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger-hilt" }
-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+# supabase
+supabase-db = { group = "io.github.jan-tennert.supabase", name = "postgrest-kt", version.ref = "supabase" }
+supabase-auth = { group = "io.github.jan-tennert.supabase", name = "compose-auth", version.ref = "supabase" }
+supabase-auth-ui = { group = "io.github.jan-tennert.supabase", name = "compose-auth-ui", version.ref = "supabase" }
+
+# ktor
+ktor = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+
+# koin
+koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+
+# material
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
+# detekt
+detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
+twitter-compose-rules = { group = "com.twitter.compose.rules", name = "detekt", version.ref = "twitter-compose-rules" }
+
+# mockk
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
 [plugins]
 androidGradlePlugin = { id = "com.android.application", version.ref = "agp" }
 androidGradleLibraryPlugin = { id = "com.android.library", version.ref = "agp" }
 kotlinPlugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 gmsPlugin = { id = "com.google.gms.google-services", version.ref = "gms" }
-daggerHiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+detektPlugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+kotlinSerializationPlugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinParcelizePlugin = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+dependencyGuardPlugin = { id = "com.dropbox.dependency-guard", version.ref = "dependencyguard" }
+
+wihd-kotlin = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin", version = "unspecified" }
+wihd-android = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.android", version = "unspecified" }
+wihd-library = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.library", version = "unspecified" }
+wihd-koin = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.koin", version = "unspecified" }
+wihd-compose = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.compose", version = "unspecified" }
+wihd-firebase = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase", version = "unspecified" }
+wihd-detekt = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.detekt", version = "unspecified" }
+wihd-serialization = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.serialization", version = "unspecified" }
+wihd-parcelize = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.parcelize", version = "unspecified" }
+
+wihd-bundle-feature = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.feature", version = "unspecified" }
 
 [bundles]
 plugins = [
     "androidGradlePlugin",
     "kotlinPlugin",
-    "daggerHiltPlugin",
     "jetbrainCompoesPlugin",
     "kspPlugin",
     "gmsPlugin",
+    'detektPlugin',
+    "kotlinSerializationPlugin",
 ]
