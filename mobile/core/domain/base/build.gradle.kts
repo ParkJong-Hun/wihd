@@ -10,7 +10,4 @@ android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.domain.base"
 dependencies {
     implementation(libs.jetpack.core.ktx)
     implementation(libs.appcompat)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.jetpack.junit)
-    androidTestImplementation(libs.jetpack.espresso.core)
 }

@@ -37,6 +37,7 @@ twitter-compose-rules = "0.0.26"
 supabase = "1.4.7"
 ktor = "2.3.7"
 serialization = "1.6.2"
+mockk = "1.13.8"
 
 [libraries]
 androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -92,11 +93,16 @@ ktor = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
 # koin
 koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
 
+# material
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 # detekt
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 twitter-compose-rules = { group = "com.twitter.compose.rules", name = "detekt", version.ref = "twitter-compose-rules" }
+
+# mockk
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }

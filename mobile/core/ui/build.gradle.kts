@@ -11,7 +11,4 @@ dependencies {
     implementation(libs.material)
     implementation(libs.supabase.auth)
     implementation(libs.supabase.auth.ui)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.jetpack.junit)
-    androidTestImplementation(libs.jetpack.espresso.core)
 }

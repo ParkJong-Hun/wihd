@@ -15,7 +15,4 @@ dependencies {
     implementation(libs.ktor)
     implementation(libs.timber)
     implementation(libs.supabase.db)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.jetpack.junit)
-    androidTestImplementation(libs.jetpack.espresso.core)
 }
