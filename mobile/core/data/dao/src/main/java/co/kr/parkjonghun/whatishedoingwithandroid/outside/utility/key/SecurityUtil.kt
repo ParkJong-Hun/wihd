@@ -1,18 +1,13 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.outside.utility.key
 
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyProperties
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.toBoolean
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.toByteArray
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.toFloat
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.toInt
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.toStr1ng
-import java.security.KeyStore
 import javax.crypto.Cipher
-import javax.crypto.KeyGenerator
-import javax.crypto.SecretKey
 
-interface KeyManager {
+interface SecurityUtil {
     fun encryptByteArray(byteArray: ByteArray): ByteArray
     fun decryptAsByteArray(encrypted: ByteArray): ByteArray
 
@@ -29,18 +24,18 @@ interface KeyManager {
     fun decryptAsBoolean(encrypted: ByteArray): Boolean
 }
 
-internal class KeyManagerImpl : KeyManager {
-    private val keyStore = KeyStore.getInstance(PROVIDER).apply { load(null) }
-
+internal class SecurityUtilImpl(
+    private val aesKeyManager: AESKeyManager,
+) : SecurityUtil {
     override fun encryptByteArray(byteArray: ByteArray): ByteArray {
-        return Cipher.getInstance(cipher_transformation)
-            .apply { init(Cipher.ENCRYPT_MODE, getSecretKey()) }
+        return Cipher.getInstance(aesKeyManager.cipherTransformation)
+            .apply { init(Cipher.ENCRYPT_MODE, aesKeyManager.secretKey) }
             .doFinal(byteArray)
     }
 
     override fun decryptAsByteArray(encrypted: ByteArray): ByteArray {
-        return Cipher.getInstance(cipher_transformation)
-            .apply { init(Cipher.DECRYPT_MODE, getSecretKey()) }
+        return Cipher.getInstance(aesKeyManager.cipherTransformation)
+            .apply { init(Cipher.DECRYPT_MODE, aesKeyManager.secretKey) }
             .doFinal(encrypted)
     }
 
@@ -74,35 +69,5 @@ internal class KeyManagerImpl : KeyManager {
 
     override fun decryptAsBoolean(encrypted: ByteArray): Boolean {
         return decryptAsByteArray(encrypted).toBoolean()
-    }
-
-    private fun getSecretKey(): SecretKey {
-        if (!keyStore.containsAlias(KeyAlias.AES.alias)) generateSecretKey()
-        return keyStore.getKey(KeyAlias.AES.alias, null) as SecretKey
-    }
-
-    private fun generateSecretKey() {
-        KeyGenerator.getInstance(secretAlgorithm, PROVIDER).run {
-            init(
-                KeyGenParameterSpec.Builder(
-                    KeyAlias.AES.alias,
-                    KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT,
-                )
-                    .setKeySize(KeyAlias.AES.keySize)
-                    .setBlockModes(BLOCK_MODE)
-                    .setEncryptionPaddings(ENCRYPTION_PADDING)
-                    .setRandomizedEncryptionRequired(false)
-                    .build(),
-            )
-            generateKey()
-        }
-    }
-
-    companion object {
-        private const val PROVIDER = "AndroidKeyStore"
-        private const val BLOCK_MODE = KeyProperties.BLOCK_MODE_ECB
-        private const val ENCRYPTION_PADDING = KeyProperties.ENCRYPTION_PADDING_PKCS7
-        private val secretAlgorithm = KeyAlias.AES.algorithm
-        private val cipher_transformation = "$secretAlgorithm/$BLOCK_MODE/$ENCRYPTION_PADDING"
     }
 }
