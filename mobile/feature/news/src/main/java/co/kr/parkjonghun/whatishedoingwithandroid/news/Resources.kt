@@ -2,6 +2,4 @@
 
 package co.kr.parkjonghun.whatishedoingwithandroid.news
 
-import co.kr.parkjonghun.whatishedoingwithandroid.feature.news.R
-
-typealias NewsString = R.string
+typealias NewsString = co.kr.parkjonghun.whatishedoingwithandroid.feature.news.R.string

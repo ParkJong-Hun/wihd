@@ -24,19 +24,19 @@ enum class TopDestination(
     NEWS(
         icon = Icons.Outlined.List,
         selectedIcon = Icons.Rounded.List,
-        iconTextRes = NewsString.destination_description,
-        labelTextRes = NewsString.destination_label,
+        iconTextRes = NewsString.news_description,
+        labelTextRes = NewsString.news_label,
     ),
     POST(
         icon = Icons.Outlined.AddCircle,
         selectedIcon = Icons.Rounded.AddCircle,
-        iconTextRes = PostString.destination_description,
-        labelTextRes = PostString.destination_label,
+        iconTextRes = PostString.post_description,
+        labelTextRes = PostString.post_label,
     ),
     PROFILE(
         icon = Icons.Outlined.Person,
         selectedIcon = Icons.Rounded.Person,
-        iconTextRes = ProfileString.destination_description,
-        labelTextRes = ProfileString.destination_label,
+        iconTextRes = ProfileString.profile_description,
+        labelTextRes = ProfileString.profile_label,
     ),
 }

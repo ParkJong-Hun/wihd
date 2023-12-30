@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="destination_label">Post</string>
-    <string name="destination_description">Post</string>
+    <string name="post_label">Post</string>
+    <string name="post_description">Post</string>
 </resources>
