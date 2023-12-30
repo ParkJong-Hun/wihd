@@ -2,6 +2,7 @@ package co.kr.parkjonghun.whatishedoingwithandroid.outside.utility.key
 
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
+import timber.log.Timber
 import java.security.KeyStore
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
@@ -22,6 +23,14 @@ class AESKeyManagerImpl : AESKeyManager {
 
     override val cipherTransformation =
         "${KeyConfig.AES.algorithm}/$BLOCK_MODE_ECB/$ENCRYPTION_PADDING_PKCS7"
+
+    init {
+        Timber.d(
+            "Key aliases: ${
+                keyStore.aliases().toList().takeIf { it.isNotEmpty() } ?: "empty"
+            }",
+        )
+    }
 
     private fun generateSecretKey() {
         KeyGenerator.getInstance(KeyConfig.AES.algorithm, ANDROID_PROVIDER).run {

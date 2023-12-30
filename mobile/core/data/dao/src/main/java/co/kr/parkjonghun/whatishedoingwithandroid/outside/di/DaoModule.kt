@@ -9,7 +9,10 @@ import org.koin.dsl.module
 
 internal val daoModule = module {
     single<UserDataStoreDao> {
-        UserDataStoreDaoImpl(context = androidContext())
+        UserDataStoreDaoImpl(
+            context = androidContext(),
+            securityUtil = get(),
+        )
     }
 
     single<SupabaseDao> {

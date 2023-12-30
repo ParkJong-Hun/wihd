@@ -2,9 +2,10 @@ package co.kr.parkjonghun.whatishedoingwithandroid.outside.utility.key
 
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.toBoolean
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.toByteArray
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.toByteArrayUTF8
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.toFloat
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.toInt
-import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.toStr1ng
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.extension.toStringUTF8
 import javax.crypto.Cipher
 
 interface SecurityUtil {
@@ -56,11 +57,11 @@ internal class SecurityUtilImpl(
     }
 
     override fun encryptString(string: String): ByteArray {
-        return encryptByteArray(string.toByteArray())
+        return encryptByteArray(string.toByteArrayUTF8())
     }
 
     override fun decryptAsString(encrypted: ByteArray): String {
-        return decryptAsByteArray(encrypted).toStr1ng()
+        return decryptAsByteArray(encrypted).toStringUTF8()
     }
 
     override fun encryptBoolean(boolean: Boolean): ByteArray {

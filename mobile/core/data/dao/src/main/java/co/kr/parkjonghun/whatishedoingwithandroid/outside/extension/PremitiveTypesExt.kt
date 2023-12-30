@@ -35,11 +35,11 @@ fun Boolean.toByteArray(): ByteArray {
     return Base64.encode(byteArrayOf(if (this) 1.toByte() else 0.toByte()), Base64.DEFAULT)
 }
 
-fun ByteArray.toStr1ng(): String {
+fun ByteArray.toStringUTF8(): String {
     val decodedBytes = Base64.decode(this, Base64.DEFAULT)
     return String(decodedBytes, Charsets.UTF_8)
 }
 
-fun String.toByteArray(): ByteArray {
+fun String.toByteArrayUTF8(): ByteArray {
     return Base64.encode(this.toByteArray(Charsets.UTF_8), Base64.DEFAULT)
 }
