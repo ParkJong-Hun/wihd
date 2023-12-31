@@ -21,7 +21,7 @@ TODO
 
 ### CI/CD
 
-https://app.circleci.com/pipelines/github/ParkJong-Hun/whatIsHeDoingWithAndroid
+https://app.circleci.com/pipelines/github/ParkJong-Hun/wihd
 
 ## Server
 
