@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.wihd.detekt)
 }
 
-android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.ui"
+android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.ui.component"
 
 dependencies {
     implementation(libs.appcompat)
