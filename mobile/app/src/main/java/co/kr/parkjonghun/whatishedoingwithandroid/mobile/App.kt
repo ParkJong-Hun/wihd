@@ -17,7 +17,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreenRoute
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.AppNavigationState
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.rememberAppNavigationState
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.TokenDto
-import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
+import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.MobileTheme
 import org.koin.androidx.compose.KoinAndroidContext
 import org.koin.core.annotation.KoinExperimentalAPI
 

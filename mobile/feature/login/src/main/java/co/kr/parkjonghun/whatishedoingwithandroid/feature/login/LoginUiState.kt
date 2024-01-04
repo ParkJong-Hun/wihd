@@ -9,8 +9,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginAction
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginState
-import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.Processor
-import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.UiState
+import co.kr.parkjonghun.whatishedoingwithandroid.system.base.Processor
+import co.kr.parkjonghun.whatishedoingwithandroid.system.base.UiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn

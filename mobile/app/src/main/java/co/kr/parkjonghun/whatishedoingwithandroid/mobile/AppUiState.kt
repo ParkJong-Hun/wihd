@@ -10,9 +10,9 @@ import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.Stat
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.TokenDto
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppAction
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppState
-import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.Intent
-import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.Processor
-import co.kr.parkjonghun.whatishedoingwithandroid.ui.base.UiState
+import co.kr.parkjonghun.whatishedoingwithandroid.system.base.Intent
+import co.kr.parkjonghun.whatishedoingwithandroid.system.base.Processor
+import co.kr.parkjonghun.whatishedoingwithandroid.system.base.UiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn

@@ -48,7 +48,8 @@ dependencies {
     implementation(project(":core:data:interior"))
     implementation(project(":core:domain:base"))
     implementation(project(":core:domain:service"))
-    implementation(project(":core:ui"))
+    implementation(project(":core:ui:system"))
+    implementation(project(":core:ui:component"))
 
     implementation(libs.jetpack.core.splashscreen)
     implementation(libs.jetpack.navigation.compose)

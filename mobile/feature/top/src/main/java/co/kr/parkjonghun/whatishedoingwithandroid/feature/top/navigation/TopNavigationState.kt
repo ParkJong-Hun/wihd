@@ -12,7 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import co.kr.parkjonghun.whatishedoingwithandroid.news.navigateToNewsScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.post.navigateToPostScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.profile.navigateToProfileScreen
-import co.kr.parkjonghun.whatishedoingwithandroid.ui.extension.Route
+import co.kr.parkjonghun.whatishedoingwithandroid.system.extension.Route
 
 /**
  *  state of the Main screen.
