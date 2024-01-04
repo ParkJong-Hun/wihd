@@ -2,8 +2,9 @@ package co.kr.parkjonghun.whatishedoingwithandroid.outside.dao
 
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.TokenInfo
 import io.github.jan.supabase.createSupabaseClient
-import io.github.jan.supabase.gotrue.GoTrue
-import io.github.jan.supabase.gotrue.gotrue
+import io.github.jan.supabase.gotrue.Auth
+import io.github.jan.supabase.gotrue.FlowType
+import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.gotrue.providers.Github
 import io.github.jan.supabase.gotrue.user.UserInfo
 import io.github.jan.supabase.postgrest.Postgrest
@@ -21,17 +22,18 @@ internal class SupabaseDaoImpl : SupabaseDao {
         supabaseKey = SERVER_KEY,
     ) {
         install(Postgrest)
-        install(GoTrue) {
+        install(Auth) {
+            flowType = FlowType.PKCE
             scheme = OAUTH_CALLBACK_SCHEME
             host = OAUTH_CALLBACK_HOST
         }
     }
 
-    private val auth get() = client.gotrue
+    private val auth get() = client.auth
 
     override suspend fun signInWithGithub() = auth.signUpWith(Github)
 
-    override suspend fun signOut() = auth.logout()
+    override suspend fun signOut() = auth.signOut()
 
     override suspend fun getUser(token: TokenInfo): UserInfo {
         return retrieveUserInfo(token)
