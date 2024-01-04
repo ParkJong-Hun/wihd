@@ -19,10 +19,6 @@ TODO
 
 TODO
 
-### CI/CD
-
-https://app.circleci.com/pipelines/github/ParkJong-Hun/wihd
-
 ## Server
 
 I want to focus on the front-end, so I'm running it serverless.  
@@ -35,3 +31,7 @@ https://console.firebase.google.com/u/0/project/whatishedoingwithandroid
 ### Supabase
 
 https://supabase.com/dashboard/project/zonnknlwnkforradhexp
+
+## CI/CD
+
+https://app.circleci.com/pipelines/github/ParkJong-Hun/wihd
