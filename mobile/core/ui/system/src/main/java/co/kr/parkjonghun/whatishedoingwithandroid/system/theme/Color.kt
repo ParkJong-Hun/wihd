@@ -1,5 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.system.theme
 
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFFAE320A)
@@ -65,3 +66,9 @@ val md_theme_dark_outlineVariant = Color(0xFF53433F)
 val md_theme_dark_scrim = Color(0xFF000000)
 
 val seed = Color(0xFFD04A23)
+
+@Stable
+val light_linkBlue get() = Color(0xFF0C43B7)
+
+@Stable
+val dark_linkBlue get() = Color(0xFF267EF7)
