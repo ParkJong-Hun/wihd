@@ -1,5 +1,3 @@
-@file:Suppress("UnusedPrivateProperty")
-
 package co.kr.parkjonghun.whatishedoingwithandroid.system.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -85,6 +83,7 @@ fun MobileTheme(
 
     MaterialTheme(
         colorScheme = colors,
+        typography = MobileTypography,
         content = content,
     )
 }
