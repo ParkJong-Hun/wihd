@@ -6,13 +6,13 @@ import android.content.res.Configuration
 import androidx.compose.ui.tooling.preview.Preview
 
 @Preview(
-    name = "lightMode",
+    name = "Light Mode",
     group = "lightMode",
     showBackground = true,
     uiMode = Configuration.UI_MODE_NIGHT_NO,
 )
 @Preview(
-    name = " dartMode",
+    name = "Night Mode",
     group = "darkMode",
     showBackground = true,
     uiMode = Configuration.UI_MODE_NIGHT_YES,
