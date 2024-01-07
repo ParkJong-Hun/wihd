@@ -95,13 +95,13 @@ private fun Catalog() {
                     CatalogRow(title = "H3") {
                         WihdText(text = "Hello world !", style = WihdTextStyle.T3)
                     }
-                    CatalogRow(title = "H1") {
+                    CatalogRow(title = "L1") {
                         WihdText(text = "Hello world !", style = WihdTextStyle.L1)
                     }
-                    CatalogRow(title = "H2") {
+                    CatalogRow(title = "L2") {
                         WihdText(text = "Hello world !", style = WihdTextStyle.L2)
                     }
-                    CatalogRow(title = "H3") {
+                    CatalogRow(title = "L3") {
                         WihdText(text = "Hello world !", style = WihdTextStyle.L3)
                     }
                     CatalogRow(title = "B1") {
