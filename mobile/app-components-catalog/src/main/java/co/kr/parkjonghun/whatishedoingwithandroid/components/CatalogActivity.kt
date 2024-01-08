@@ -28,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.LinkButton
+import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.LinkText
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.PrimaryFilledButton
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.SecondaryFilledButton
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.TertiaryFilledButton
@@ -112,6 +113,13 @@ private fun Catalog() {
                     }
                     CatalogRow(title = "B3") {
                         WihdText(text = "Hello world !", style = WihdTextStyle.B3)
+                    }
+                    CatalogRow(title = "LinkText") {
+                        LinkText(
+                            text = "Google",
+                            style = WihdTextStyle.B2,
+                            url = "https://www.google.com",
+                        )
                     }
                 }
                 catalogItem(title = "Button") {

@@ -1,17 +1,22 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import co.kr.parkjonghun.whatishedoingwithandroid.system.extension.clickableWithoutRipple
+import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.dark_linkBlue
+import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.light_linkBlue
 
 @Composable
 fun WihdText(
@@ -80,4 +85,38 @@ enum class WihdTextStyle {
     B1,
     B2,
     B3,
+}
+
+@Composable
+fun LinkText(
+    text: String,
+    style: WihdTextStyle,
+    url: String,
+    modifier: Modifier = Modifier,
+    fontStyle: FontStyle? = null,
+    fontFamily: FontFamily? = null,
+    textDecoration: TextDecoration? = null,
+    textAlign: TextAlign? = null,
+    overflow: TextOverflow = TextOverflow.Ellipsis,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    minLines: Int = 1,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+) {
+    val uriHandler = LocalUriHandler.current
+    WihdText(
+        text = text,
+        style = style,
+        modifier = modifier.clickableWithoutRipple { uriHandler.openUri(url) },
+        color = if (isSystemInDarkTheme()) dark_linkBlue else light_linkBlue,
+        fontStyle = fontStyle,
+        fontFamily = fontFamily,
+        textDecoration = textDecoration,
+        textAlign = textAlign,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        minLines = minLines,
+        onTextLayout = onTextLayout,
+    )
 }
