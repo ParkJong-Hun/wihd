@@ -6,7 +6,8 @@ android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.feature.post"
 
 dependencies {
     implementation(project(":core:domain:service"))
-    implementation(project(":core:ui"))
+    implementation(project(":core:ui:system"))
+    implementation(project(":core:ui:component"))
     implementation(libs.jetpack.navigation.compose)
     implementation(libs.jetpack.compose.material3.windowsizeclass)
     implementation(libs.timber)

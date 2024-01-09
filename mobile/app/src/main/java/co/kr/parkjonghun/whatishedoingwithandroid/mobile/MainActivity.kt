@@ -1,7 +1,9 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.mobile
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Process
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -69,6 +71,12 @@ class MainActivity : ComponentActivity() {
             .map { it.split("=") }
             .firstOrNull { it.first() == key }
         return queryParameter?.last()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        // Unreachable.
+        Process.killProcess(Process.myPid())
     }
 
     companion object {

@@ -14,15 +14,16 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "What-is-He-doing-with-Android"
+include(":app")
+include(":app-components-catalog")
 include(
     ":core:data:dao",
     ":core:data:interior",
     ":core:domain:base",
     ":core:domain:service",
-    ":core:ui",
+    ":core:ui:system",
+    ":core:ui:component",
 )
-include(":app")
-include(":app-components-catalog")
 include(
     ":feature:login",
     ":feature:top",

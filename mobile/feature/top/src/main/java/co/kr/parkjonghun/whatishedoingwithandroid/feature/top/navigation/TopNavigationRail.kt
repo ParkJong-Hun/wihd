@@ -7,7 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import co.kr.parkjonghun.whatishedoingwithandroid.ui.extension.WihdPreview
+import co.kr.parkjonghun.whatishedoingwithandroid.system.extension.WihdPreview
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 

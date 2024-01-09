@@ -36,7 +36,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:ui"))
+    implementation(project(":core:ui:system"))
+    implementation(project(":core:ui:component"))
 }
 
 dependencyGuard {

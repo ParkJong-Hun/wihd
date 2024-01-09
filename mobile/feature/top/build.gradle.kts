@@ -6,7 +6,8 @@ android.namespace = "co.kr.parkjonghun.whatishedoingwithandroid.feature.top"
 
 dependencies {
     implementation(project(":core:domain:service"))
-    implementation(project(":core:ui"))
+    implementation(project(":core:ui:system"))
+    implementation(project(":core:ui:component"))
     implementation(project(":feature:news"))
     implementation(project(":feature:post"))
     implementation(project(":feature:profile"))
