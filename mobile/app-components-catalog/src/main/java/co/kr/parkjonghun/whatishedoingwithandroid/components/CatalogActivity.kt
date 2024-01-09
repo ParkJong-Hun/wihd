@@ -32,6 +32,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.LinkT
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.PrimaryFilledButton
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.SecondaryFilledButton
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.TertiaryFilledButton
+import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.ThickDivider
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdText
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdTextStyle
 import co.kr.parkjonghun.whatishedoingwithandroid.system.extension.WihdPreview
@@ -166,6 +167,11 @@ private fun Catalog() {
                         ) {
                             Text("disabled")
                         }
+                    }
+                }
+                catalogItem(title = "Divider") {
+                    CatalogRow(title = "ThickDivider") {
+                        ThickDivider()
                     }
                 }
             }
