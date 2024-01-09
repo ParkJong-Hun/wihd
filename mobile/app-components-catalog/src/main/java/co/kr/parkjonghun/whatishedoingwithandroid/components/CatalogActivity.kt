@@ -24,12 +24,21 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.IndicatorBar
+import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.IndicatorCircle
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.LinkButton
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.LinkText
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.PrimaryFilledButton
+import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.ProgressBar
+import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.ProgressCircle
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.SecondaryFilledButton
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.TertiaryFilledButton
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.ThickDivider
@@ -37,6 +46,8 @@ import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdT
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdTextStyle
 import co.kr.parkjonghun.whatishedoingwithandroid.system.extension.WihdPreview
 import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.MobileTheme
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class CatalogActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,8 +58,11 @@ class CatalogActivity : ComponentActivity() {
 
 @Composable
 private fun Catalog() {
+    val catalogScope = rememberCoroutineScope()
     val beautifulSize = remember { 16.dp }
     val disabled = remember { false }
+    var currentProgress by remember { mutableIntStateOf(0) }
+    var loading by remember { mutableStateOf(false) }
     MobileTheme {
         Surface {
             LazyColumn(
@@ -174,6 +188,45 @@ private fun Catalog() {
                         ThickDivider()
                     }
                 }
+                catalogItem(title = "Icon") {
+                    CatalogRow(title = "Icon") {
+                        // TODO
+                    }
+                }
+                catalogItem(title = "Image") {
+                    CatalogRow(title = "Image") {
+                        // TODO
+                    }
+                }
+                catalogItem(title = "Indicator") {
+                    Column {
+                        PrimaryFilledButton(
+                            onClick = {
+                                loading = true
+                                catalogScope.launch {
+                                    loadProgress { progress ->
+                                        currentProgress = progress
+                                    }
+                                    loading = false
+                                }
+                            },
+                        ) {
+                            Text("click")
+                        }
+                        CatalogRow(title = "ProgressCircle") {
+                            ProgressCircle(progress = currentProgress)
+                        }
+                        CatalogRow(title = "ProgressBar") {
+                            ProgressBar(progress = currentProgress)
+                        }
+                    }
+                    CatalogRow(title = "IndicatorCircle") {
+                        IndicatorCircle(isLoading = loading)
+                    }
+                    CatalogRow(title = "IndicatorBar") {
+                        IndicatorBar(isLoading = loading)
+                    }
+                }
             }
         }
     }
@@ -237,5 +290,12 @@ private fun CatalogRow(
 private fun CatalogPreview() {
     MobileTheme {
         Catalog()
+    }
+}
+
+suspend fun loadProgress(updateProgress: (Int) -> Unit) {
+    for (i in 1..100) {
+        updateProgress(i)
+        delay(100)
     }
 }
