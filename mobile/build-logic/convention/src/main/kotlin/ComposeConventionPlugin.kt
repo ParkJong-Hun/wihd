@@ -28,6 +28,7 @@ class ComposeConventionPlugin : Plugin<Project> {
                 implementation(libs.library("jetpack-compose-material3"))
                 implementation(libs.library("jetpack-compose-ui-tooling-preview"))
                 implementation(libs.library("jetpack-lifecycle-runtime-ktx"))
+                implementation(libs.library("coil-compose"))
                 testImplementation(libs.library("junit"))
                 testImplementation(libs.library("jetpack-junit"))
                 testImplementation(libs.library("jetpack-espresso-core"))

@@ -38,6 +38,7 @@ supabase = "2.0.3"
 ktor = "2.3.7"
 serialization = "1.6.2"
 mockk = "1.13.8"
+coil = "2.5.0"
 
 [libraries]
 androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -103,6 +104,9 @@ twitter-compose-rules = { group = "com.twitter.compose.rules", name = "detekt", 
 # mockk
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+
+# coil
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
