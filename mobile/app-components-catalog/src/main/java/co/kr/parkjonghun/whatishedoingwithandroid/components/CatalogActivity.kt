@@ -31,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.IndicatorBar
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.IndicatorCircle
@@ -42,8 +43,10 @@ import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.Progr
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.SecondaryFilledButton
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.TertiaryFilledButton
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.ThickDivider
+import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdImage
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdText
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdTextStyle
+import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.custom.DynamicAsyncImage
 import co.kr.parkjonghun.whatishedoingwithandroid.system.extension.WihdPreview
 import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.MobileTheme
 import kotlinx.coroutines.delay
@@ -194,8 +197,17 @@ private fun Catalog() {
                     }
                 }
                 catalogItem(title = "Image") {
-                    CatalogRow(title = "Image") {
-                        // TODO
+                    CatalogRow(title = "WihdImage") {
+                        WihdImage(
+                            painter = painterResource(id = R.drawable.main_logo_1280x),
+                            contentDescription = "WihdImage",
+                        )
+                    }
+                    CatalogRow(title = "DynamicAsyncImage") {
+                        DynamicAsyncImage(
+                            imageUrl = "https://blogpfthumb-phinf.pstatic.net/MjAyMjA0MTRfMTAw/MDAxNjQ5OTI4MzcwMTg4.yKfhOO0Xn98YcGRGGLdt3QhbZ8kehjRJBHcX_OrAa1sg.WLAT5dJ3YRw4kmWyjxtzZjBFPlgdtFYIISjNsUkS7AUg.PNG.parkjong-hun/147409345-91ff7670-a014-4805-aad9-57126d2db6f9.png/147409345-91ff7670-a014-4805-aad9-57126d2db6f9.png",
+                            contentDescription = "DynamicAsyncImage",
+                        )
                     }
                 }
                 catalogItem(title = "Indicator") {
