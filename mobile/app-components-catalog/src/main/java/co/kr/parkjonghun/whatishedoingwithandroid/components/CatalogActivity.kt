@@ -46,6 +46,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.Thick
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdImage
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdText
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdTextStyle
+import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.custom.Chooser
 import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.custom.DynamicAsyncImage
 import co.kr.parkjonghun.whatishedoingwithandroid.system.extension.WihdPreview
 import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.MobileTheme
@@ -64,6 +65,8 @@ private fun Catalog() {
     val catalogScope = rememberCoroutineScope()
     val beautifulSize = remember { 16.dp }
     val disabled = remember { false }
+    var displayComponentType by remember { mutableStateOf(ComponentType.Atom) }
+    var onOff by remember { mutableStateOf(false) }
     var currentProgress by remember { mutableIntStateOf(0) }
     var loading by remember { mutableStateOf(false) }
     MobileTheme {
@@ -83,155 +86,179 @@ private fun Catalog() {
                     .asPaddingValues(),
                 verticalArrangement = Arrangement.spacedBy(beautifulSize),
             ) {
-                catalogHeadline()
-                // TODO Search bar
-                // TODO Filter chips
-                catalogItem("Text") {
-                    CatalogRow(title = "D1") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.D1)
-                    }
-                    CatalogRow(title = "D2") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.D2)
-                    }
-                    CatalogRow(title = "D3") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.D3)
-                    }
-                    CatalogRow(title = "H1") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.H1)
-                    }
-                    CatalogRow(title = "H2") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.H2)
-                    }
-                    CatalogRow(title = "H3") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.H3)
-                    }
-                    CatalogRow(title = "H1") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.T1)
-                    }
-                    CatalogRow(title = "H2") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.T2)
-                    }
-                    CatalogRow(title = "H3") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.T3)
-                    }
-                    CatalogRow(title = "L1") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.L1)
-                    }
-                    CatalogRow(title = "L2") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.L2)
-                    }
-                    CatalogRow(title = "L3") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.L3)
-                    }
-                    CatalogRow(title = "B1") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.B1)
-                    }
-                    CatalogRow(title = "B2") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.B2)
-                    }
-                    CatalogRow(title = "B3") {
-                        WihdText(text = "Hello world !", style = WihdTextStyle.B3)
-                    }
-                    CatalogRow(title = "LinkText") {
-                        LinkText(
-                            text = "Google",
-                            style = WihdTextStyle.B2,
-                            url = "https://www.google.com",
-                        )
-                    }
-                }
-                catalogItem(title = "Button") {
-                    CatalogRow(title = "PrimaryFilledButton") {
-                        PrimaryFilledButton(onClick = { /*TODO*/ }) {
-                            Text("enabled")
+                catalogHeadline(
+                    onClickChip = { component ->
+                        displayComponentType = component
+                    },
+                )
+                when (displayComponentType) {
+                    ComponentType.Atom -> {
+                        catalogItem("Text") {
+                            CatalogRow(title = "D1") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.D1)
+                            }
+                            CatalogRow(title = "D2") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.D2)
+                            }
+                            CatalogRow(title = "D3") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.D3)
+                            }
+                            CatalogRow(title = "H1") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.H1)
+                            }
+                            CatalogRow(title = "H2") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.H2)
+                            }
+                            CatalogRow(title = "H3") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.H3)
+                            }
+                            CatalogRow(title = "H1") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.T1)
+                            }
+                            CatalogRow(title = "H2") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.T2)
+                            }
+                            CatalogRow(title = "H3") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.T3)
+                            }
+                            CatalogRow(title = "L1") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.L1)
+                            }
+                            CatalogRow(title = "L2") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.L2)
+                            }
+                            CatalogRow(title = "L3") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.L3)
+                            }
+                            CatalogRow(title = "B1") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.B1)
+                            }
+                            CatalogRow(title = "B2") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.B2)
+                            }
+                            CatalogRow(title = "B3") {
+                                WihdText(text = "Hello world !", style = WihdTextStyle.B3)
+                            }
+                            CatalogRow(title = "LinkText") {
+                                LinkText(
+                                    text = "Google",
+                                    style = WihdTextStyle.B2,
+                                    url = "https://www.google.com",
+                                )
+                            }
                         }
-                        PrimaryFilledButton(
-                            onClick = { /*TODO*/ },
-                            enabled = disabled,
-                        ) {
-                            Text("disabled")
-                        }
-                    }
-                    CatalogRow(title = "SecondaryFilledButton") {
-                        SecondaryFilledButton(onClick = { /*TODO*/ }) {
-                            Text("enabled")
-                        }
-                        SecondaryFilledButton(
-                            onClick = { /*TODO*/ },
-                            enabled = disabled,
-                        ) {
-                            Text("disabled")
-                        }
-                    }
-                    CatalogRow(title = "TertiaryFilledButton") {
-                        TertiaryFilledButton(onClick = { /*TODO*/ }) {
-                            Text("enabled")
-                        }
-                        TertiaryFilledButton(
-                            onClick = { /*TODO*/ },
-                            enabled = disabled,
-                        ) {
-                            Text("disabled")
-                        }
-                    }
-                    CatalogRow(title = "LinkButton") {
-                        LinkButton(onClick = { /*TODO*/ }) {
-                            Text("enabled")
-                        }
-                        LinkButton(
-                            onClick = { /*TODO*/ },
-                            enabled = disabled,
-                        ) {
-                            Text("disabled")
-                        }
-                    }
-                }
-                catalogItem(title = "Divider") {
-                    CatalogRow(title = "ThickDivider") {
-                        ThickDivider()
-                    }
-                }
-                catalogItem(title = "Image") {
-                    CatalogRow(title = "WihdImage") {
-                        WihdImage(
-                            painter = painterResource(id = R.drawable.main_logo_1280x),
-                            contentDescription = "WihdImage",
-                        )
-                    }
-                    CatalogRow(title = "DynamicAsyncImage") {
-                        DynamicAsyncImage(
-                            imageUrl = "https://blogpfthumb-phinf.pstatic.net/MjAyMjA0MTRfMTAw/MDAxNjQ5OTI4MzcwMTg4.yKfhOO0Xn98YcGRGGLdt3QhbZ8kehjRJBHcX_OrAa1sg.WLAT5dJ3YRw4kmWyjxtzZjBFPlgdtFYIISjNsUkS7AUg.PNG.parkjong-hun/147409345-91ff7670-a014-4805-aad9-57126d2db6f9.png/147409345-91ff7670-a014-4805-aad9-57126d2db6f9.png",
-                            contentDescription = "DynamicAsyncImage",
-                        )
-                    }
-                }
-                catalogItem(title = "Indicator") {
-                    Column {
-                        PrimaryFilledButton(
-                            onClick = {
-                                loading = true
-                                catalogScope.launch {
-                                    loadProgress { progress ->
-                                        currentProgress = progress
-                                    }
-                                    loading = false
+                        catalogItem(title = "Button") {
+                            CatalogRow(title = "PrimaryFilledButton") {
+                                PrimaryFilledButton(onClick = { /*TODO*/ }) {
+                                    Text("enabled")
                                 }
-                            },
-                        ) {
-                            Text("click")
+                                PrimaryFilledButton(
+                                    onClick = { /*TODO*/ },
+                                    enabled = disabled,
+                                ) {
+                                    Text("disabled")
+                                }
+                            }
+                            CatalogRow(title = "SecondaryFilledButton") {
+                                SecondaryFilledButton(onClick = { /*TODO*/ }) {
+                                    Text("enabled")
+                                }
+                                SecondaryFilledButton(
+                                    onClick = { /*TODO*/ },
+                                    enabled = disabled,
+                                ) {
+                                    Text("disabled")
+                                }
+                            }
+                            CatalogRow(title = "TertiaryFilledButton") {
+                                TertiaryFilledButton(onClick = { /*TODO*/ }) {
+                                    Text("enabled")
+                                }
+                                TertiaryFilledButton(
+                                    onClick = { /*TODO*/ },
+                                    enabled = disabled,
+                                ) {
+                                    Text("disabled")
+                                }
+                            }
+                            CatalogRow(title = "LinkButton") {
+                                LinkButton(onClick = { /*TODO*/ }) {
+                                    Text("enabled")
+                                }
+                                LinkButton(
+                                    onClick = { /*TODO*/ },
+                                    enabled = disabled,
+                                ) {
+                                    Text("disabled")
+                                }
+                            }
                         }
-                        CatalogRow(title = "ProgressCircle") {
-                            ProgressCircle(progress = currentProgress)
+                        catalogItem(title = "Divider") {
+                            CatalogRow(title = "ThickDivider") {
+                                ThickDivider()
+                            }
                         }
-                        CatalogRow(title = "ProgressBar") {
-                            ProgressBar(progress = currentProgress)
+                        catalogItem(title = "Image") {
+                            CatalogRow(title = "WihdImage") {
+                                WihdImage(
+                                    painter = painterResource(id = R.drawable.main_logo_1280x),
+                                    contentDescription = "WihdImage",
+                                )
+                            }
+                        }
+                        catalogItem(title = "Indicator") {
+                            Column {
+                                PrimaryFilledButton(
+                                    onClick = {
+                                        loading = true
+                                        catalogScope.launch {
+                                            loadProgress { progress ->
+                                                currentProgress = progress
+                                            }
+                                            loading = false
+                                        }
+                                    },
+                                ) {
+                                    Text("click")
+                                }
+                                CatalogRow(title = "ProgressCircle") {
+                                    ProgressCircle(progress = currentProgress)
+                                }
+                                CatalogRow(title = "ProgressBar") {
+                                    ProgressBar(progress = currentProgress)
+                                }
+                            }
+                            CatalogRow(title = "IndicatorCircle") {
+                                IndicatorCircle(isLoading = loading)
+                            }
+                            CatalogRow(title = "IndicatorBar") {
+                                IndicatorBar(isLoading = loading)
+                            }
                         }
                     }
-                    CatalogRow(title = "IndicatorCircle") {
-                        IndicatorCircle(isLoading = loading)
+
+                    ComponentType.Molecule -> {
+                        catalogItem(title = "DynamicAsyncImage") {
+                            DynamicAsyncImage(
+                                imageUrl = "https://blogpfthumb-phinf.pstatic.net/MjAyMjA0MTRfMTAw/MDAxNjQ5OTI4MzcwMTg4.yKfhOO0Xn98YcGRGGLdt3QhbZ8kehjRJBHcX_OrAa1sg.WLAT5dJ3YRw4kmWyjxtzZjBFPlgdtFYIISjNsUkS7AUg.PNG.parkjong-hun/147409345-91ff7670-a014-4805-aad9-57126d2db6f9.png/147409345-91ff7670-a014-4805-aad9-57126d2db6f9.png",
+                                contentDescription = "DynamicAsyncImage",
+                            )
+                        }
+                        catalogItem(title = "Chooser") {
+                            Chooser(
+                                text = "Pizza",
+                                selected = onOff,
+                                onClick = { onOff = !onOff },
+                            )
+                        }
                     }
-                    CatalogRow(title = "IndicatorBar") {
-                        IndicatorBar(isLoading = loading)
+
+                    ComponentType.Organism -> {
+                        // TODO
+                    }
+
+                    ComponentType.Template -> {
+                        // TODO
                     }
                 }
             }
@@ -239,7 +266,9 @@ private fun Catalog() {
     }
 }
 
-private fun LazyListScope.catalogHeadline() {
+private fun LazyListScope.catalogHeadline(
+    onClickChip: (ComponentType) -> Unit,
+) {
     item {
         Column {
             WihdText(
@@ -249,8 +278,31 @@ private fun LazyListScope.catalogHeadline() {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Divider(thickness = 3.dp)
+            Row {
+                // TODO Search bar
+                // TODO Filter chips
+                PrimaryFilledButton(onClick = { onClickChip(ComponentType.Atom) }) {
+                    WihdText(text = "Atom", style = WihdTextStyle.L2)
+                }
+                SecondaryFilledButton(onClick = { onClickChip(ComponentType.Molecule) }) {
+                    WihdText(text = "Molecule", style = WihdTextStyle.L2)
+                }
+                TertiaryFilledButton(onClick = { onClickChip(ComponentType.Organism) }) {
+                    WihdText(text = "Organism", style = WihdTextStyle.L2)
+                }
+                PrimaryFilledButton(onClick = { onClickChip(ComponentType.Template) }) {
+                    WihdText(text = "Organism", style = WihdTextStyle.L2)
+                }
+            }
         }
     }
+}
+
+private enum class ComponentType {
+    Atom,
+    Molecule,
+    Organism,
+    Template,
 }
 
 private fun LazyListScope.catalogItem(
