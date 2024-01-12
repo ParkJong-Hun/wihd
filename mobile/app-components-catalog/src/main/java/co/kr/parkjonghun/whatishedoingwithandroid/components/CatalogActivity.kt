@@ -191,11 +191,6 @@ private fun Catalog() {
                         ThickDivider()
                     }
                 }
-                catalogItem(title = "Icon") {
-                    CatalogRow(title = "Icon") {
-                        // TODO
-                    }
-                }
                 catalogItem(title = "Image") {
                     CatalogRow(title = "WihdImage") {
                         WihdImage(
