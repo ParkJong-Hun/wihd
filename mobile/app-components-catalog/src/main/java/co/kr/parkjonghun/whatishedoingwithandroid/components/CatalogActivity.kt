@@ -48,6 +48,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdT
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdTextStyle
 import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.custom.Chooser
 import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.custom.DynamicAsyncImage
+import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.primitive.SwitchableSuggestionChip
 import co.kr.parkjonghun.whatishedoingwithandroid.system.extension.WihdPreview
 import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.MobileTheme
 import kotlinx.coroutines.delay
@@ -87,6 +88,7 @@ private fun Catalog() {
                 verticalArrangement = Arrangement.spacedBy(beautifulSize),
             ) {
                 catalogHeadline(
+                    displayComponentType = displayComponentType,
                     onClickChip = { component ->
                         displayComponentType = component
                     },
@@ -238,18 +240,35 @@ private fun Catalog() {
                     }
 
                     ComponentType.Molecule -> {
-                        catalogItem(title = "DynamicAsyncImage") {
-                            DynamicAsyncImage(
-                                imageUrl = "https://blogpfthumb-phinf.pstatic.net/MjAyMjA0MTRfMTAw/MDAxNjQ5OTI4MzcwMTg4.yKfhOO0Xn98YcGRGGLdt3QhbZ8kehjRJBHcX_OrAa1sg.WLAT5dJ3YRw4kmWyjxtzZjBFPlgdtFYIISjNsUkS7AUg.PNG.parkjong-hun/147409345-91ff7670-a014-4805-aad9-57126d2db6f9.png/147409345-91ff7670-a014-4805-aad9-57126d2db6f9.png",
-                                contentDescription = "DynamicAsyncImage",
-                            )
+                        catalogItem(title = "Chip") {
+                            CatalogRow(title = "SwitchableSuggestionChip") {
+                                SwitchableSuggestionChip(
+                                    isClicked = onOff,
+                                    onClick = { onOff = !onOff },
+                                    label = {
+                                        WihdText(
+                                            text = "ColorChangedSuggestionChip",
+                                            style = WihdTextStyle.B3,
+                                        )
+                                    },
+                                    enableColor = MaterialTheme.colorScheme.primaryContainer,
+                                )
+                            }
                         }
-                        catalogItem(title = "Chooser") {
-                            Chooser(
-                                text = "Pizza",
-                                selected = onOff,
-                                onClick = { onOff = !onOff },
-                            )
+                        catalogItem(title = "Custom") {
+                            CatalogRow(title = "DynamicAsyncImage") {
+                                DynamicAsyncImage(
+                                    imageUrl = "https://blogpfthumb-phinf.pstatic.net/MjAyMjA0MTRfMTAw/MDAxNjQ5OTI4MzcwMTg4.yKfhOO0Xn98YcGRGGLdt3QhbZ8kehjRJBHcX_OrAa1sg.WLAT5dJ3YRw4kmWyjxtzZjBFPlgdtFYIISjNsUkS7AUg.PNG.parkjong-hun/147409345-91ff7670-a014-4805-aad9-57126d2db6f9.png/147409345-91ff7670-a014-4805-aad9-57126d2db6f9.png",
+                                    contentDescription = "DynamicAsyncImage",
+                                )
+                            }
+                            CatalogRow(title = "Chooser") {
+                                Chooser(
+                                    text = "Pizza",
+                                    selected = onOff,
+                                    onClick = { onOff = !onOff },
+                                )
+                            }
                         }
                     }
 
@@ -267,6 +286,7 @@ private fun Catalog() {
 }
 
 private fun LazyListScope.catalogHeadline(
+    displayComponentType: ComponentType,
     onClickChip: (ComponentType) -> Unit,
 ) {
     item {
@@ -277,23 +297,33 @@ private fun LazyListScope.catalogHeadline(
                 color = MaterialTheme.colorScheme.primary,
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Divider(thickness = 3.dp)
-            Row {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
                 // TODO Search bar
                 // TODO Filter chips
-                PrimaryFilledButton(onClick = { onClickChip(ComponentType.Atom) }) {
-                    WihdText(text = "Atom", style = WihdTextStyle.L2)
-                }
-                SecondaryFilledButton(onClick = { onClickChip(ComponentType.Molecule) }) {
-                    WihdText(text = "Molecule", style = WihdTextStyle.L2)
-                }
-                TertiaryFilledButton(onClick = { onClickChip(ComponentType.Organism) }) {
-                    WihdText(text = "Organism", style = WihdTextStyle.L2)
-                }
-                PrimaryFilledButton(onClick = { onClickChip(ComponentType.Template) }) {
-                    WihdText(text = "Organism", style = WihdTextStyle.L2)
-                }
+                SwitchableSuggestionChip(
+                    isClicked = displayComponentType == ComponentType.Atom,
+                    onClick = { onClickChip(ComponentType.Atom) },
+                    label = { WihdText(text = "Atom", style = WihdTextStyle.L2) },
+                )
+                SwitchableSuggestionChip(
+                    isClicked = displayComponentType == ComponentType.Molecule,
+                    onClick = { onClickChip(ComponentType.Molecule) },
+                    label = { WihdText(text = "Molecule", style = WihdTextStyle.L2) },
+                )
+                SwitchableSuggestionChip(
+                    isClicked = displayComponentType == ComponentType.Organism,
+                    onClick = { onClickChip(ComponentType.Organism) },
+                    label = { WihdText(text = "Organism", style = WihdTextStyle.L2) },
+                )
+                SwitchableSuggestionChip(
+                    isClicked = displayComponentType == ComponentType.Template,
+                    onClick = { onClickChip(ComponentType.Template) },
+                    label = { WihdText(text = "Template", style = WihdTextStyle.L2) },
+                )
             }
+            Divider(thickness = 3.dp)
         }
     }
 }
