@@ -11,6 +11,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.custom.LoadingMask
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.login.LoginScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreenRoute
@@ -76,23 +77,24 @@ private fun AppBody(
     isShowError: Pair<Boolean, Throwable?>,
     modifier: Modifier = Modifier,
 ) {
-    Box {
+    Box(
+        modifier = modifier,
+    ) {
         if (isShowTop) {
             WihdNavHost(
                 windowSizeClass = windowSizeClass,
                 appNavController = appNavController,
             )
         } else if (isShowLogin) {
-            LoginScreen(
-                modifier = modifier,
-            )
+            LoginScreen()
         } else if (isShowInit) {
             // TODO Show init screen.
         }
 
-        if (isShowLoading) {
-            // TODO Show animation.
-        }
+        LoadingMask(
+            isLoading = isShowLoading,
+            modifier = Modifier.fillMaxSize()
+        )
 
         if (isShowError.first) {
             // TODO Show error.

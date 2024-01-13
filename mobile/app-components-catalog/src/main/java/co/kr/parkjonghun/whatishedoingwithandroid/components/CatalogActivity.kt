@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
@@ -48,6 +49,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdT
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdTextStyle
 import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.custom.Chooser
 import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.custom.DynamicAsyncImage
+import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.custom.LoadingMask
 import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.primitive.SwitchableSuggestionChip
 import co.kr.parkjonghun.whatishedoingwithandroid.system.extension.WihdPreview
 import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.MobileTheme
@@ -267,6 +269,16 @@ private fun Catalog() {
                                     text = "Pizza",
                                     selected = onOff,
                                     onClick = { onOff = !onOff },
+                                )
+                            }
+                            CatalogRow(title = "LoadingMask") {
+                                LoadingMask(
+                                    isLoading = onOff,
+                                    modifier = Modifier.size(
+                                        width = 50.dp,
+                                        height = 70.dp,
+                                    ),
+                                    useShadow = true,
                                 )
                             }
                         }
