@@ -37,7 +37,7 @@ twitter-compose-rules = "0.0.26"
 supabase = "2.0.3"
 ktor = "2.3.7"
 serialization = "1.6.2"
-mockk = "1.13.8"
+mockk = "1.13.9"
 coil = "2.5.0"
 
 [libraries]
