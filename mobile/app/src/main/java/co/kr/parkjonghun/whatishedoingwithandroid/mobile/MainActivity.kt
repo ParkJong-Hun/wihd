@@ -12,7 +12,7 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.util.CrashReportingTree
-import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.TokenDto
+import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.AuthCodeDto
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 import timber.log.Timber.Forest.plant
@@ -30,36 +30,27 @@ class MainActivity : ComponentActivity() {
         setContent {
             App(
                 windowSizeClass = calculateWindowSizeClass(this),
-                newTokenDto = tryToGetToken(),
+                newAuthCodeDto = tryToGetAuthCode(),
             )
         }
     }
 
-    private fun tryToGetToken(): TokenDto? {
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        // Unreachable.
+        Process.killProcess(Process.myPid())
+    }
+
+    private fun tryToGetAuthCode(): AuthCodeDto? {
         return intent.data?.let { uri ->
             uri.getQueryParameter(KEY_ERROR)?.let { error ->
                 val errorCode = uri.getQueryParameter(KEY_ERROR_CODE)
                 val errorDescription = uri.getQueryParameter(KEY_ERROR_DESCRIPTION)
                 Timber.e("auth error: $error, errorCode: $errorCode, errorDescription: $errorDescription")
-                AlertDialog.Builder(this)
-                    .setMessage(resources.getString(R.string.auth_error_description))
-                    .setPositiveButton(resources.getString(R.string.auth_error_ok)) { _, _ -> }
-                    .create()
-                    .show()
+                showAppErrorDialog()
             }
-            uri.getFUCKINGQueryParameter(KEY_ACCESS_TOKEN)?.let { accessToken ->
-                TokenDto(
-                    accessToken = accessToken,
-                    providerToken = requireNotNull(uri.getFUCKINGQueryParameter(KEY_PROVIDER_TOKEN)),
-                    refreshToken = requireNotNull(uri.getFUCKINGQueryParameter(KEY_REFRESH_TOKEN)),
-                    expiresAt = requireNotNull(
-                        uri.getFUCKINGQueryParameter(KEY_EXPIRES_AT)?.toLong(),
-                    ),
-                    expiresIn = requireNotNull(
-                        uri.getFUCKINGQueryParameter(KEY_EXPIRES_IN)?.toLong(),
-                    ),
-                    tokenType = requireNotNull(uri.getFUCKINGQueryParameter(KEY_TOKEN_TYPE)),
-                )
+            uri.getQueryParameter(KEY_AUTH_CODE)?.let { authCode ->
+                AuthCodeDto(authCode)
             }
         }
     }
@@ -73,22 +64,19 @@ class MainActivity : ComponentActivity() {
         return queryParameter?.last()
     }
 
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        // Unreachable.
-        Process.killProcess(Process.myPid())
+    private fun showAppErrorDialog() {
+        AlertDialog.Builder(this)
+            .setMessage(resources.getString(R.string.auth_error_description))
+            .setPositiveButton(resources.getString(R.string.auth_error_ok)) { _, _ -> }
+            .create()
+            .show()
     }
 
     companion object {
         // TODO check build variant
         private const val IS_DEBUG = true
 
-        private const val KEY_ACCESS_TOKEN = "access_token"
-        private const val KEY_PROVIDER_TOKEN = "provider_token"
-        private const val KEY_REFRESH_TOKEN = "refresh_token"
-        private const val KEY_EXPIRES_AT = "expires_at"
-        private const val KEY_EXPIRES_IN = "expires_in"
-        private const val KEY_TOKEN_TYPE = "token_type"
+        private const val KEY_AUTH_CODE = "code"
         private const val KEY_ERROR = "error"
         private const val KEY_ERROR_CODE = "error_code"
         private const val KEY_ERROR_DESCRIPTION = "error_description"

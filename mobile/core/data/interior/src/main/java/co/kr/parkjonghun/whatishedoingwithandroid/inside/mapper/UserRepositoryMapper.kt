@@ -1,8 +1,10 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.inside.mapper
 
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.AuthCodeInfo
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.TokenInfo
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.data.UserDto
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.TokenDto
+import co.kr.parkjonghun.whatishedoingwithandroid.service.model.user.AuthCode
 import co.kr.parkjonghun.whatishedoingwithandroid.service.model.user.Token
 import io.github.jan.supabase.gotrue.user.UserInfo
 import kotlinx.datetime.TimeZone
@@ -33,4 +35,8 @@ internal fun TokenInfo.toTokenDto(): TokenDto = TokenDto(
     expiresAt = expiresAt,
     expiresIn = expiresIn,
     tokenType = tokenType,
+)
+
+internal fun AuthCode.toAuthCodeInfo(): AuthCodeInfo = AuthCodeInfo(
+    authCode = authCode,
 )

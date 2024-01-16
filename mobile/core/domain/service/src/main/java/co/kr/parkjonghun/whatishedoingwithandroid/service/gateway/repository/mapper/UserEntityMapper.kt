@@ -1,7 +1,9 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.mapper
 
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.data.UserDto
+import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.AuthCodeDto
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.TokenDto
+import co.kr.parkjonghun.whatishedoingwithandroid.service.model.user.AuthCode
 import co.kr.parkjonghun.whatishedoingwithandroid.service.model.user.Token
 import co.kr.parkjonghun.whatishedoingwithandroid.service.model.user.User
 
@@ -19,4 +21,8 @@ fun TokenDto.domainMode() = Token(
     expiresAt = expiresAt,
     expiresIn = expiresIn,
     tokenType = tokenType,
+)
+
+fun AuthCodeDto.domainMode() = AuthCode(
+    authCode = authCode,
 )

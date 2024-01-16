@@ -1,5 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.outside.dao
 
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.AuthCodeInfo
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.TokenInfo
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth
@@ -7,6 +8,7 @@ import io.github.jan.supabase.gotrue.FlowType
 import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.gotrue.providers.Github
 import io.github.jan.supabase.gotrue.user.UserInfo
+import io.github.jan.supabase.gotrue.user.UserSession
 import io.github.jan.supabase.postgrest.Postgrest
 import timber.log.Timber
 
@@ -14,6 +16,7 @@ interface SupabaseDao {
     suspend fun signInWithGithub(): Unit?
     suspend fun signOut()
     suspend fun getUser(token: TokenInfo): UserInfo
+    suspend fun getSession(authCode: AuthCodeInfo): UserSession
 }
 
 internal class SupabaseDaoImpl : SupabaseDao {
@@ -37,6 +40,10 @@ internal class SupabaseDaoImpl : SupabaseDao {
 
     override suspend fun getUser(token: TokenInfo): UserInfo {
         return retrieveUserInfo(token)
+    }
+
+    override suspend fun getSession(authCode: AuthCodeInfo): UserSession {
+        return auth.exchangeCodeForSession(authCode.authCode)
     }
 
     private suspend fun retrieveUserInfo(token: TokenInfo): UserInfo {

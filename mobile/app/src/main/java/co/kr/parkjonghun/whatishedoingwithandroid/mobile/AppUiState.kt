@@ -7,7 +7,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
-import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.TokenDto
+import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.AuthCodeDto
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppAction
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppState
 import co.kr.parkjonghun.whatishedoingwithandroid.system.base.Intent
@@ -52,9 +52,13 @@ class AppIntent(
         checkUser()
     }
 
-    fun keepToken(tokenDto: TokenDto) {
-        stateMachine.dispatch(AppAction.Process(tokenDto))
+    fun passAuthCode(authCode: AuthCodeDto) {
+        stateMachine.dispatch(AppAction.Process(authCode))
     }
+
+//    fun keepToken(tokenDto: TokenDto) {
+//        stateMachine.dispatch(AppAction.Process(tokenDto))
+//    }
 
     private fun checkUser() {
         stateMachine.dispatch(AppAction.CheckLogin)

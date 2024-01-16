@@ -14,7 +14,7 @@ sealed interface AppSideEffect : StateMachine.SideEffect<AppState, AppAction> {
             validTransition: ValidTransition<AppState, AppAction>,
         ) {
             val newToken =
-                (validTransition.targetAction as AppAction.Process).tokenDto.domainMode()
+                (validTransition.targetAction as AppAction.Process).authCodeDto.domainMode()
             runCatching {
                 userRepository.saveTokenAndRetrieveUser(token = newToken)
             }.onSuccess { user ->
