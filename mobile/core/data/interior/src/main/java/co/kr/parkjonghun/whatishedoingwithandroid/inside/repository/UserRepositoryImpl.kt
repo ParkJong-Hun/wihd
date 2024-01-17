@@ -1,14 +1,14 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.inside.repository
 
+import co.kr.parkjonghun.whatishedoingwithandroid.inside.mapper.toAuthCodeInfo
 import co.kr.parkjonghun.whatishedoingwithandroid.inside.mapper.toTokenDto
-import co.kr.parkjonghun.whatishedoingwithandroid.inside.mapper.toTokenInfo
 import co.kr.parkjonghun.whatishedoingwithandroid.inside.mapper.toUserDto
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.PreferencesDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource.RemoteDataSource
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.UserRepository
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.mapper.domainMode
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.mapper.domainModel
-import co.kr.parkjonghun.whatishedoingwithandroid.service.model.user.Token
+import co.kr.parkjonghun.whatishedoingwithandroid.service.model.user.AuthCode
 import co.kr.parkjonghun.whatishedoingwithandroid.service.model.user.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
@@ -32,31 +32,31 @@ class UserRepositoryImpl(
         }
     }
 
-    override suspend fun getUser(token: Token): User {
+    override suspend fun getUser(authCode: AuthCode): User? {
         return withContext(ioScope.coroutineContext) {
-            getUserInternal(token)
+            getUserInternal(authCode)
         }
     }
 
-    override suspend fun getToken(): Token? {
+    override suspend fun getAuthCode(): AuthCode? {
         return withContext(ioScope.coroutineContext) {
-            preferencesDataSource.token.first()?.toTokenDto()?.domainMode()
+            preferencesDataSource.authCode.first()?.toTokenDto()?.domainMode()
         }
     }
 
-    override suspend fun saveTokenAndRetrieveUser(token: Token): User {
+    override suspend fun saveAuthCodeAndRetrieveUser(authCode: AuthCode): User {
         return withContext(ioScope.coroutineContext) {
-            preferencesDataSource.saveToken(token.toTokenInfo())
-            getUserInternal(token)
+            preferencesDataSource.saveAuthCode(authCode.toAuthCodeInfo())
+            getUserInternal(authCode)
         }
     }
 
-    private suspend fun getUserInternal(token: Token): User {
+    private suspend fun getUserInternal(authCode: AuthCode): User {
         return withContext(ioScope.coroutineContext) {
             runCatching {
-                remoteDataSource.getUser(token.toTokenInfo()).toUserDto().domainModel()
+                remoteDataSource.getUser(authCode.toAuthCodeInfo()).toUserDto().domainModel()
             }.onFailure {
-                preferencesDataSource.resetToken()
+                preferencesDataSource.resetAuthCode()
             }.getOrThrow()
         }
     }

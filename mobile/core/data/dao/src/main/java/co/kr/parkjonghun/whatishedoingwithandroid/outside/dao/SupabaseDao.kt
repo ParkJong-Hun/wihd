@@ -1,7 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.outside.dao
 
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.AuthCodeInfo
-import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.TokenInfo
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth
 import io.github.jan.supabase.gotrue.FlowType
@@ -15,7 +14,7 @@ import timber.log.Timber
 interface SupabaseDao {
     suspend fun signInWithGithub(): Unit?
     suspend fun signOut()
-    suspend fun getUser(token: TokenInfo): UserInfo
+    suspend fun getUser(authCodeInfo: AuthCodeInfo): UserInfo
     suspend fun getSession(authCode: AuthCodeInfo): UserSession
 }
 
@@ -38,16 +37,16 @@ internal class SupabaseDaoImpl : SupabaseDao {
 
     override suspend fun signOut() = auth.signOut()
 
-    override suspend fun getUser(token: TokenInfo): UserInfo {
-        return retrieveUserInfo(token)
+    override suspend fun getUser(authCodeInfo: AuthCodeInfo): UserInfo {
+        return retrieveUserInfo(authCodeInfo)
     }
 
     override suspend fun getSession(authCode: AuthCodeInfo): UserSession {
         return auth.exchangeCodeForSession(authCode.authCode)
     }
 
-    private suspend fun retrieveUserInfo(token: TokenInfo): UserInfo {
-        return runCatching { auth.retrieveUser(token.accessToken) }
+    private suspend fun retrieveUserInfo(authCodeInfo: AuthCodeInfo): UserInfo {
+        return runCatching { auth. }
             .onSuccess {
                 Timber.tag(LOG_TAG)
                     .d("retreiving userInfo with access token is successful")
@@ -58,7 +57,7 @@ internal class SupabaseDaoImpl : SupabaseDao {
                 Timber.tag(LOG_TAG)
                     .e("retrieving userInfo with access token is failed.\n${it.stackTraceToString()}")
             }
-            .recover { auth.retrieveUser(token.refreshToken) }
+            .recover { auth.retrieveUser(authCodeInfo.refreshToken) }
             .onSuccess {
                 Timber.tag(LOG_TAG)
                     .d("retreiving userInfo with refresh token is successful")

@@ -6,7 +6,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.Use
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.mapper.domainMode
 
 sealed interface AppSideEffect : StateMachine.SideEffect<AppState, AppAction> {
-    class SaveToken(
+    class SaveAuthCode(
         private val userRepository: UserRepository,
     ) : AppSideEffect {
         override suspend fun fire(
@@ -16,7 +16,7 @@ sealed interface AppSideEffect : StateMachine.SideEffect<AppState, AppAction> {
             val newToken =
                 (validTransition.targetAction as AppAction.Process).authCodeDto.domainMode()
             runCatching {
-                userRepository.saveTokenAndRetrieveUser(token = newToken)
+                userRepository.saveAuthCodeAndRetrieveUser(token = newToken)
             }.onSuccess { user ->
                 targetStateMachine.dispatch(AppAction.AppAvailable(user))
             }.onFailure { throwable ->

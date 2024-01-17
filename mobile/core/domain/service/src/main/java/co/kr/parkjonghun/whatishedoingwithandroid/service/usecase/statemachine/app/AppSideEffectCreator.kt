@@ -13,7 +13,7 @@ internal class AppSideEffectCreator(
             }
 
             is AppAction.Process -> {
-                AppSideEffect.SaveToken(userRepository)
+                AppSideEffect.SaveAuthCode(userRepository)
             }
 
             else -> null

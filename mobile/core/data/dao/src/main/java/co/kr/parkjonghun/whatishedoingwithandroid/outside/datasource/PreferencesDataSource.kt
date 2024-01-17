@@ -1,28 +1,28 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource
 
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.dao.datastore.UserDataStoreDao
-import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.TokenInfo
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.model.AuthCodeInfo
 import kotlinx.coroutines.flow.Flow
 
 /**
  *  Data permanently stored on the device management source.
  */
 interface PreferencesDataSource {
-    val token: Flow<TokenInfo?>
-    suspend fun saveToken(token: TokenInfo)
-    suspend fun resetToken()
+    val authCode: Flow<AuthCodeInfo?>
+    suspend fun saveAuthCode(authCode: AuthCodeInfo)
+    suspend fun resetAuthCode()
 }
 
 internal class PreferencesDataSourceImpl(
     private val userDataStoreDao: UserDataStoreDao,
 ) : PreferencesDataSource {
-    override val token: Flow<TokenInfo?> = userDataStoreDao.tokenInfo
+    override val authCode: Flow<AuthCodeInfo?> = userDataStoreDao.authCodeInfo
 
-    override suspend fun saveToken(token: TokenInfo) {
-        userDataStoreDao.saveTokenInfo(token)
+    override suspend fun saveAuthCode(authCode: AuthCodeInfo) {
+        userDataStoreDao.saveAuthCodeInfo(authCode)
     }
 
-    override suspend fun resetToken() {
-        userDataStoreDao.resetTokenInfo()
+    override suspend fun resetAuthCode() {
+        userDataStoreDao.resetAuthCodeInfo()
     }
 }
