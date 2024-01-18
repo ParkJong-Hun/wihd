@@ -89,7 +89,7 @@ private fun AppBody(
 
         LoadingMask(
             isLoading = isShowLoading,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         )
 
         if (isShowError.first) {
