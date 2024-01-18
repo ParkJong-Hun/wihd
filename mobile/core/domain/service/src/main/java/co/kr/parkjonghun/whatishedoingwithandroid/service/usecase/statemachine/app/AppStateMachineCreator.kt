@@ -15,9 +15,6 @@ fun createAppStateMachineCreator(
         on<AppAction.CheckLogin> {
             transitionTo(AppState.Loading)
         }
-        on<AppAction.Process> {
-            transitionTo(AppState.Loading)
-        }
     }
 
     fromState<AppState.Loading> {

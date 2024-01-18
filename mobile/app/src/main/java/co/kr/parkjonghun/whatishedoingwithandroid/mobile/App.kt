@@ -17,7 +17,6 @@ import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreenRoute
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.AppNavigationState
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.rememberAppNavigationState
-import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.AuthCodeDto
 import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.MobileTheme
 import org.koin.androidx.compose.KoinAndroidContext
 import org.koin.core.annotation.KoinExperimentalAPI
@@ -30,7 +29,6 @@ import org.koin.core.annotation.KoinExperimentalAPI
 @Composable
 fun App(
     windowSizeClass: WindowSizeClass,
-    newAuthCodeDto: AuthCodeDto?,
 ) {
     KoinAndroidContext {
         val appNavigationState: AppNavigationState = rememberAppNavigationState(
@@ -40,9 +38,7 @@ fun App(
 
         // Launch init action.
         LaunchedEffect(true) {
-            newAuthCodeDto
-                ?.let { appIntent.passAuthCode(it) }
-                ?: run { appIntent.init() }
+            appIntent.init()
         }
 
         MobileTheme {

@@ -12,10 +12,6 @@ internal class AppSideEffectCreator(
                 AppSideEffect.GetUser(userRepository)
             }
 
-            is AppAction.Process -> {
-                AppSideEffect.SaveAuthCode(userRepository)
-            }
-
             else -> null
         }
     }
