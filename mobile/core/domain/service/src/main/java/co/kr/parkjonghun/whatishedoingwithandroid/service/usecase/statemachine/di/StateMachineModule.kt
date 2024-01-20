@@ -2,6 +2,7 @@ package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.
 
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppAction
+import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppReactiveEffect
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppSideEffectCreator
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppState
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.createAppStateMachine
@@ -19,6 +20,9 @@ internal val stateMachineModule = module {
     ) { initialStateHolder ->
         createAppStateMachine(
             sideEffectCreator = AppSideEffectCreator(
+                userRepository = get(),
+            ),
+            reactiveEffect = AppReactiveEffect(
                 userRepository = get(),
             ),
             initialState = initialStateHolder.getInitialState(),

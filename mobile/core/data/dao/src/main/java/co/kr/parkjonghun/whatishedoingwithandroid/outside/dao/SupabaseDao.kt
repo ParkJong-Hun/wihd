@@ -10,12 +10,9 @@ import io.github.jan.supabase.gotrue.handleDeeplinks
 import io.github.jan.supabase.gotrue.providers.Github
 import io.github.jan.supabase.gotrue.user.UserInfo
 import io.github.jan.supabase.postgrest.Postgrest
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.firstOrNull
 import timber.log.Timber
 
 interface SupabaseDao {
-    val user: MutableSharedFlow<UserInfo>
     suspend fun signInWithGithub(): Unit?
     suspend fun signOut()
     fun handleAfterAuth(intent: Intent)
@@ -38,8 +35,6 @@ internal class SupabaseDaoImpl : SupabaseDao {
 
     private val auth get() = client.auth
 
-    override val user = MutableSharedFlow<UserInfo>(replay = 1)
-
     override suspend fun signInWithGithub() = auth.signUpWith(Github)
 
     override suspend fun signOut() = auth.signOut()
@@ -51,10 +46,7 @@ internal class SupabaseDaoImpl : SupabaseDao {
         },
     )
 
-    override suspend fun getUser(): UserInfo? {
-        auth.currentUserOrNull()?.let { user.tryEmit(it) }
-        return user.firstOrNull()
-    }
+    override suspend fun getUser() = auth.currentUserOrNull()
 
     companion object {
         private const val SERVER_URL = "https://zonnknlwnkforradhexp.supabase.co"

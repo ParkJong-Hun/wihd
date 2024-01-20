@@ -6,6 +6,11 @@ import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.Use
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.mapper.domainModel
 import co.kr.parkjonghun.whatishedoingwithandroid.service.model.user.User
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -13,6 +18,10 @@ class UserRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
     private val ioScope: CoroutineScope,
 ) : UserRepository {
+    override val currentUser: SharedFlow<User?> =
+        remoteDataSource.currentUser.map { it?.toUserDto()?.domainModel() }
+            .shareIn(ioScope, SharingStarted.Eagerly)
+
     override suspend fun login() {
         return withContext(ioScope.coroutineContext) {
             remoteDataSource.login()
@@ -27,7 +36,7 @@ class UserRepositoryImpl(
 
     override suspend fun getUser(): User? {
         return withContext(ioScope.coroutineContext) {
-            remoteDataSource.getUser()?.toUserDto()?.domainModel()
+            currentUser.first()
         }
     }
 }
