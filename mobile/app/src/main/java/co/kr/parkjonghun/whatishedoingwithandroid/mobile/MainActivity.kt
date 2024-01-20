@@ -11,6 +11,7 @@ import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.util.CrashReportingTree
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.dao.SupabaseDao
+import org.koin.android.ext.android.get
 import timber.log.Timber.DebugTree
 import timber.log.Timber.Forest.plant
 
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
 
-        SupabaseDao.handleAfterAuth(intent)
+        get<SupabaseDao>().handleAfterAuth(intent)
 
         setContent {
             App(
