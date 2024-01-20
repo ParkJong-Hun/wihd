@@ -4,7 +4,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.Stat
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppAction
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppSideEffectCreator
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.AppState
-import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.createAppStateMachineCreator
+import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.app.createAppStateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginAction
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginSideEffectCreator
 import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.login.LoginState
@@ -17,7 +17,7 @@ internal val stateMachineModule = module {
     factory<StateMachine<AppState, AppAction>>(
         qualifier = named("App"),
     ) { initialStateHolder ->
-        createAppStateMachineCreator(
+        createAppStateMachine(
             sideEffectCreator = AppSideEffectCreator(
                 userRepository = get(),
             ),

@@ -3,7 +3,7 @@ package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.statemachine.
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.createStateMachine
 
-fun createAppStateMachineCreator(
+fun createAppStateMachine(
     sideEffectCreator: StateMachine.SideEffectCreator<AppSideEffect, AppState, AppAction>,
     initialState: AppState?,
 ) = createStateMachine(

@@ -16,29 +16,12 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlin.coroutines.CoroutineContext
 
-/**
- * Create a state machine.
- */
-public fun <STATE : State, ACTION : Action> createStateMachine(
-    name: String,
-    initialState: STATE,
-    sideEffectCreator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
-    diagramBlock: StateMachine.DiagramBuilder<STATE, ACTION>.() -> Unit,
-): StateMachine<STATE, ACTION> =
-    StateMachineImpl(
-        name = name,
-        initialState = initialState,
-        sideEffectCreator = sideEffectCreator,
-        diagram = StateMachine.DiagramBuilder<STATE, ACTION>(initialState = initialState)
-            .apply(diagramBlock)
-            .build(),
-    )
-
 @Suppress("UnusedPrivateProperty")
 internal class StateMachineImpl<STATE : State, ACTION : Action>(
     private val name: String,
     initialState: STATE,
     private val sideEffectCreator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
+    private val reactiveEffect: ReactiveEffect<STATE, ACTION>?,
     private val diagram: Diagram<STATE, ACTION>,
 ) : StateMachine<STATE, ACTION> {
     private val _flow = MutableSharedFlow<STATE>(replay = 1).also { it.tryEmit(initialState) }
@@ -61,6 +44,10 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
     private val mutex = Mutex()
 
     private val stateMachineJob: CompletableJob = SupervisorJob(stateMachineContext[Job])
+
+    init {
+        reactiveEffect?.let { sideEffectLaunch { it.fire(this@StateMachineImpl) } }
+    }
 
     override fun dispatch(
         action: ACTION,

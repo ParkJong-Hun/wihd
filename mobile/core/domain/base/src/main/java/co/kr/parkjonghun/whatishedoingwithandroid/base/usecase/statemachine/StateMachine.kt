@@ -7,6 +7,26 @@ import kotlinx.coroutines.flow.SharedFlow
 import androidx.compose.runtime.State as ComposeState
 
 /**
+ * Create a [StateMachine].
+ */
+public fun <STATE : State, ACTION : Action> createStateMachine(
+    name: String,
+    initialState: STATE,
+    sideEffectCreator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
+    reactiveEffect: ReactiveEffect<STATE, ACTION>? = null,
+    diagramBlock: StateMachine.DiagramBuilder<STATE, ACTION>.() -> Unit,
+): StateMachine<STATE, ACTION> =
+    StateMachineImpl(
+        name = name,
+        initialState = initialState,
+        sideEffectCreator = sideEffectCreator,
+        reactiveEffect = reactiveEffect,
+        diagram = StateMachine.DiagramBuilder<STATE, ACTION>(initialState = initialState)
+            .apply(diagramBlock)
+            .build(),
+    )
+
+/**
  * Finite state machine.
  */
 interface StateMachine<STATE : State, ACTION : Action> : UseCase {
@@ -22,8 +42,8 @@ interface StateMachine<STATE : State, ACTION : Action> : UseCase {
     )
 
     /**
-     *  An action performed when an action occurs in a certain state.
-     *  After an action occurs, it always transitions to another state.
+     *  An action performed when an action occurs in a certain [State].
+     *  After an [Action] occurs, it always transitions to another [State].
      */
     interface SideEffect<STATE : State, ACTION : Action> {
         public suspend fun fire(
@@ -33,18 +53,22 @@ interface StateMachine<STATE : State, ACTION : Action> : UseCase {
     }
 
     /**
-     * A condition specifier that specifies which side effect is triggered when a certain action is taken in a certain state.
+     * A condition specifier that specifies which [SideEffect] is triggered when a certain action is taken in a certain [State].
      */
-    interface SideEffectCreator<
-        SIDE_EFFECT : SideEffect<STATE, ACTION>,
-        STATE : State,
-        ACTION : Action,
-        > {
+    interface SideEffectCreator<SIDE_EFFECT : SideEffect<STATE, ACTION>, STATE : State, ACTION : Action> {
         fun create(state: STATE, action: ACTION): SIDE_EFFECT?
     }
 
     /**
-     * Information from which state the action was taken and whether it was valid or not.
+     * This is a [SideEffect] that collects data by observing some flow.
+     * then an [Action] occurs and transitions to another [State].
+     */
+    interface ReactiveEffect<STATE : State, ACTION : Action> {
+        public suspend fun fire(targetStateMachine: StateMachine<STATE, ACTION>)
+    }
+
+    /**
+     * Information from which [State] the action was taken and whether it was valid or not.
      */
     sealed interface Transition<STATE : State, ACTION : Action> {
         val fromState: STATE
@@ -78,13 +102,13 @@ interface StateMachine<STATE : State, ACTION : Action> : UseCase {
     }
 
     /**
-     * Creating a diagram of each state machine.
+     * Creating a [Diagram] of each state machine.
      */
     class DiagramBuilder<SEALED_STATE : State, SEALED_ACTION : Action>(
         private val initialState: SEALED_STATE,
     ) {
         /**
-         * Relationships between states.
+         * Relationships between [State]s.
          */
         private val relationMap =
             LinkedHashMap<Matcher<SEALED_STATE, SEALED_STATE>, Diagram.FromState<SEALED_STATE, SEALED_ACTION>>()
@@ -143,3 +167,4 @@ typealias Transition<S, A> = StateMachine.Transition<S, A>
 typealias ValidTransition<S, A> = StateMachine.Transition.Valid<S, A>
 typealias InValidTransition<S, A> = StateMachine.Transition.Invalid<S, A>
 typealias SideEffect<S, A> = StateMachine.SideEffect<S, A>
+typealias ReactiveEffect<S, A> = StateMachine.ReactiveEffect<S, A>
