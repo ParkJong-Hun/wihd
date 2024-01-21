@@ -12,13 +12,16 @@ class AppReactiveEffect(
         userRepository.currentUser
             .distinctUntilChanged()
             .collect {
-                targetStateMachine.dispatch(
-                    if (it == null) {
-                        AppAction.AppUnavailable
-                    } else {
-                        AppAction.AppAvailable(it)
-                    },
-                )
+                val currentState = targetStateMachine.currentState
+                if (currentState !is AppState.None && currentState !is AppState.Loading) {
+                    targetStateMachine.dispatch(
+                        if (it == null) {
+                            AppAction.AppUnavailable
+                        } else {
+                            AppAction.AppAvailable(it)
+                        },
+                    )
+                }
             }
     }
 }
