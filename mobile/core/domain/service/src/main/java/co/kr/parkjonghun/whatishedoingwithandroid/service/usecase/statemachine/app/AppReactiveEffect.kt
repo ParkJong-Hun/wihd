@@ -17,7 +17,7 @@ class AppReactiveEffect(
                         AppAction.AppUnavailable
                     } else {
                         AppAction.AppAvailable(it)
-                    }
+                    },
                 )
             }
     }
