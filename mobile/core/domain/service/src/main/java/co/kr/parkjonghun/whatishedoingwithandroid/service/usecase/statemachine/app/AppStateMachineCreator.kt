@@ -43,4 +43,10 @@ fun createAppStateMachine(
             transitionTo(AppState.LoggedIn(it.user))
         }
     }
+
+    fromState<AppState.LoggedIn> {
+        on<AppAction.AppUnavailable> {
+            transitionTo(AppState.NotLoggedIn)
+        }
+    }
 }
