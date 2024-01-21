@@ -17,8 +17,7 @@ TODO
 
 ### Module
 
-<img width="640" src="https://github.com/ParkJong-Hun/wihd/assets/81838716/4282f5ac-815f-41c9-908c-e693cdfebdf7" >
-
+<img width="640" src="https://github.com/ParkJong-Hun/wihd/assets/81838716/4cbb9bb2-9373-4f6e-9f75-4160b65048b3" >
 
 ### Test
 
