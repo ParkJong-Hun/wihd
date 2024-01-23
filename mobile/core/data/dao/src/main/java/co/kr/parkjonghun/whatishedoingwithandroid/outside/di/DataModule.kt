@@ -9,3 +9,10 @@ val dataModule = module {
         utilityModule,
     )
 }
+
+val fakeDataModule = module {
+    includes(
+        fakeDataSourceModule,
+        utilityModule,
+    )
+}

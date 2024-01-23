@@ -26,8 +26,35 @@ internal class RemoteDataSourceImpl(
     override suspend fun login(): Unit? = supabaseDao.signInWithGithub()
 
     override suspend fun logout() = supabaseDao.signOut()
+}
 
-    companion object {
-        private const val GET_USER_DELAY_MILLIS = 1000L
+internal class FakeRemoteDataSourceImpl : RemoteDataSource {
+    override val currentUser: Flow<UserInfo?> = flow {
+        while (true) {
+            // logged in status
+            emit(FAKE_USER)
+            // log out status
+            // emit(null)
+            delay(GET_USER_DELAY_MILLIS)
+        }
+    }
+
+    override suspend fun login() {
+        // do nothing
+    }
+
+    override suspend fun logout() {
+        // do nothing
+    }
+
+    private companion object {
+        private val FAKE_USER = UserInfo(
+            aud = "fake_aud",
+            email = "fake_email_1@email.com",
+            factors = emptyList(),
+            id = "f1a2k3e4i5d6",
+        )
     }
 }
+
+private const val GET_USER_DELAY_MILLIS = 1000L
