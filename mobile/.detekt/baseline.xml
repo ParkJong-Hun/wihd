@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <SmellBaseline>
   <ManuallySuppressedIssues>
-    <ID>Filename:AuthInfo.kt$co.kr.parkjonghun.whatishedoingwithandroid.outside.model.AuthInfo.kt</ID>
   </ManuallySuppressedIssues>
   <CurrentIssues/>
 </SmellBaseline>
