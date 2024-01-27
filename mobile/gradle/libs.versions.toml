@@ -93,6 +93,7 @@ ktor = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
 
 # koin
 koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
 
 # material
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
