@@ -1,5 +1,7 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
+package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.sample
 
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.ErrorState
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.State
 import kotlinx.parcelize.Parcelize
 
 sealed class SampleState : State {

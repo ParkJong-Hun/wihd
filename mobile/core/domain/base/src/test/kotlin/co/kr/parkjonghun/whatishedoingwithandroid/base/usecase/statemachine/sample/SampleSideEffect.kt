@@ -1,4 +1,8 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
+package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.sample
+
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.SideEffect
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.ValidTransition
 
 class SampleSideEffect : SideEffect<SampleState, SampleAction> {
     override suspend fun fire(

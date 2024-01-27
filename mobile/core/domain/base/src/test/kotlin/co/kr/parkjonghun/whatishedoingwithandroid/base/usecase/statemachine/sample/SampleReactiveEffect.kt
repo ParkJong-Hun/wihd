@@ -1,5 +1,6 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
+package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.sample
 
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
