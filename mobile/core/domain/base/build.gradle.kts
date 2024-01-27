@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.wihd.library)
-    alias(libs.plugins.wihd.koin)
+    alias(libs.plugins.wihd.test)
     alias(libs.plugins.wihd.detekt)
     alias(libs.plugins.wihd.parcelize)
 }

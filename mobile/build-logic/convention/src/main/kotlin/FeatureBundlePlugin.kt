@@ -1,10 +1,5 @@
-import dsl.implementation
-import dsl.library
-import dsl.libs
-import dsl.testImplementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
 
 @Suppress("unused")
 class FeatureBundlePlugin : Plugin<Project> {
@@ -15,11 +10,7 @@ class FeatureBundlePlugin : Plugin<Project> {
                 apply("parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin")
                 apply("parkjonghun.whatishedoingwithandroid.mobile.convention.compose")
                 apply("parkjonghun.whatishedoingwithandroid.mobile.convention.detekt")
-            }
-
-            dependencies {
-                implementation(libs.library("koin-compose"))
-                testImplementation(libs.library("koin-test"))
+                apply("parkjonghun.whatishedoingwithandroid.mobile.convention.test")
             }
         }
     }
