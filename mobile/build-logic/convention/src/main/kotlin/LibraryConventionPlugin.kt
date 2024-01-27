@@ -1,8 +1,8 @@
 import dsl.androidLibrary
+import dsl.implementation
 import dsl.library
 import dsl.libs
 import dsl.setupAndroid
-import dsl.testImplementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -21,10 +21,7 @@ class LibraryConventionPlugin : Plugin<Project> {
             }
 
             dependencies {
-                testImplementation(libs.library("junit"))
-                testImplementation(libs.library("jetpack-junit"))
-                testImplementation(libs.library("jetpack-espresso-core"))
-                testImplementation(libs.library("mockk"))
+                implementation(libs.library("koin-compose"))
             }
         }
     }
