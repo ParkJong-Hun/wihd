@@ -10,7 +10,6 @@ val repositoryModule = module {
     single<UserRepository> {
         UserRepositoryImpl(
             remoteDataSource = get(),
-            preferencesDataSource = get(),
             ioScope = CoroutineScope(Dispatchers.Default),
         )
     }

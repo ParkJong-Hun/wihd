@@ -12,10 +12,6 @@ internal class AppSideEffectCreator(
                 AppSideEffect.GetUser(userRepository)
             }
 
-            is AppAction.Process -> {
-                AppSideEffect.SaveToken(userRepository)
-            }
-
             else -> null
         }
     }

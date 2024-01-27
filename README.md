@@ -15,13 +15,13 @@ https://www.figma.com/file/8aXhdSuWKjfUy2ThQWRKsJ/Figma-basics?type=design&node-
 
 TODO
 
+### Module
+
+<img width="640" src="https://github.com/ParkJong-Hun/wihd/assets/81838716/4cbb9bb2-9373-4f6e-9f75-4160b65048b3" >
+
 ### Test
 
 TODO
-
-### CI/CD
-
-https://app.circleci.com/pipelines/github/ParkJong-Hun/whatIsHeDoingWithAndroid
 
 ## Server
 
@@ -35,3 +35,7 @@ https://console.firebase.google.com/u/0/project/whatishedoingwithandroid
 ### Supabase
 
 https://supabase.com/dashboard/project/zonnknlwnkforradhexp
+
+## CI/CD
+
+https://app.circleci.com/pipelines/github/ParkJong-Hun/wihd

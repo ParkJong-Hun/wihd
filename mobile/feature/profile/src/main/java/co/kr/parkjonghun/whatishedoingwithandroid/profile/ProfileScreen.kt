@@ -1,13 +1,14 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.profile
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdText
+import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdTextStyle
 
 const val profileScreenRoute = "profile"
 
@@ -45,5 +46,8 @@ fun ProfileScreen(
 
 @Composable
 fun ProfileBody() {
-    Text("profile")
+    WihdText(
+        text = "profile",
+        style = WihdTextStyle.H1,
+    )
 }

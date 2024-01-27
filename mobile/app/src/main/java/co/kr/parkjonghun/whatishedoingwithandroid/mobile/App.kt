@@ -11,13 +11,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.custom.LoadingMask
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.login.LoginScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreen
 import co.kr.parkjonghun.whatishedoingwithandroid.feature.top.topScreenRoute
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.AppNavigationState
 import co.kr.parkjonghun.whatishedoingwithandroid.mobile.navigation.rememberAppNavigationState
-import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.repository.dto.presentation.TokenDto
-import co.kr.parkjonghun.whatishedoingwithandroid.ui.theme.MobileTheme
+import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.MobileTheme
 import org.koin.androidx.compose.KoinAndroidContext
 import org.koin.core.annotation.KoinExperimentalAPI
 
@@ -29,7 +29,6 @@ import org.koin.core.annotation.KoinExperimentalAPI
 @Composable
 fun App(
     windowSizeClass: WindowSizeClass,
-    newTokenDto: TokenDto?,
 ) {
     KoinAndroidContext {
         val appNavigationState: AppNavigationState = rememberAppNavigationState(
@@ -39,9 +38,7 @@ fun App(
 
         // Launch init action.
         LaunchedEffect(true) {
-            newTokenDto
-                ?.let { appIntent.keepToken(it) }
-                ?: run { appIntent.init() }
+            appIntent.init()
         }
 
         MobileTheme {
@@ -76,23 +73,24 @@ private fun AppBody(
     isShowError: Pair<Boolean, Throwable?>,
     modifier: Modifier = Modifier,
 ) {
-    Box {
+    Box(
+        modifier = modifier,
+    ) {
         if (isShowTop) {
             WihdNavHost(
                 windowSizeClass = windowSizeClass,
                 appNavController = appNavController,
             )
         } else if (isShowLogin) {
-            LoginScreen(
-                modifier = modifier,
-            )
+            LoginScreen()
         } else if (isShowInit) {
             // TODO Show init screen.
         }
 
-        if (isShowLoading) {
-            // TODO Show animation.
-        }
+        LoadingMask(
+            isLoading = isShowLoading,
+            modifier = Modifier.fillMaxSize(),
+        )
 
         if (isShowError.first) {
             // TODO Show error.
