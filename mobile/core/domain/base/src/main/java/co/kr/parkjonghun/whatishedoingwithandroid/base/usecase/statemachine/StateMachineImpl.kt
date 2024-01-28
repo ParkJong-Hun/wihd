@@ -30,9 +30,6 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
     override val currentState: STATE get() = _flow.value
     override val flow: SharedFlow<STATE> = _flow
 
-    override val composeState: androidx.compose.runtime.State<STATE?>
-        @Composable get() = flow.collectAsState(null)
-
     private val stateMachineContext: CoroutineContext =
         CoroutineName(name) + SupervisorJob() + Dispatchers.Default
     private val stateMachineScope: CoroutineScope = CoroutineScope(stateMachineContext)

@@ -1,10 +1,8 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
-import androidx.compose.runtime.Composable
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.UseCase
 import co.kr.parkjonghun.whatishedoingwithandroid.base.util.Matcher
 import kotlinx.coroutines.flow.SharedFlow
-import androidx.compose.runtime.State as ComposeState
 
 /**
  * Create a [StateMachine].
@@ -32,9 +30,6 @@ public fun <STATE : State, ACTION : Action> createStateMachine(
 interface StateMachine<STATE : State, ACTION : Action> : UseCase {
     val currentState: STATE
     public val flow: SharedFlow<STATE>
-
-    @get:Composable
-    public val composeState: ComposeState<STATE?>
 
     public fun dispatch(
         action: ACTION,

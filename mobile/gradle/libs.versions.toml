@@ -126,7 +126,7 @@ dependencyGuardPlugin = { id = "com.dropbox.dependency-guard", version.ref = "de
 wihd-kotlin = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin", version = "unspecified" }
 wihd-android = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.android", version = "unspecified" }
 wihd-library = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.library", version = "unspecified" }
-wihd-koin = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.koin", version = "unspecified" }
+wihd-test = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.test", version = "unspecified" }
 wihd-compose = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.compose", version = "unspecified" }
 wihd-firebase = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.firebase", version = "unspecified" }
 wihd-detekt = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.detekt", version = "unspecified" }
