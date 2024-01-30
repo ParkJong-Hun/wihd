@@ -1,5 +1,5 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
-class StateMachineTransitionTest {
-    // TODO: Transition Test
+class StateMachineSideEffectTester {
+    // TODO: SideEffect Test
 }
