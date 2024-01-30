@@ -10,6 +10,7 @@ interface StateMachineTransitionTester<STATE : State, ACTION : Action> {
         targetStateMachine: StateMachine<STATE, ACTION>,
     ) = coJustRun {
         /* TODO:
+            0. inject coroutine scope
             1. get targetSM.currentState
             2. assertEquals(beforeState, targetSM.currentState)
             3. get targetSM.currentState
