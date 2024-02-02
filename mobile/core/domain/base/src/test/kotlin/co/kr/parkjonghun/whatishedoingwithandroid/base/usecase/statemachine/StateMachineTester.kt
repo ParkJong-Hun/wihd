@@ -2,7 +2,7 @@ package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
 import io.mockk.coJustRun
 
-interface StateMachineTransitionTester<STATE : State, ACTION : Action> {
+interface StateMachineTester<STATE : State, ACTION : Action> {
     fun testTransition(
         beforeState: STATE,
         afterState: STATE?,
