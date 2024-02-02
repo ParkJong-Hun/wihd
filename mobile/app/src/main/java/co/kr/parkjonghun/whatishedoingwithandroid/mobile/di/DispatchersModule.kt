@@ -9,4 +9,5 @@ val dispatchersModule = module {
     single(qualifier = named("default")) { Dispatchers.Default }
     single(qualifier = named("main")) { Dispatchers.Main }
     single(qualifier = named("unconfined")) { Dispatchers.Unconfined }
+    single(qualifier = named("test")) { Dispatchers.Unconfined }
 }
