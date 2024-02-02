@@ -3,22 +3,28 @@ package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 import io.mockk.coJustRun
 
 interface StateMachineTester<STATE : State, ACTION : Action> {
-    fun testTransition(
+    private fun asserter(): StateMachineAsserter<STATE, ACTION> =
+        StateMachineAsserterImpl()
+
+    /**
+     * @param beforeState target state before dispatching action
+     * @param afterState expected state after dispatching action, null is meaning beforeState equals afterState
+     * @param action target action to be dispatched
+     * @param sideEffect expected sideEffect to be fired
+     * @param targetStateMachine target state machine to be tested
+     * */
+    fun testDispatch(
         beforeState: STATE,
         afterState: STATE?,
         action: ACTION,
+        sideEffect: SideEffect<STATE, ACTION>?,
         targetStateMachine: StateMachine<STATE, ACTION>,
     ) = coJustRun {
         /* TODO:
-            0. inject coroutine scope
-            1. get targetSM.currentState
-            2. assertEquals(beforeState, targetSM.currentState)
-            3. get targetSM.currentState
-            4. targetSM.dispatch(action)
-            5. check targetSM.dispatch(action) validation
-            6. if(valid) 7-1 else 7-2
-            7-1. assertEquals(afterState, targetSM.currentState)
-            7-2. assertEquals(afterState, afterState)
+            1. targetSM.dispatch(action)
+            2. assertTransition(expectedTransition, actualTransition)
+            3. assertSideEffect(beforeState, action, sideEffect)
+            4. assertState(beforeState, afterState)
          */
     }
 }
