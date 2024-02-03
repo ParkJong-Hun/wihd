@@ -8,7 +8,7 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
     /**
      * this is the [StateMachine.SideEffectCreator] will be used in [testDispatch].
      */
-    fun targetSideEffectCreator(): StateMachine.SideEffectCreator<SideEffect<STATE, ACTION>, STATE, ACTION>
+    fun targetSideEffectCreator(): StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>
 
     /**
      * this is the [StateMachine.ReactiveEffect] will be used in [testDispatch].
