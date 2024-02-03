@@ -7,8 +7,12 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
         StateMachineAsserterImpl()
 
     /**
+     * [StateMachine.Transition] validations and [StateMachine.SideEffectCreator]s are checked
+     * to ensure that the both [afterState] and [sideEffect] are as expected.
+     *
      * @param beforeState target state before dispatching action
-     * @param afterState expected state after dispatching action, null is meaning beforeState equals afterState
+     * @param afterState expected state after dispatching action,
+     * null is meaning beforeState equals afterState
      * @param action target action to be dispatched
      * @param sideEffect expected sideEffect to be fired
      * @param targetStateMachine target state machine to be tested
