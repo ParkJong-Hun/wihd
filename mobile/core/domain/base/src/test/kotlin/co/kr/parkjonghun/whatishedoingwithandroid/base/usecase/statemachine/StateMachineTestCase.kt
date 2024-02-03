@@ -8,7 +8,7 @@ package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
  * null is meaning beforeState equals afterState
  * @param action target action to be dispatched
  * @param sideEffect expected sideEffect to be fired
- * @param creator a function to create a [StateMachine]
+ * @param creator [createStateMachine] might take over the [beforeState]
  */
 data class StateMachineTestCase<STATE : State, ACTION : Action>(
     val beforeState: STATE,
