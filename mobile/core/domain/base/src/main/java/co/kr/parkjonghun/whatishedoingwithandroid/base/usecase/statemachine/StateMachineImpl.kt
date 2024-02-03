@@ -1,8 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
 import android.util.Log
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import kotlinx.coroutines.CompletableJob
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
