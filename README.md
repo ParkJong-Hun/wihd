@@ -15,7 +15,8 @@ https://www.figma.com/file/8aXhdSuWKjfUy2ThQWRKsJ/Figma-basics?type=design&node-
 #### StateMachine
 <img width="640" src="https://github.com/ParkJong-Hun/wihd/assets/81838716/c54af0cc-c02a-4571-b6ac-fde134693f85" >
 
-TODO
+#### Processor
+TO BE CONTINUE
 
 ### Module
 
