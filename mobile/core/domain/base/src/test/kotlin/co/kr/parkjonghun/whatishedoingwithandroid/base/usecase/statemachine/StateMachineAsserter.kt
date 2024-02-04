@@ -77,7 +77,7 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
         state: STATE,
         action: ACTION,
         expected: ReactiveEffect<STATE, ACTION>?,
-        reactiveEffect: StateMachine.ReactiveEffect<STATE, ACTION>?
+        reactiveEffect: StateMachine.ReactiveEffect<STATE, ACTION>?,
     ) {
         // TODO
     }
