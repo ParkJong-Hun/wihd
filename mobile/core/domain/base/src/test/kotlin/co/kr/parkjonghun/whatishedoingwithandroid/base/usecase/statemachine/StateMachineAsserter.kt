@@ -1,12 +1,13 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
+import kotlinx.coroutines.flow.Flow
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 interface StateMachineAsserter<STATE : State, ACTION : Action> {
-    suspend fun assertState(
+    suspend fun Flow<STATE>.assertState(
         beforeState: STATE,
-        expectedAfterState: STATE? = null,
+        afterState: STATE? = null,
     )
 
     suspend fun assertTransition(
@@ -24,9 +25,9 @@ interface StateMachineAsserter<STATE : State, ACTION : Action> {
 
 internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
     StateMachineAsserter<STATE, ACTION> {
-    override suspend fun assertState(
+    override suspend fun Flow<STATE>.assertState(
         beforeState: STATE,
-        expectedAfterState: STATE?,
+        afterState: STATE?,
     ) {
         TODO("Not yet implemented")
     }
