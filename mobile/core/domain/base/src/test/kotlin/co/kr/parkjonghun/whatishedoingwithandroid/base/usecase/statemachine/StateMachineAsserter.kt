@@ -1,5 +1,7 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
+import kotlin.test.assertTrue
+
 interface StateMachineAsserter<STATE : State, ACTION : Action> {
     suspend fun assertState(
         beforeState: STATE,
@@ -8,7 +10,7 @@ interface StateMachineAsserter<STATE : State, ACTION : Action> {
 
     suspend fun assertTransition(
         expected: Transition<STATE, ACTION>,
-        actual: Transition<STATE, ACTION>,
+        valid: Boolean,
     )
 
     suspend fun assertSideEffect(
@@ -29,9 +31,15 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
 
     override suspend fun assertTransition(
         expected: Transition<STATE, ACTION>,
-        actual: Transition<STATE, ACTION>,
+        valid: Boolean,
     ) {
-        TODO("Not yet implemented")
+        assertTrue {
+            if (valid) {
+                expected is ValidTransition
+            } else {
+                expected is InValidTransition
+            }
+        }
     }
 
     override suspend fun assertSideEffect(
