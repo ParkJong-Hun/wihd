@@ -1,6 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
-import io.mockk.coJustRun
+import kotlinx.coroutines.test.runTest
 
 interface StateMachineTester<STATE : State, ACTION : Action> {
     private fun asserter(): StateMachineAsserter<STATE, ACTION> = StateMachineAsserterImpl()
@@ -32,12 +32,39 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
         afterState: STATE?,
         sideEffect: SideEffect<STATE, ACTION>?,
         targetStateMachine: StateMachine<STATE, ACTION>,
-    ) = coJustRun {
-        /* TODO:
-            1. targetSM.dispatch(action)
-            2. assertTransition(expectedTransition, actualTransition)
-            3. assertSideEffect(beforeState, action, sideEffect)
-            4. assertState(beforeState, afterState)
-         */
+    ) = runTest {
+        with(asserter()) {
+            // 1. targetSM.dispatch(action)
+            targetStateMachine.dispatch(action) { after ->
+                // 2. assertTransition(expectedTransition, actualTransition)
+                runCatching {
+                    if (afterState != null) {
+                        assertTransition(
+                            expectedValidation = true,
+                            actual = after,
+                        )
+                    } else {
+                        assertTransition(
+                            expectedValidation = false,
+                            actual = after,
+                        )
+                    }
+                }
+                // 3. assertSideEffect(beforeState, action, sideEffect)
+                runCatching {
+                    assertSideEffect(
+                        state = beforeState,
+                        action = action,
+                        expected = sideEffect,
+                        creator = targetSideEffectCreator(),
+                    )
+                }
+            }
+            // 4. assertState(beforeState, afterState)
+            targetStateMachine.flow.assertState(
+                beforeState = beforeState,
+                afterState = afterState,
+            )
+        }
     }
 }
