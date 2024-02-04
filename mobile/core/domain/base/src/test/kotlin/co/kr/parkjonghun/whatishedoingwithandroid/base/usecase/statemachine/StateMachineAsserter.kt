@@ -1,5 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
+import app.cash.turbine.test
 import kotlinx.coroutines.flow.Flow
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -29,7 +30,14 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
         beforeState: STATE,
         afterState: STATE?,
     ) {
-        TODO("Not yet implemented")
+        test {
+            assertEquals(beforeState, awaitItem())
+            if (afterState != null) {
+                assertEquals(afterState, awaitItem())
+            } else {
+                awaitComplete()
+            }
+        }
     }
 
     override fun assertTransition(
