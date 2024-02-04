@@ -18,8 +18,9 @@ import kotlin.coroutines.CoroutineContext
 internal class StateMachineImpl<STATE : State, ACTION : Action>(
     private val name: String,
     initialState: STATE,
+    coroutineContext: CoroutineContext?,
     private val sideEffectCreator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
-    private val reactiveEffect: ReactiveEffect<STATE, ACTION>?,
+    reactiveEffect: ReactiveEffect<STATE, ACTION>?,
     private val diagram: Diagram<STATE, ACTION>,
 ) : StateMachine<STATE, ACTION> {
     private val _flow = MutableSharedFlow<STATE>(replay = 1).also { it.tryEmit(initialState) }
@@ -29,7 +30,7 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
     override val flow: SharedFlow<STATE> = _flow
 
     private val stateMachineContext: CoroutineContext =
-        CoroutineName(name) + SupervisorJob() + Dispatchers.Default
+        CoroutineName(name) + (coroutineContext ?: (SupervisorJob() + Dispatchers.Default))
     private val stateMachineScope: CoroutineScope = CoroutineScope(stateMachineContext)
 
     private val sideEffectContext: CoroutineContext =

@@ -3,6 +3,7 @@ package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.UseCase
 import co.kr.parkjonghun.whatishedoingwithandroid.base.util.Matcher
 import kotlinx.coroutines.flow.SharedFlow
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Create a [StateMachine].
@@ -10,6 +11,7 @@ import kotlinx.coroutines.flow.SharedFlow
 public fun <STATE : State, ACTION : Action> createStateMachine(
     name: String,
     initialState: STATE,
+    coroutineContext: CoroutineContext? = null,
     sideEffectCreator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
     reactiveEffect: ReactiveEffect<STATE, ACTION>? = null,
     diagramBlock: StateMachine.DiagramBuilder<STATE, ACTION>.() -> Unit,
@@ -17,6 +19,7 @@ public fun <STATE : State, ACTION : Action> createStateMachine(
     StateMachineImpl(
         name = name,
         initialState = initialState,
+        coroutineContext = coroutineContext,
         sideEffectCreator = sideEffectCreator,
         reactiveEffect = reactiveEffect,
         diagram = StateMachine.DiagramBuilder<STATE, ACTION>(initialState = initialState)
