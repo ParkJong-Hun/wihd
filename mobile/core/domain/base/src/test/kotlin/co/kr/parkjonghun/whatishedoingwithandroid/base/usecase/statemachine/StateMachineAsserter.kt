@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 interface StateMachineAsserter<STATE : State, ACTION : Action> {
     suspend fun Flow<STATE>.assertState(
         beforeState: STATE,
-        afterState: STATE? = null,
+        afterState: STATE?,
     )
 
     fun assertTransition(
@@ -21,6 +21,13 @@ interface StateMachineAsserter<STATE : State, ACTION : Action> {
         action: ACTION,
         expected: SideEffect<STATE, ACTION>? = null,
         creator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
+    )
+
+    fun assertReactiveEffect(
+        state: STATE,
+        action: ACTION,
+        expected: ReactiveEffect<STATE, ACTION>? = null,
+        reactiveEffect: StateMachine.ReactiveEffect<STATE, ACTION>?,
     )
 }
 
@@ -64,5 +71,14 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
             expected = expected,
             actual = actual,
         )
+    }
+
+    override fun assertReactiveEffect(
+        state: STATE,
+        action: ACTION,
+        expected: ReactiveEffect<STATE, ACTION>?,
+        reactiveEffect: StateMachine.ReactiveEffect<STATE, ACTION>?
+    ) {
+        // TODO
     }
 }

@@ -36,18 +36,20 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
         with(asserter()) {
             targetStateMachine.flow.assertState(
                 beforeState = beforeState,
-                afterState = if (beforeState != afterState) afterState else null,
+                afterState = afterState.takeUnless { afterState -> afterState == beforeState },
             )
             targetStateMachine.dispatch(action) { after ->
                 runCatching {
                     if (afterState != null) {
+                        val valid = true
                         assertTransition(
-                            expectedValidation = true,
+                            expectedValidation = valid,
                             actual = after,
                         )
                     } else {
+                        val invalid = false
                         assertTransition(
-                            expectedValidation = false,
+                            expectedValidation = invalid,
                             actual = after,
                         )
                     }
