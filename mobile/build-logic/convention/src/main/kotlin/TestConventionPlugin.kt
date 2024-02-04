@@ -15,6 +15,7 @@ class TestConventionPlugin : Plugin<Project> {
                 testImplementation(libs.library("jetpack-junit"))
                 testImplementation(libs.library("jetpack-espresso-core"))
                 testImplementation(libs.library("mockk"))
+                testImplementation(libs.library("turbine"))
             }
         }
     }

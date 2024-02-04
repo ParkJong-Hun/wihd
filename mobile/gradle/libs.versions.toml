@@ -39,6 +39,7 @@ ktor = "2.3.8"
 serialization = "1.6.2"
 mockk = "1.13.9"
 coil = "2.5.0"
+turbine = "1.0.0"
 
 [libraries]
 androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -108,6 +109,9 @@ mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "moc
 
 # coil
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
+# turbine
+turnbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
