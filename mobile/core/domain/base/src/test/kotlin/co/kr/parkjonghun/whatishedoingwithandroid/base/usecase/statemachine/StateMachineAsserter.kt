@@ -9,8 +9,8 @@ interface StateMachineAsserter<STATE : State, ACTION : Action> {
     )
 
     suspend fun assertTransition(
-        expected: Transition<STATE, ACTION>,
-        valid: Boolean,
+        expectedValidation: Boolean,
+        actual: Transition<STATE, ACTION>,
     )
 
     suspend fun assertSideEffect(
@@ -30,14 +30,14 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
     }
 
     override suspend fun assertTransition(
-        expected: Transition<STATE, ACTION>,
-        valid: Boolean,
+        expectedValidation: Boolean,
+        actual: Transition<STATE, ACTION>,
     ) {
         assertTrue {
-            if (valid) {
-                expected is ValidTransition
+            if (expectedValidation) {
+                actual is ValidTransition
             } else {
-                expected is InValidTransition
+                actual is InValidTransition
             }
         }
     }
