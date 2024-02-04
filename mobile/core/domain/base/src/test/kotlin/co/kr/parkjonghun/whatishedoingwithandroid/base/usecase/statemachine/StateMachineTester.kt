@@ -34,9 +34,7 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
         targetStateMachine: StateMachine<STATE, ACTION>,
     ) = runTest {
         with(asserter()) {
-            // 1. targetSM.dispatch(action)
             targetStateMachine.dispatch(action) { after ->
-                // 2. assertTransition(expectedTransition, actualTransition)
                 runCatching {
                     if (afterState != null) {
                         assertTransition(
@@ -50,7 +48,6 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
                         )
                     }
                 }
-                // 3. assertSideEffect(beforeState, action, sideEffect)
                 runCatching {
                     assertSideEffect(
                         state = beforeState,
@@ -60,7 +57,6 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
                     )
                 }
             }
-            // 4. assertState(beforeState, afterState)
             targetStateMachine.flow.assertState(
                 beforeState = beforeState,
                 afterState = afterState,
