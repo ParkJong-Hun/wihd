@@ -10,12 +10,12 @@ interface StateMachineAsserter<STATE : State, ACTION : Action> {
         afterState: STATE? = null,
     )
 
-    suspend fun assertTransition(
+    fun assertTransition(
         expectedValidation: Boolean,
         actual: Transition<STATE, ACTION>,
     )
 
-    suspend fun assertSideEffect(
+    fun assertSideEffect(
         state: STATE,
         action: ACTION,
         expected: SideEffect<STATE, ACTION>? = null,
@@ -32,7 +32,7 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
         TODO("Not yet implemented")
     }
 
-    override suspend fun assertTransition(
+    override fun assertTransition(
         expectedValidation: Boolean,
         actual: Transition<STATE, ACTION>,
     ) {
@@ -45,7 +45,7 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
         }
     }
 
-    override suspend fun assertSideEffect(
+    override fun assertSideEffect(
         state: STATE,
         action: ACTION,
         expected: SideEffect<STATE, ACTION>?,
