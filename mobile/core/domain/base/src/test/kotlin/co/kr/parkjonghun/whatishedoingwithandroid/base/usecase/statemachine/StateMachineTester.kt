@@ -34,6 +34,10 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
         targetStateMachine: StateMachine<STATE, ACTION>,
     ) = runTest {
         with(asserter()) {
+            targetStateMachine.flow.assertState(
+                beforeState = beforeState,
+                afterState = if (beforeState != afterState) afterState else null,
+            )
             targetStateMachine.dispatch(action) { after ->
                 runCatching {
                     if (afterState != null) {
@@ -57,10 +61,6 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
                     )
                 }
             }
-            targetStateMachine.flow.assertState(
-                beforeState = beforeState,
-                afterState = afterState,
-            )
         }
     }
 }
