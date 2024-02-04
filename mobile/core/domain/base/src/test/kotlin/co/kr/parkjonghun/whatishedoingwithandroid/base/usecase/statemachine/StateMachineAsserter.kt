@@ -1,5 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
+import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 interface StateMachineAsserter<STATE : State, ACTION : Action> {
@@ -17,6 +18,7 @@ interface StateMachineAsserter<STATE : State, ACTION : Action> {
         state: STATE,
         action: ACTION,
         expected: SideEffect<STATE, ACTION>? = null,
+        creator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
     )
 }
 
@@ -46,7 +48,12 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
         state: STATE,
         action: ACTION,
         expected: SideEffect<STATE, ACTION>?,
+        creator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
     ) {
-        TODO("Not yet implemented")
+        val actual = creator.create(state, action)
+        assertEquals(
+            expected = expected,
+            actual = actual,
+        )
     }
 }
