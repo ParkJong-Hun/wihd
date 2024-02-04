@@ -12,6 +12,8 @@ You can see design of the project on Figma.
 https://www.figma.com/file/8aXhdSuWKjfUy2ThQWRKsJ/Figma-basics?type=design&node-id=1669%3A162202&mode=design&t=gOnBPQqMMpdBFLM6-1
 
 ### Architecture
+#### StateMachine
+<img width="640" src="https://github.com/ParkJong-Hun/wihd/assets/81838716/32695786-a1b3-4bde-8038-58cf10103fd5" >
 
 TODO
 
