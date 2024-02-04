@@ -4,6 +4,7 @@ import dsl.implementation
 import dsl.kotlinOptions
 import dsl.library
 import dsl.libs
+import dsl.testImplementation
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -29,6 +30,7 @@ class KotlinConventionPlugin : Plugin<Project> {
                 implementation(libs.library("kotlinx-coroutines-core"))
                 implementation(libs.library("kotlinx-datetime"))
                 api(libs.library("kotlinx-collections-immutable"))
+                testImplementation(libs.library("kotlinx-coroutines-test"))
             }
         }
     }
