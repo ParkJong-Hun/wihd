@@ -1,10 +1,12 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.sample
 
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.SideEffect
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.createStateMachine
 
 fun createSampleStateMachine(
-    sideEffectCreator: StateMachine.SideEffectCreator<SampleSideEffect, SampleState, SampleAction>,
+    sideEffectCreator:
+    StateMachine.SideEffectCreator<out SideEffect<SampleState, SampleAction>, SampleState, SampleAction>,
     reactiveEffect: StateMachine.ReactiveEffect<SampleState, SampleAction>,
     initialState: SampleState?,
 ) = createStateMachine(
