@@ -37,7 +37,7 @@ internal class SampleStateMachineTest : StateMachineTester<SampleState, SampleAc
             createSampleStateMachine(
                 sideEffectCreator = targetSideEffectCreator(),
                 reactiveEffect = targetReactiveEffect(),
-                initialState = initial
+                initialState = initial,
             )
         },
     )
@@ -55,7 +55,7 @@ internal class SampleStateMachineTest : StateMachineTester<SampleState, SampleAc
             createSampleStateMachine(
                 sideEffectCreator = targetSideEffectCreator(),
                 reactiveEffect = targetReactiveEffect(),
-                initialState = initial
+                initialState = initial,
             )
         },
     )
@@ -73,7 +73,7 @@ internal class SampleStateMachineTest : StateMachineTester<SampleState, SampleAc
             createSampleStateMachine(
                 sideEffectCreator = targetSideEffectCreator(),
                 reactiveEffect = targetReactiveEffect(),
-                initialState = initial
+                initialState = initial,
             )
         },
     )
@@ -91,7 +91,7 @@ internal class SampleStateMachineTest : StateMachineTester<SampleState, SampleAc
             createSampleStateMachine(
                 sideEffectCreator = targetSideEffectCreator(),
                 reactiveEffect = targetReactiveEffect(),
-                initialState = initial
+                initialState = initial,
             )
         },
     )
@@ -109,7 +109,7 @@ internal class SampleStateMachineTest : StateMachineTester<SampleState, SampleAc
             createSampleStateMachine(
                 sideEffectCreator = targetSideEffectCreator(),
                 reactiveEffect = targetReactiveEffect(),
-                initialState = initial
+                initialState = initial,
             )
         },
     )
