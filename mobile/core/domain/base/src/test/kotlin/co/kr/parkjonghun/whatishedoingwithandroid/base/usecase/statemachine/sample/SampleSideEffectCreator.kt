@@ -8,7 +8,7 @@ internal class SampleSideEffectCreator :
         when (action) {
             is SampleAction.Do -> {
                 if (state is SampleState.None) {
-                    SampleSideEffect()
+                    SampleSideEffect
                 } else {
                     null
                 }
@@ -16,7 +16,7 @@ internal class SampleSideEffectCreator :
 
             is SampleAction.Retry -> {
                 if (state is SampleState.Error) {
-                    SampleSideEffect()
+                    SampleSideEffect
                 } else {
                     null
                 }

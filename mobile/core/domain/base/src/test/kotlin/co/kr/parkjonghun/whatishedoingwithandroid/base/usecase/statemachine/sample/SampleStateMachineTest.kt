@@ -2,7 +2,6 @@
 
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.sample
 
-import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.ReactiveEffect
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.SideEffect
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachineTestCase
@@ -14,17 +13,13 @@ internal class SampleStateMachineTest : StateMachineTester<SampleState, SampleAc
         return SampleSideEffectCreator()
     }
 
-    override fun targetReactiveEffect(): ReactiveEffect<SampleState, SampleAction> {
-        return SampleReactiveEffect()
-    }
-
     @Test
     fun test_caseNone() {
         listOf(
             caseNone(
                 action = SampleAction.Do,
                 afterState = SampleState.Loading,
-                sideEffect = SampleSideEffect(),
+                sideEffect = SampleSideEffect,
             ),
             caseNone(
                 action = SampleAction.ResolveError,
@@ -99,7 +94,7 @@ internal class SampleStateMachineTest : StateMachineTester<SampleState, SampleAc
             caseError(
                 action = SampleAction.Retry,
                 afterState = SampleState.Loading,
-                sideEffect = SampleSideEffect(),
+                sideEffect = SampleSideEffect,
             ),
             caseError(
                 action = SampleAction.Fail(DUMMY_THROWABLE),
@@ -142,7 +137,6 @@ internal class SampleStateMachineTest : StateMachineTester<SampleState, SampleAc
             caseStableWaiting(
                 action = SampleAction.Apply(DUMMY_DATA),
                 afterState = SampleState.Stable.Success(data = DUMMY_DATA),
-                sideEffect = SampleSideEffect(),
             ),
         ).forEach {
             testDispatch(

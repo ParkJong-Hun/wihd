@@ -8,7 +8,7 @@ import kotlin.coroutines.CoroutineContext
 fun createSampleStateMachine(
     sideEffectCreator:
     StateMachine.SideEffectCreator<out SideEffect<SampleState, SampleAction>, SampleState, SampleAction>,
-    reactiveEffect: StateMachine.ReactiveEffect<SampleState, SampleAction>,
+    reactiveEffect: StateMachine.ReactiveEffect<SampleState, SampleAction>?,
     initialState: SampleState?,
     coroutineContext: CoroutineContext,
 ) = createStateMachine(
@@ -44,9 +44,6 @@ fun createSampleStateMachine(
     }
 
     fromState<SampleState.Stable.Waiting> {
-        on<SampleAction.ResolveError> {
-            transitionTo(SampleState.None)
-        }
         on<SampleAction.Apply> {
             transitionTo(SampleState.Stable.Success(it.fetchedData))
         }
