@@ -1,6 +1,7 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlin.coroutines.CoroutineContext
@@ -40,12 +41,14 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
         targetStateMachine: StateMachine<STATE, ACTION>,
     ) = runTest(context = testCoroutineContext()) {
         with(asserter()) {
-            targetStateMachine.flow.assertState(
-                beforeState = beforeState,
-                afterState = afterState.takeUnless { afterState -> afterState == beforeState },
-            )
             var transitionResult: Result<Unit?>? = null
             var sideEffectResult: Result<Unit?>? = null
+            launch {
+                targetStateMachine.flow.assertState(
+                    beforeState = beforeState,
+                    afterState = afterState.takeUnless { afterState -> afterState == beforeState },
+                )
+            }
             targetStateMachine.dispatch(action) { after ->
                 transitionResult = runCatching {
                     if (afterState != null) {

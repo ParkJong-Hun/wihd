@@ -37,10 +37,12 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
         beforeState: STATE,
         afterState: STATE?,
     ) {
-        test {
-            assertEquals(beforeState, awaitItem())
+        test(name = "case $beforeState to $afterState") {
+            val beforeActual = awaitItem()
+            assertEquals(beforeState, beforeActual)
             if (afterState != null) {
-                assertEquals(afterState, awaitItem())
+                val afterActual = awaitItem()
+                assertEquals(afterState, afterActual)
             } else {
                 expectNoEvents()
             }
@@ -51,7 +53,7 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
         expectedValidation: Boolean,
         actual: Transition<STATE, ACTION>,
     ) {
-        assertTrue(message = "expected: $expectedValidation, actual: $actual") {
+        assertTrue(message = "expected: ${if (expectedValidation) "Valid" else "Invalid"}, actual: $actual") {
             if (expectedValidation) {
                 actual is ValidTransition
             } else {
@@ -67,10 +69,7 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
         creator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
     ) {
         val actual = creator.create(state, action)
-        assertEquals(
-            expected = expected,
-            actual = actual,
-        )
+        assertEquals(expected, actual)
     }
 
     override fun assertReactiveEffect(
