@@ -42,7 +42,7 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
             if (afterState != null) {
                 assertEquals(afterState, awaitItem())
             } else {
-                awaitComplete()
+                expectNoEvents()
             }
         }
     }

@@ -1,9 +1,15 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
+import kotlin.coroutines.CoroutineContext
 
+@OptIn(ExperimentalCoroutinesApi::class)
 interface StateMachineTester<STATE : State, ACTION : Action> {
     private fun asserter(): StateMachineAsserter<STATE, ACTION> = StateMachineAsserterImpl()
+
+    fun testCoroutineContext(): CoroutineContext = UnconfinedTestDispatcher()
 
     /**
      * this is the [StateMachine.SideEffectCreator] will be used in [testDispatch].
@@ -32,14 +38,16 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
         afterState: STATE?,
         sideEffect: SideEffect<STATE, ACTION>?,
         targetStateMachine: StateMachine<STATE, ACTION>,
-    ) = runTest {
+    ) = runTest(context = testCoroutineContext()) {
         with(asserter()) {
             targetStateMachine.flow.assertState(
                 beforeState = beforeState,
                 afterState = afterState.takeUnless { afterState -> afterState == beforeState },
             )
+            var transitionResult: Result<Unit?>? = null
+            var sideEffectResult: Result<Unit?>? = null
             targetStateMachine.dispatch(action) { after ->
-                runCatching {
+                transitionResult = runCatching {
                     if (afterState != null) {
                         val valid = true
                         assertTransition(
@@ -54,7 +62,7 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
                         )
                     }
                 }
-                runCatching {
+                sideEffectResult = runCatching {
                     assertSideEffect(
                         state = beforeState,
                         action = action,
@@ -63,6 +71,11 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
                     )
                 }
             }
+            transitionResult?.getOrThrow() to sideEffectResult?.getOrThrow()
         }
+    }
+
+    companion object {
+        private const val TEST_COROUTINE_NAME = "Test"
     }
 }
