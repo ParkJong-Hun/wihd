@@ -51,7 +51,7 @@ internal class StateMachineAsserterImpl<STATE : State, ACTION : Action> :
         expectedValidation: Boolean,
         actual: Transition<STATE, ACTION>,
     ) {
-        assertTrue {
+        assertTrue(message = "expected: $expectedValidation, actual: $actual") {
             if (expectedValidation) {
                 actual is ValidTransition
             } else {

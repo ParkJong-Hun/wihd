@@ -47,5 +47,8 @@ fun createSampleStateMachine(
         on<SampleAction.ResolveError> {
             transitionTo(SampleState.None)
         }
+        on<SampleAction.Apply> {
+            transitionTo(SampleState.Stable.Success(it.fetchedData))
+        }
     }
 }

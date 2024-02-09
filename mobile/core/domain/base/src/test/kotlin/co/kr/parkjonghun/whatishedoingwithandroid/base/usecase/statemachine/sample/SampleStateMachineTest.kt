@@ -284,6 +284,6 @@ internal class SampleStateMachineTest : StateMachineTester<SampleState, SampleAc
 
     companion object {
         private val DUMMY_THROWABLE = Throwable("dummy")
-        private const val DUMMY_DATA = "dummy"
+        private const val DUMMY_DATA = "Succeed"
     }
 }

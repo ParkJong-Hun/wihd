@@ -74,8 +74,4 @@ interface StateMachineTester<STATE : State, ACTION : Action> {
             transitionResult?.getOrThrow() to sideEffectResult?.getOrThrow()
         }
     }
-
-    companion object {
-        private const val TEST_COROUTINE_NAME = "Test"
-    }
 }
