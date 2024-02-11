@@ -9,6 +9,10 @@ import org.gradle.kotlin.dsl.dependencies
 class TestConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
+            with(pluginManager) {
+                apply("io.github.takahirom.roborazzi")
+            }
+
             dependencies {
                 testImplementation(libs.library("koin-test"))
                 testImplementation(libs.library("junit"))
@@ -16,6 +20,9 @@ class TestConventionPlugin : Plugin<Project> {
                 testImplementation(libs.library("jetpack-espresso-core"))
                 testImplementation(libs.library("mockk"))
                 testImplementation(libs.library("turbine"))
+                testImplementation(libs.library("roborazzi"))
+                testImplementation(libs.library("roborazzi-compose"))
+                testImplementation(libs.library("roborazzi-junit-rule"))
             }
         }
     }
