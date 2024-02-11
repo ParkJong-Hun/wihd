@@ -40,6 +40,7 @@ serialization = "1.6.2"
 mockk = "1.13.9"
 coil = "2.5.0"
 turbine = "1.0.0"
+roborazzi = "1.9.0"
 
 [libraries]
 androidGradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -49,6 +50,7 @@ kspPlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp
 gmsPlugin = { group = "com.google.gms", name = "google-services", version.ref = "gms" }
 detektPlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 kotlinSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
+roborazziGradlePlugin = { group = "io.github.takahirom.roborazzi", name = "roborazzi-gradle-plugin", version.ref = "roborazzi" }
 
 # jetpack
 jetpack-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "jetpack-core-ktx" }
@@ -114,6 +116,11 @@ coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coi
 # turbine
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
+# roborazzi
+roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
+roborazzi-compose = { group = "io.github.takahirom.roborazzi", name = "roborazzi-compose", version.ref = "roborazzi" }
+roborazzi-junit-rule = { group = "io.github.takahirom.roborazzi", name = "roborazzi-junit-rule", version.ref = "roborazzi" }
+
 javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
@@ -127,6 +134,7 @@ detektPlugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlinSerializationPlugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinParcelizePlugin = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 dependencyGuardPlugin = { id = "com.dropbox.dependency-guard", version.ref = "dependencyguard" }
+roborazziPlugin = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
 
 wihd-kotlin = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin", version = "unspecified" }
 wihd-android = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.android", version = "unspecified" }
