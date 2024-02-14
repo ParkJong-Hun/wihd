@@ -2,7 +2,7 @@
 # plugins
 agp = "8.2.2"
 kotlin = "1.9.22"
-gms = "4.4.0"
+gms = "4.4.1"
 ksp = "1.9.22-1.0.17"
 jetbrain-compose = "1.5.12"
 dependencyguard = "0.5.0"
