@@ -23,6 +23,7 @@ class TestConventionPlugin : Plugin<Project> {
                 testImplementation(libs.library("roborazzi"))
                 testImplementation(libs.library("roborazzi-compose"))
                 testImplementation(libs.library("roborazzi-junit-rule"))
+                testImplementation(libs.library("robolectric"))
             }
         }
     }
