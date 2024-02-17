@@ -41,4 +41,4 @@ https://supabase.com/dashboard/project/zonnknlwnkforradhexp
 
 ## CI/CD
 
-https://app.circleci.com/pipelines/github/ParkJong-Hun/wihd
+https://app.circleci.com/pipelines/github/ParkJong-Hun/wihd-with-android
