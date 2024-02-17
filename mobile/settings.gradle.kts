@@ -31,4 +31,4 @@ include(
     ":feature:post",
     ":feature:profile",
 )
-include(":test")
+include(":testing")
