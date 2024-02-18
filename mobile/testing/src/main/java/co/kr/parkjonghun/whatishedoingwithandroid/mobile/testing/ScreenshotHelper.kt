@@ -16,6 +16,7 @@ import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.onRoot
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.MobileTheme
+import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import com.github.takahirom.roborazzi.RoborazziOptions
 import com.github.takahirom.roborazzi.RoborazziOptions.CompareOptions
 import com.github.takahirom.roborazzi.RoborazziOptions.RecordOptions
@@ -23,12 +24,11 @@ import com.github.takahirom.roborazzi.captureRoboImage
 import com.google.accompanist.testharness.TestHarness
 import org.robolectric.RuntimeEnvironment
 
+@OptIn(ExperimentalRoborazziApi::class)
 val DefaultRoborazziOptions =
     RoborazziOptions(
-        // Pixel-perfect matching
         compareOptions = CompareOptions(changeThreshold = 0f),
-        // Reduce the size of the PNGs
-        recordOptions = RecordOptions(resizeScale = 0.5),
+        recordOptions = RecordOptions(resizeScale = 1.0),
     )
 
 enum class DefaultTestDevices(val description: String, val spec: String) {
