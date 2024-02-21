@@ -26,7 +26,7 @@ class ButtonScreenshotTest {
                 PrimaryFilledButton(
                     onClick = {},
                 ) {
-                    Text("$description Button")
+                    Text("$description Button !")
                 }
             }
         }
