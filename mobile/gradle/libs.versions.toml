@@ -40,7 +40,7 @@ serialization = "1.6.3"
 mockk = "1.13.9"
 coil = "2.5.0"
 turbine = "1.0.0"
-roborazzi = "1.9.0"
+roborazzi = "1.10.0"
 robolectric = "4.11.1"
 accompanist = "0.34.0"
 
