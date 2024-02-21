@@ -7,5 +7,5 @@ updates:
     reviewers: [ parkjong-hun ]
     open-pull-requests-limit: 5
     schedule:
-      interval: monthly
-      day: wednesday
+      interval: weekly
+      day: saturday
