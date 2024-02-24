@@ -48,7 +48,7 @@ class IndicatorScreenshotTest {
 
     @Test
     fun test_IndicatorCircle() {
-        composeTestRule.captureMultiTheme("Indicator", "ProgressIndicator") { description ->
+        composeTestRule.captureMultiTheme("Indicator", "IndicatorCircle") { description ->
             Surface {
                 IndicatorBar(
                     isLoading = true,
@@ -60,7 +60,7 @@ class IndicatorScreenshotTest {
 
     @Test
     fun test_IndicatorBar() {
-        composeTestRule.captureMultiTheme("Indicator", "ProgressIndicator") { description ->
+        composeTestRule.captureMultiTheme("Indicator", "IndicatorBar") { description ->
             Surface {
                 IndicatorBar(
                     isLoading = true,
