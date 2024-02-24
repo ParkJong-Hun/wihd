@@ -26,7 +26,46 @@ class ButtonScreenshotTest {
                 PrimaryFilledButton(
                     onClick = {},
                 ) {
-                    Text("$description Button !")
+                    Text("$description Button")
+                }
+            }
+        }
+    }
+
+    @Test
+    fun test_secondaryFilledButton() {
+        composeTestRule.captureMultiTheme("Button", "Second") { description ->
+            Surface {
+                SecondaryFilledButton(
+                    onClick = {},
+                ) {
+                    Text("$description Button")
+                }
+            }
+        }
+    }
+
+    @Test
+    fun test_tertiaryFilledButton() {
+        composeTestRule.captureMultiTheme("Button", "Second") { description ->
+            Surface {
+                TertiaryFilledButton(
+                    onClick = {},
+                ) {
+                    Text("$description Button")
+                }
+            }
+        }
+    }
+
+    @Test
+    fun test_linkButton() {
+        composeTestRule.captureMultiTheme("Button", "Second") { description ->
+            Surface {
+                LinkButton(
+                    onClick = {},
+                ) {
+                    Text("$description Button")
                 }
             }
         }

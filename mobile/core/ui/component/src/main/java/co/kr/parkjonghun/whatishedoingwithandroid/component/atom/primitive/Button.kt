@@ -7,12 +7,10 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import co.kr.parkjonghun.whatishedoingwithandroid.system.extension.WihdPreview
 import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.dark_linkBlue
 import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.light_linkBlue
 
@@ -101,44 +99,4 @@ fun LinkButton(
         interactionSource = interactionSource,
         content = content,
     )
-}
-
-@WihdPreview
-@Composable
-private fun PrimaryFilledButtonPreview() {
-    PrimaryFilledButton(
-        onClick = {},
-    ) {
-        Text("This is Preview Button.")
-    }
-}
-
-@WihdPreview
-@Composable
-private fun SecondaryFilledButtonPreview() {
-    SecondaryFilledButton(
-        onClick = {},
-    ) {
-        Text("This is Preview Button.")
-    }
-}
-
-@WihdPreview
-@Composable
-private fun TertiaryFilledButtonPreview() {
-    TertiaryFilledButton(
-        onClick = {},
-    ) {
-        Text("This is Preview Button.")
-    }
-}
-
-@WihdPreview
-@Composable
-private fun LinkButtonPreview() {
-    LinkButton(
-        onClick = {},
-    ) {
-        Text("This is Preview Button.")
-    }
 }
