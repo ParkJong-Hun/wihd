@@ -1,6 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive
 
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -9,8 +9,8 @@ import androidx.compose.ui.unit.dp
 fun ThickDivider(
     modifier: Modifier = Modifier,
 ) {
-    Divider(
+    HorizontalDivider(
         modifier = modifier,
-        thickness = 3.dp,
+        thickness = 3.dp
     )
 }
