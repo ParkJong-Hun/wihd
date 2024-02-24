@@ -11,6 +11,6 @@ fun ThickDivider(
 ) {
     HorizontalDivider(
         modifier = modifier,
-        thickness = 3.dp
+        thickness = 3.dp,
     )
 }

@@ -20,8 +20,8 @@ class ButtonScreenshotTest {
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
-    fun test_primaryFilledButton() {
-        composeTestRule.captureMultiTheme("Button") { description ->
+    fun test_PrimaryFilledButton() {
+        composeTestRule.captureMultiTheme("Button", "Primary") { description ->
             Surface {
                 PrimaryFilledButton(
                     onClick = {},
@@ -33,7 +33,7 @@ class ButtonScreenshotTest {
     }
 
     @Test
-    fun test_secondaryFilledButton() {
+    fun test_SecondaryFilledButton() {
         composeTestRule.captureMultiTheme("Button", "Second") { description ->
             Surface {
                 SecondaryFilledButton(
@@ -46,8 +46,8 @@ class ButtonScreenshotTest {
     }
 
     @Test
-    fun test_tertiaryFilledButton() {
-        composeTestRule.captureMultiTheme("Button", "Second") { description ->
+    fun test_TertiaryFilledButton() {
+        composeTestRule.captureMultiTheme("Button", "Tertiary") { description ->
             Surface {
                 TertiaryFilledButton(
                     onClick = {},
@@ -59,8 +59,8 @@ class ButtonScreenshotTest {
     }
 
     @Test
-    fun test_linkButton() {
-        composeTestRule.captureMultiTheme("Button", "Second") { description ->
+    fun test_LinkButton() {
+        composeTestRule.captureMultiTheme("Button", "Link") { description ->
             Surface {
                 LinkButton(
                     onClick = {},
