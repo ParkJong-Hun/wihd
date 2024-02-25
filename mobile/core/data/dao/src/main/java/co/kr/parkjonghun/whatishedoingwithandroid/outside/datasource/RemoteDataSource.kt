@@ -1,6 +1,7 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.outside.datasource
 
 import co.kr.parkjonghun.whatishedoingwithandroid.outside.dao.SupabaseDao
+import co.kr.parkjonghun.whatishedoingwithandroid.outside.dao.firebase.FirebaseDao
 import io.github.jan.supabase.gotrue.user.UserInfo
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -14,10 +15,12 @@ interface RemoteDataSource {
 
 internal class RemoteDataSourceImpl(
     private val supabaseDao: SupabaseDao,
+    private val firebaseDao: FirebaseDao,
 ) : RemoteDataSource {
     override val currentUser: Flow<UserInfo?> = flow {
         while (true) {
             val currentUser = supabaseDao.getUser()
+            currentUser?.let { firebaseDao.setUserId(it.id) }
             emit(currentUser)
             delay(GET_USER_DELAY_MILLIS)
         }
