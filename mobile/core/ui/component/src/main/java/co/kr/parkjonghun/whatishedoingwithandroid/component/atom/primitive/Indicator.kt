@@ -17,8 +17,8 @@ fun ProgressCircle(
     modifier: Modifier = Modifier,
 ) {
     CircularProgressIndicator(
+        progress = { progress.toFloat() / 100 },
         modifier = modifier.size(defaultIndicatorSize),
-        progress = progress.toFloat() / 100,
         color = MaterialTheme.colorScheme.secondary,
         trackColor = MaterialTheme.colorScheme.surfaceVariant,
     )
@@ -30,8 +30,8 @@ fun ProgressBar(
     modifier: Modifier = Modifier,
 ) {
     LinearProgressIndicator(
+        progress = { progress.toFloat() / 100 },
         modifier = modifier.width(defaultIndicatorSize),
-        progress = progress.toFloat() / 100,
         color = MaterialTheme.colorScheme.secondary,
         trackColor = MaterialTheme.colorScheme.surfaceVariant,
     )
