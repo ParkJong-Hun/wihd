@@ -36,6 +36,7 @@ fun Project.setupAndroid() {
         testOptions {
             unitTests {
                 isIncludeAndroidResources = true
+                isReturnDefaultValues = true
             }
         }
     }

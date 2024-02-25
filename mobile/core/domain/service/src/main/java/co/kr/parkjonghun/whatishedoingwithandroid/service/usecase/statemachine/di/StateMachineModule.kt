@@ -15,6 +15,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 internal val stateMachineModule = module {
+    // TODO : Add a coroutine context parameter to the state machine.
     factory<StateMachine<AppState, AppAction>>(
         qualifier = named("App"),
     ) { initialStateHolder ->

@@ -3,7 +3,6 @@ import dsl.debugImplementation
 import dsl.implementation
 import dsl.library
 import dsl.libs
-import dsl.testImplementation
 import dsl.version
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -29,11 +28,7 @@ class ComposeConventionPlugin : Plugin<Project> {
                 implementation(libs.library("jetpack-compose-ui-tooling-preview"))
                 implementation(libs.library("jetpack-lifecycle-runtime-ktx"))
                 implementation(libs.library("coil-compose"))
-                testImplementation(libs.library("junit"))
-                testImplementation(libs.library("jetpack-junit"))
-                testImplementation(libs.library("jetpack-espresso-core"))
-                testImplementation(libs.library("mockk"))
-                testImplementation(libs.library("jetpack-compose-ui-test-junit4"))
+                implementation(libs.library("koin-compose"))
                 debugImplementation(libs.library("jetpack-compose-ui-tooling"))
                 debugImplementation(libs.library("jetpack-compose-ui-test-manifest"))
             }

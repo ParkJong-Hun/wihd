@@ -6,9 +6,21 @@ internal class SampleSideEffectCreator :
     StateMachine.SideEffectCreator<SampleSideEffect, SampleState, SampleAction> {
     override fun create(state: SampleState, action: SampleAction): SampleSideEffect? =
         when (action) {
-            is SampleAction.Do,
-            is SampleAction.Retry,
-            -> SampleSideEffect()
+            is SampleAction.Do -> {
+                if (state is SampleState.None) {
+                    SampleSideEffect
+                } else {
+                    null
+                }
+            }
+
+            is SampleAction.Retry -> {
+                if (state is SampleState.Error) {
+                    SampleSideEffect
+                } else {
+                    null
+                }
+            }
 
             else -> null
         }

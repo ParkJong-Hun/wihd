@@ -12,12 +12,15 @@ You can see design of the project on Figma.
 https://www.figma.com/file/8aXhdSuWKjfUy2ThQWRKsJ/Figma-basics?type=design&node-id=1669%3A162202&mode=design&t=gOnBPQqMMpdBFLM6-1
 
 ### Architecture
+#### StateMachine
+<img width="640" src="https://github.com/ParkJong-Hun/wihd/assets/81838716/60894b26-8718-4a77-8271-343ef40e1598" >
 
-TODO
+#### Processor
+TO BE CONTINUE
 
 ### Module
 
-<img width="640" src="https://github.com/ParkJong-Hun/wihd/assets/81838716/4cbb9bb2-9373-4f6e-9f75-4160b65048b3" >
+<img width="640" src="https://github.com/ParkJong-Hun/wihd/assets/81838716/6a1827a6-a49f-45cc-955e-6bda192b7b69">
 
 ### Test
 
@@ -38,4 +41,4 @@ https://supabase.com/dashboard/project/zonnknlwnkforradhexp
 
 ## CI/CD
 
-https://app.circleci.com/pipelines/github/ParkJong-Hun/wihd
+https://app.circleci.com/pipelines/github/ParkJong-Hun/wihd-with-android

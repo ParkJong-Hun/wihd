@@ -1,0 +1,11 @@
+version: 2
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    assignees: [ parkjong-hun ]
+    reviewers: [ parkjong-hun ]
+    open-pull-requests-limit: 5
+    schedule:
+      interval: weekly
+      day: saturday

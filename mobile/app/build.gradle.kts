@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.wihd.android)
     alias(libs.plugins.wihd.kotlin)
     alias(libs.plugins.wihd.compose)
-    alias(libs.plugins.wihd.koin)
+    alias(libs.plugins.wihd.test)
     alias(libs.plugins.wihd.firebase)
     alias(libs.plugins.wihd.detekt)
     alias(libs.plugins.wihd.serialization)
@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId = "co.kr.parkjonghun.whatishedoingwithandroid.mobile"
         versionCode = 1
-        versionName = "0.1.0"
+        versionName = "0.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

@@ -1,10 +1,9 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
-import androidx.compose.runtime.Composable
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.UseCase
 import co.kr.parkjonghun.whatishedoingwithandroid.base.util.Matcher
 import kotlinx.coroutines.flow.SharedFlow
-import androidx.compose.runtime.State as ComposeState
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Create a [StateMachine].
@@ -12,6 +11,7 @@ import androidx.compose.runtime.State as ComposeState
 public fun <STATE : State, ACTION : Action> createStateMachine(
     name: String,
     initialState: STATE,
+    coroutineContext: CoroutineContext? = null,
     sideEffectCreator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
     reactiveEffect: ReactiveEffect<STATE, ACTION>? = null,
     diagramBlock: StateMachine.DiagramBuilder<STATE, ACTION>.() -> Unit,
@@ -19,6 +19,7 @@ public fun <STATE : State, ACTION : Action> createStateMachine(
     StateMachineImpl(
         name = name,
         initialState = initialState,
+        coroutineContext = coroutineContext,
         sideEffectCreator = sideEffectCreator,
         reactiveEffect = reactiveEffect,
         diagram = StateMachine.DiagramBuilder<STATE, ACTION>(initialState = initialState)
@@ -32,9 +33,6 @@ public fun <STATE : State, ACTION : Action> createStateMachine(
 interface StateMachine<STATE : State, ACTION : Action> : UseCase {
     val currentState: STATE
     public val flow: SharedFlow<STATE>
-
-    @get:Composable
-    public val composeState: ComposeState<STATE?>
 
     public fun dispatch(
         action: ACTION,

@@ -4,7 +4,7 @@ import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.Side
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.ValidTransition
 
-class SampleSideEffect : SideEffect<SampleState, SampleAction> {
+data object SampleSideEffect : SideEffect<SampleState, SampleAction> {
     override suspend fun fire(
         targetStateMachine: StateMachine<SampleState, SampleAction>,
         validTransition: ValidTransition<SampleState, SampleAction>,

@@ -1,8 +1,6 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine
 
 import android.util.Log
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import kotlinx.coroutines.CompletableJob
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
@@ -20,8 +18,9 @@ import kotlin.coroutines.CoroutineContext
 internal class StateMachineImpl<STATE : State, ACTION : Action>(
     private val name: String,
     initialState: STATE,
+    coroutineContext: CoroutineContext?,
     private val sideEffectCreator: StateMachine.SideEffectCreator<out SideEffect<STATE, ACTION>, STATE, ACTION>,
-    private val reactiveEffect: ReactiveEffect<STATE, ACTION>?,
+    reactiveEffect: ReactiveEffect<STATE, ACTION>?,
     private val diagram: Diagram<STATE, ACTION>,
 ) : StateMachine<STATE, ACTION> {
     private val _flow = MutableSharedFlow<STATE>(replay = 1).also { it.tryEmit(initialState) }
@@ -30,11 +29,8 @@ internal class StateMachineImpl<STATE : State, ACTION : Action>(
     override val currentState: STATE get() = _flow.value
     override val flow: SharedFlow<STATE> = _flow
 
-    override val composeState: androidx.compose.runtime.State<STATE?>
-        @Composable get() = flow.collectAsState(null)
-
     private val stateMachineContext: CoroutineContext =
-        CoroutineName(name) + SupervisorJob() + Dispatchers.Default
+        CoroutineName(name) + (coroutineContext ?: (SupervisorJob() + Dispatchers.Default))
     private val stateMachineScope: CoroutineScope = CoroutineScope(stateMachineContext)
 
     private val sideEffectContext: CoroutineContext =

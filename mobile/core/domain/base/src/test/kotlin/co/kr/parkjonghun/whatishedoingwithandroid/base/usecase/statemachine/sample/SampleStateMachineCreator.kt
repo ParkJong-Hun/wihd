@@ -1,15 +1,20 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.sample
 
+import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.SideEffect
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.StateMachine
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.statemachine.createStateMachine
+import kotlin.coroutines.CoroutineContext
 
 fun createSampleStateMachine(
-    sideEffectCreator: StateMachine.SideEffectCreator<SampleSideEffect, SampleState, SampleAction>,
-    reactiveEffect: StateMachine.ReactiveEffect<SampleState, SampleAction>,
+    sideEffectCreator:
+    StateMachine.SideEffectCreator<out SideEffect<SampleState, SampleAction>, SampleState, SampleAction>,
+    reactiveEffect: StateMachine.ReactiveEffect<SampleState, SampleAction>?,
     initialState: SampleState?,
+    coroutineContext: CoroutineContext,
 ) = createStateMachine(
     name = "Sample",
     initialState = initialState ?: SampleState.None,
+    coroutineContext = coroutineContext,
     sideEffectCreator = sideEffectCreator,
     reactiveEffect = reactiveEffect,
 ) {
@@ -39,8 +44,8 @@ fun createSampleStateMachine(
     }
 
     fromState<SampleState.Stable.Waiting> {
-        on<SampleAction.ResolveError> {
-            transitionTo(SampleState.None)
+        on<SampleAction.Apply> {
+            transitionTo(SampleState.Stable.Success(it.fetchedData))
         }
     }
 }
