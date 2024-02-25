@@ -1,4 +1,5 @@
 import dsl.android
+import dsl.implementation
 import dsl.implementationPlatform
 import dsl.library
 import dsl.libs
@@ -23,6 +24,8 @@ class FirebaseConventionPlugin : Plugin<Project> {
             }
             dependencies {
                 implementationPlatform(libs.library("firebase-bom"))
+                implementation(libs.library("firebase-common"))
+                implementation(libs.library("firebase-analytics"))
             }
         }
     }

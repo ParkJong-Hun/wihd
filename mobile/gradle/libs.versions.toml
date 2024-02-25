@@ -89,6 +89,8 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 # firebase
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
+firebase-common = { module = "com.google.firebase:firebase-common" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
 
 # supabase
 supabase-db = { group = "io.github.jan-tennert.supabase", name = "postgrest-kt", version.ref = "supabase" }
