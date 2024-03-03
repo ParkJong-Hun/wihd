@@ -1,6 +1,6 @@
 [versions]
 # plugins
-agp = "8.2.2"
+agp = "8.3.0"
 kotlin = "1.9.22"
 gms = "4.4.1"
 ksp = "1.9.22-1.0.18"
