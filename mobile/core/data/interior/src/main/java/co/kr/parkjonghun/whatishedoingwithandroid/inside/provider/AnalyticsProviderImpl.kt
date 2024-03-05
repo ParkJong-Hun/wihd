@@ -9,4 +9,8 @@ class AnalyticsProviderImpl(
     override fun logEvent(name: String, params: Map<String, Any>) {
         firebaseDao.logEvent(name, params)
     }
+
+    override fun logScreen(screenName: String) {
+        firebaseDao.logScreen(screenName)
+    }
 }

@@ -12,6 +12,10 @@ interface FirebaseDao {
         name: String,
         params: Map<String, Any>? = null,
     )
+
+    fun logScreen(
+        screenName: String,
+    )
 }
 
 class FirebaseDaoImpl(
@@ -46,6 +50,12 @@ class FirebaseDaoImpl(
                     else -> param(key, value.toString())
                 }
             }
+        }
+    }
+
+    override fun logScreen(screenName: String) {
+        analytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, screenName)
         }
     }
 }

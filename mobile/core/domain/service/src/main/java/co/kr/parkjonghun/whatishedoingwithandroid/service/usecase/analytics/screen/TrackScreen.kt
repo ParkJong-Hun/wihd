@@ -18,11 +18,7 @@ class TrackScreenImpl(
     private val analyticsProvider: AnalyticsProvider,
 ) : TrackScreen {
     override operator fun invoke(screenName: String) {
-        analyticsProvider.logEvent(SCREEN_NAME, mapOf("screen_name" to screenName))
-    }
-
-    companion object {
-        private const val SCREEN_NAME = "screen_name"
+        analyticsProvider.logScreen(screenName)
     }
 }
 
