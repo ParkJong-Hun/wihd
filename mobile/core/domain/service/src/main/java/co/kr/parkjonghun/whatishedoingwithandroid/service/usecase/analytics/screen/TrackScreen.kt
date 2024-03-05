@@ -1,4 +1,4 @@
-package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.report.screen
+package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.analytics.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
@@ -10,13 +10,13 @@ import org.koin.compose.koinInject
 /**
  * Report ScreenView to the outside.
  */
-interface ReportScreen : UseCase {
+interface TrackScreen : UseCase {
     operator fun invoke(screenName: String)
 }
 
-class ReportScreenImpl(
+class TrackScreenImpl(
     private val analyticsProvider: AnalyticsProvider,
-) : ReportScreen {
+) : TrackScreen {
     override operator fun invoke(screenName: String) {
         analyticsProvider.logEvent(SCREEN_NAME, mapOf("screen_name" to screenName))
     }
@@ -31,7 +31,7 @@ class ReportScreenImpl(
  */
 @SuppressLint("ComposableNaming")
 @Composable
-fun ReportScreen(name: String) {
-    val reportScreenUseCase = koinInject<ReportScreen>()
-    LaunchedEffect(Unit) { reportScreenUseCase(name) }
+fun trackScreen(name: String) {
+    val trackScreenUseCase = koinInject<TrackScreen>()
+    LaunchedEffect(Unit) { trackScreenUseCase(name) }
 }

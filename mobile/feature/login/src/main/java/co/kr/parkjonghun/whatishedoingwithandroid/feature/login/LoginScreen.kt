@@ -10,11 +10,14 @@ import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.Prima
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdText
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdTextStyle
 import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.custom.LoadingMask
+import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.analytics.screen.trackScreen
 
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
 ) {
+    trackScreen(name = "LoginScreen")
+
     val (state, intent) = rememberLoginProcessor()
 
     LoginBody(

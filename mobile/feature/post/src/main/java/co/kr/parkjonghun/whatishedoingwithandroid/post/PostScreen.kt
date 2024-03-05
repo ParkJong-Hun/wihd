@@ -9,6 +9,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdText
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdTextStyle
+import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.analytics.screen.trackScreen
 
 const val postScreenRoute = "post"
 
@@ -41,6 +42,8 @@ fun PostScreen(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(),
 ) {
+    trackScreen(name = "PostScreen")
+
     PostBody()
 }
 
