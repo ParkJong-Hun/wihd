@@ -4,19 +4,24 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.PrimaryFilledButton
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdText
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.WihdTextStyle
 import co.kr.parkjonghun.whatishedoingwithandroid.component.molecule.custom.LoadingMask
-import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.analytics.screen.trackScreen
+import co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.analytics.screen.TrackScreen
+import org.koin.compose.koinInject
 
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
 ) {
-    trackScreen(name = "LoginScreen")
+    val trackScreen = koinInject<TrackScreen>()
+    SideEffect {
+        trackScreen("LoginScreen")
+    }
 
     val (state, intent) = rememberLoginProcessor()
 

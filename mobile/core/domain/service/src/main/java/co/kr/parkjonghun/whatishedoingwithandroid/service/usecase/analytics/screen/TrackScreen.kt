@@ -1,11 +1,7 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.service.usecase.analytics.screen
 
-import android.annotation.SuppressLint
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import co.kr.parkjonghun.whatishedoingwithandroid.base.usecase.UseCase
 import co.kr.parkjonghun.whatishedoingwithandroid.service.gateway.provider.AnalyticsProvider
-import org.koin.compose.koinInject
 
 /**
  * Report ScreenView to the outside.
@@ -20,14 +16,4 @@ class TrackScreenImpl(
     override operator fun invoke(screenName: String) {
         analyticsProvider.logScreen(screenName)
     }
-}
-
-/**
- * Report ScreenView in the Composable function to the out side.
- */
-@SuppressLint("ComposableNaming")
-@Composable
-fun trackScreen(name: String) {
-    val trackScreenUseCase = koinInject<TrackScreen>()
-    LaunchedEffect(Unit) { trackScreenUseCase(name) }
 }
