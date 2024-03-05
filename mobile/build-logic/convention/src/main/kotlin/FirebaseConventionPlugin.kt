@@ -13,6 +13,7 @@ class FirebaseConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.google.gms.google-services")
+                apply("com.google.firebase.crashlytics")
             }
 
             android {
@@ -26,6 +27,7 @@ class FirebaseConventionPlugin : Plugin<Project> {
                 implementationPlatform(libs.library("firebase-bom"))
                 implementation(libs.library("firebase-common"))
                 implementation(libs.library("firebase-analytics"))
+                implementation(libs.library("firebase-crashlytics"))
             }
         }
     }

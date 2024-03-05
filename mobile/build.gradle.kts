@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kspPlugin) apply false
     alias(libs.plugins.dependencyGuardPlugin) apply false
     alias(libs.plugins.roborazziPlugin) apply false
+    alias(libs.plugins.crashlyticsPlugin) apply false
 }
 
 tasks.register("clean", Delete::class) {
