@@ -3,6 +3,7 @@
 agp = "8.3.0"
 kotlin = "1.9.22"
 gms = "4.4.1"
+crashlytics = "2.9.9"
 ksp = "1.9.22-1.0.18"
 jetbrain-compose = "1.6.0"
 dependencyguard = "0.5.0"
@@ -50,6 +51,7 @@ kotlinPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", 
 jetbrainCompoesPlugin = { group = "org.jetbrains.compose", name = "compose-gradle-plugin", version.ref = "jetbrain-compose" }
 kspPlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 gmsPlugin = { group = "com.google.gms", name = "google-services", version.ref = "gms" }
+crashlyticsPlugin = { group = "com.google.firebase", name = "firebase-crashlytics-gradle", version.ref = "crashlytics" }
 detektPlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 kotlinSerializationPlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
 roborazziGradlePlugin = { group = "io.github.takahirom.roborazzi", name = "roborazzi-gradle-plugin", version.ref = "roborazzi" }
@@ -91,6 +93,7 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 firebase-common = { module = "com.google.firebase:firebase-common" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 
 # supabase
 supabase-db = { group = "io.github.jan-tennert.supabase", name = "postgrest-kt", version.ref = "supabase" }
@@ -140,6 +143,7 @@ androidGradlePlugin = { id = "com.android.application", version.ref = "agp" }
 androidGradleLibraryPlugin = { id = "com.android.library", version.ref = "agp" }
 kotlinPlugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 gmsPlugin = { id = "com.google.gms.google-services", version.ref = "gms" }
+crashlyticsPlugin = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 detektPlugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlinSerializationPlugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
@@ -168,4 +172,5 @@ plugins = [
     "gmsPlugin",
     'detektPlugin',
     "kotlinSerializationPlugin",
+    "crashlyticsPlugin",
 ]
