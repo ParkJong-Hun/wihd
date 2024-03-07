@@ -6,10 +6,11 @@ import io.github.jan.supabase.gotrue.user.UserInfo
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import timber.log.Timber
 
 interface RemoteDataSource {
     val currentUser: Flow<UserInfo?>
-    suspend fun login(): Unit?
+    suspend fun login()
     suspend fun logout()
 }
 
@@ -26,7 +27,15 @@ internal class RemoteDataSourceImpl(
         }
     }
 
-    override suspend fun login(): Unit? = supabaseDao.signInWithGithub()
+    override suspend fun login() {
+        runCatching {
+            supabaseDao.signInWithGithub()
+        }.onSuccess {
+            firebaseDao.logLogin()
+        }.onFailure {
+            Timber.e(it.stackTraceToString())
+        }
+    }
 
     override suspend fun logout() = supabaseDao.signOut()
 }
