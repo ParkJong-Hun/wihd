@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId = "co.kr.parkjonghun.whatishedoingwithandroid.mobile"
         versionCode = 1
-        versionName = "0.2.0"
+        versionName = "0.2.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
