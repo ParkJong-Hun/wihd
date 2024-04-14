@@ -35,9 +35,6 @@ commands:
             cd mobile
             gem install bundler
             sudo bundle install
-            echo $CIRCLE_PR_NUMBER
-            echo $CI_PULL_REQUEST
-            echo $CIRCLE_PULL_REQUEST
 
   run_danger:
     steps:
@@ -45,7 +42,7 @@ commands:
           name: Run Danger
           command: |
             cd mobile
-            sudo bundle exec danger --dangerfile=Dangerfile --fail-on-errors=true
+            sudo bundle exec danger --dangerfile="Dangerfile" --fail-on-errors=true --verbose
 
 jobs:
   lint:
