@@ -26,10 +26,10 @@ commands:
             cd mobile
             ./gradlew <<parameters.task>> --no-daemon
 
-  provision_danger:
+  provision_for_danger:
     steps:
       - run:
-          name: Provision Danger
+          name: Provision for Danger
           command: |
             gem install bundler
             bundle install
@@ -46,7 +46,7 @@ jobs:
     <<: *android
     steps:
       - checkout
-      - provision_danger
+      - provision_for_danger
       - gradle:
           title: Lint check
           task: :app:lint
