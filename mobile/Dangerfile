@@ -1,4 +1,4 @@
-github_dismiss_out_of_range_messages
+github.dismiss_out_of_range_messages
 
 warn("A pull request must have some assignees") if github.pr_json["assignee"].nil?
 
