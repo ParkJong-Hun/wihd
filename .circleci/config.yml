@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   android: circleci/android@2.3.0
+  ruby: circleci/ruby@2.1.0
 
 machines:
   android: &android
@@ -28,12 +29,16 @@ commands:
 
   provision_for_danger:
     steps:
+      - ruby/install:
+          version: $(cat mobile/.ruby-version)
       - run:
           name: Provision for Danger
           command: |
             cd mobile
+            ruby -v
             gem install bundler
             bundle install
+            cat Gemfile.lock
 
   run_danger:
     steps:
