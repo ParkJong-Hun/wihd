@@ -31,6 +31,7 @@ class KotlinConventionPlugin : Plugin<Project> {
                 implementation(libs.library("kotlinx-datetime"))
                 api(libs.library("kotlinx-collections-immutable"))
                 testImplementation(libs.library("kotlinx-coroutines-test"))
+                testImplementation(libs.library("kotlin-test"))
             }
         }
     }
