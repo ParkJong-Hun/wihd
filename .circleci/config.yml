@@ -33,6 +33,7 @@ commands:
           name: Provision for Danger
           command: |
             cd mobile
+            gem update --system
             gem install bundler
             bundle install
             cat Gemfile.lock
