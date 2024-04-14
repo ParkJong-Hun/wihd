@@ -36,6 +36,7 @@ commands:
           command: |
             cd mobile
             ruby -v
+            gem update --system
             gem install bundler
             bundle install
             cat Gemfile.lock
