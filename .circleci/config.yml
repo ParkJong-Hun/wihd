@@ -42,7 +42,7 @@ commands:
           name: Run Danger
           command: |
             cd mobile
-            bundle exec danger --dangerfile=Dangerfile --fail-on-errors=true
+            sudo bundle exec danger --dangerfile=Dangerfile --fail-on-errors=true
 
 jobs:
   lint:
