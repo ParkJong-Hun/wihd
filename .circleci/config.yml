@@ -34,8 +34,7 @@ commands:
           command: |
             cd mobile
             gem install bundler
-            bundle install
-            cat Gemfile.lock
+            sudo bundle install
 
   run_danger:
     steps:
