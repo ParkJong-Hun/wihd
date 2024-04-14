@@ -34,6 +34,9 @@ fun Project.setupAndroid() {
             targetCompatibility = JavaVersion.VERSION_17
         }
         testOptions {
+            unitTests.all {
+                it.useJUnitPlatform()
+            }
             unitTests {
                 isIncludeAndroidResources = true
                 isReturnDefaultValues = true

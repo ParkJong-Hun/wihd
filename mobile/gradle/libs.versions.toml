@@ -82,6 +82,9 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 # junit
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 
+# kotlin
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+
 # kotlinx
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-core" }
