@@ -30,6 +30,7 @@ commands:
       - run:
           name: Provision for Danger
           command: |
+            cd mobile
             gem install bundler
             sudo bundle install
 
@@ -41,6 +42,7 @@ commands:
       - run:
           name: Run Danger
           command: |
+            cd mobile
             bundle exec danger --dangerfile="<<parameters.dangerfile>>" --fail-on-errors=true
 
 jobs:
