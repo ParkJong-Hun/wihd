@@ -16,6 +16,6 @@ Dir.glob("**/detekt.xml") do |file|
   checkstyle_format.report file
 end
 
-if status_report[:warning].empty?
+if status_report[:warnings].empty?
     markdown("This PR is clean!")
 end
