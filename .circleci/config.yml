@@ -46,12 +46,12 @@ jobs:
     steps:
       - checkout
       - provision_for_danger
-      #      - gradle:
-      #          title: Lint check
-      #          task: :app:lint
-      #      - gradle:
-      #          title: Detekt
-      #          task: detekt
+      - gradle:
+          title: Lint check
+          task: :app:lint
+      - gradle:
+          title: Detekt
+          task: detekt
       - run_danger
 
   unit_test:
@@ -76,7 +76,7 @@ workflows:
           filters:
             branches:
               only:
-                - /master\/.*/
+                - master
                 - /renovate\/.*/
                 - /pull\/.*/
                 - /develop\/.*/
@@ -84,7 +84,7 @@ workflows:
           filters:
             branches:
               only:
-                - /master\/.*/
+                - master
                 - /renovate\/.*/
                 - /pull\/.*/
                 - /develop\/.*/
