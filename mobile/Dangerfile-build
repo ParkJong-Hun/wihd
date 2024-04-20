@@ -1,0 +1,5 @@
+# Compiler metrics
+Dir.glob('**/compose_compiler_metrics').each do |report_dir|
+  next if report_dir.include?("vendor/bundle")
+  compose_compiler_metrics.report(report_dir)
+end

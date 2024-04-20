@@ -34,11 +34,14 @@ commands:
             sudo bundle install
 
   run_danger:
+    parameters:
+      dangerfile:
+        type: string
     steps:
       - run:
           name: Run Danger
           command: |
-            bundle exec danger --dangerfile="Dangerfile" --fail-on-errors=true
+            bundle exec danger --dangerfile="<<parameters.dangerfile>>" --fail-on-errors=true
 
 jobs:
   lint:
@@ -52,7 +55,8 @@ jobs:
       - gradle:
           title: Detekt
           task: detekt
-      - run_danger
+      - run_danger:
+          dangerfile: Dangerfile
 
   unit_test:
     <<: *android
@@ -67,7 +71,9 @@ jobs:
       - checkout
       - gradle:
           title: Build
-          task: assembleRelease
+          task: assembleRelease -PcomposeCompilerMetrics=true -PcomposeCompilerReports=true
+      - run_danger:
+          dangerfile: Dangerfile-build
 
 workflows:
   ci:
@@ -88,13 +94,12 @@ workflows:
                 - /renovate\/.*/
                 - /pull\/.*/
                 - /develop\/.*/
-#      - build:
-#          requires:
-#            - lint
-#          filters:
-#            branches:
-#              only:
-#                - /master\/.*/
-#                - /renovate\/.*/
-#                - /pull\/.*/
-#                - /develop\/.*/
+      - build:
+          requires:
+            - lint
+            - unit_test
+          filters:
+            branches:
+              only:
+                - master
+                - /develop\/.*/
