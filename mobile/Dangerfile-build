@@ -1,5 +1,5 @@
 # Compiler metrics
-Dir.glob('**/compose_compiler_metrics').reject { |path| path.start_with?('app-component-catalog/') }.each do |report_dir|
-  next if report_dir.include?("vendor/bundle")
+Dir.glob('**/compose_compiler_metrics').each do |report_dir|
+  next if report_dir.include?("vendor/bundle") || report_dir.start_with?("app-component-catalog/build/")
   compose_compiler_metrics.report(report_dir)
 end
