@@ -21,8 +21,6 @@ commands:
     steps:
       - run:
           name: <<parameters.title>>
-          # FIXME: I want to change run command on mobile directory.
-          # Working directory: ~/project/mobile
           command: |
             cd mobile
             ./gradlew <<parameters.task>> --no-daemon
