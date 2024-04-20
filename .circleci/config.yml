@@ -39,6 +39,7 @@ commands:
       dangerfile:
         type: string
     steps:
+      - provision_for_danger
       - run:
           name: Run Danger
           command: |
@@ -50,7 +51,6 @@ jobs:
     <<: *android
     steps:
       - checkout
-      - provision_for_danger
       - gradle:
           title: Lint check
           task: :app:lint
