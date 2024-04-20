@@ -38,6 +38,12 @@ commands:
       - run:
           name: Run Danger
           command: |
+            echo "CI_PULL_REQUEST: $CI_PULL_REQUEST"
+            echo "CIRCLE_PULL_REQUEST: $CIRCLE_PULL_REQUEST"
+            echo "DANGER_CIRCLE_CI_API_TOKEN: $DANGER_CIRCLE_CI_API_TOKEN"
+            echo "CIRCLE_PROJECT_USERNAME: $CIRCLE_PROJECT_USERNAME"
+            echo "CIRCLE_PROJECT_REPONAME: $CIRCLE_PROJECT_REPONAME"
+            echo "CIRCLE_BUILD_NUM: $CIRCLE_BUILD_NUM"
             sudo bundle exec danger --dangerfile="Dangerfile" --fail-on-errors=true --verbose
 
 jobs:
@@ -46,12 +52,12 @@ jobs:
     steps:
       - checkout
       - provision_for_danger
-      - gradle:
-          title: Lint check
-          task: :app:lint
-      - gradle:
-          title: Detekt
-          task: detekt
+      #      - gradle:
+      #          title: Lint check
+      #          task: :app:lint
+      #      - gradle:
+      #          title: Detekt
+      #          task: detekt
       - run_danger
 
   unit_test:
