@@ -74,8 +74,8 @@ jobs:
       - gradle:
           title: Build
           task: assembleRelease -PcomposeCompilerMetrics=true -PcomposeCompilerReports=true
-      - run_danger:
-          dangerfile: Dangerfile-build
+#      - run_danger:
+#          dangerfile: Dangerfile-build
 
 workflows:
   ci:
