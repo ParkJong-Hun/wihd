@@ -204,7 +204,7 @@ private fun Catalog() {
                         catalogItem(title = "Image") {
                             CatalogRow(title = "WihdImage") {
                                 WihdImage(
-                                    painter = painterResource(id = R.drawable.main_logo_1280x),
+                                    painter = painterResource(id = R.drawable.drawable_hello),
                                     contentDescription = "WihdImage",
                                 )
                             }
