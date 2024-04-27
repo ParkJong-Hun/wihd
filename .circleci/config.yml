@@ -28,6 +28,7 @@ commands:
         default: -Proborazzi.test.compare=true
         type: string
       vrt-option:
+        default: ""
         type: string
     steps:
       - run:
@@ -291,7 +292,6 @@ jobs:
       - gradle:
           title: Lint check
           task: :app:lint
-          vrt-option: ""
       - gradle:
           title: Detekt
           task: detekt
