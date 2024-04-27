@@ -34,6 +34,7 @@ commands:
       - run:
           name: <<parameters.title>>
           command: |
+            cd mobile
             ./gradlew <<parameters.task>> <<parameters.options>> <<parameters.default-vrt-option>> <<parameters.vrt-option>>
 
   check_is_pr:
