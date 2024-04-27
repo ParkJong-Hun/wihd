@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.wihd.library)
+    alias(libs.plugins.wihd.kotlin)
     alias(libs.plugins.wihd.compose)
     alias(libs.plugins.wihd.detekt)
     alias(libs.plugins.wihd.test)

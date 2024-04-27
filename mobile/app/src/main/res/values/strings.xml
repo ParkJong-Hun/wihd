@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WIHD</string>
+    <string name="app_name">Bottofly</string>
     <string name="title_core">core</string>
     <string name="auth_error_description">Authentication failed.\nPlease try again.</string>
     <string name="auth_error_ok">OK</string>
