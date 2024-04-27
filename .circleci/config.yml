@@ -291,6 +291,7 @@ jobs:
       - gradle:
           title: Lint check
           task: :app:lint
+          vrt-option: ""
       - gradle:
           title: Detekt
           task: detekt
