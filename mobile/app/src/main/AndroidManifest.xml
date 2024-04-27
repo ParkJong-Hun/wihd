@@ -11,10 +11,9 @@
         android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/main_logo_1280x"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:launchMode="singleTask"
-        android:roundIcon="@drawable/main_logo_1280x_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mobile.Splash"
         tools:targetApi="34">
