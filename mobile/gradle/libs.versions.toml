@@ -81,6 +81,7 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 
 # junit
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+junit-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junit" }
 
 # kotlin
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
