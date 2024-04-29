@@ -247,7 +247,7 @@ commands:
     parameters:
       maximum_seconds_past:
         type: integer
-        default: 1209600 # 14 days (industry standard agile sprint)
+        default: 2592000 # 1 month
     steps:
       - run:
           name: Cleanup branches
