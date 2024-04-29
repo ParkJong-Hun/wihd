@@ -1,6 +1,7 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.Button
@@ -10,6 +11,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.SeedColors
 
 @Composable
 fun PrimaryFilledButton(
@@ -90,8 +92,7 @@ fun LinkButton(
         modifier = modifier,
         enabled = enabled,
         colors = ButtonDefaults.textButtonColors(
-// TODO
-//            contentColor = if (isSystemInDarkTheme()) dark_linkBlue else light_linkBlue,
+            contentColor = if (isSystemInDarkTheme()) SeedColors.Other.LinkLight else SeedColors.Other.LinkDark,
         ),
         contentPadding = contentPadding,
         interactionSource = interactionSource,

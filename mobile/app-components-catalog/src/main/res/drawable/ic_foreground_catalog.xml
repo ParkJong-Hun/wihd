@@ -2,6 +2,6 @@
     <item
         android:width="48dp"
         android:height="48dp"
-        android:drawable="@drawable/drawable_stand"
+        android:drawable="@drawable/drawable_stand_catalog"
         android:gravity="center" />
 </layer-list>
