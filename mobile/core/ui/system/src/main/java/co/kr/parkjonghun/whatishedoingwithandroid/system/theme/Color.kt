@@ -102,8 +102,8 @@ internal val OutlineVariantLight = SeedColors.Black.DarkGrayLight
 internal val ScrimLight = SeedColors.Black.Light
 
 // Dark
-internal val PrimaryDark = SeedColors.Black.Dark
-internal val OnPrimaryDark = SeedColors.White.Dark
+internal val PrimaryDark = SeedColors.White.Dark
+internal val OnPrimaryDark = SeedColors.Black.Dark
 internal val PrimaryContainerDark = SeedColors.White.FadeDark
 internal val OnPrimaryContainerDark = SeedColors.Black.Dark
 internal val InversePrimaryDark = SeedColors.White.FadeDark
