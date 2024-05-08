@@ -1,0 +1,22 @@
+name: Bot CircleCI Trigger
+
+on:
+  push:
+    branches:
+      - "renovate/**"
+    workflows_dispatch:
+
+jobs:
+  trigger-circleci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger
+        run: |
+          post() {
+            [ "$(curl -s -w '%{http_code}' -o /dev/stderr -X POST "$@")" = 201 ]
+          }
+
+          post https://circleci.com/api/v2/project/github/ParkJong-Hun/wihd/pipeline \
+            --header "Content-Type: application/json" \
+            --header "Circle-Token: ${{ secrets.CIRCLE_CI_TOKEN }}" \
+            --data "{\"branch\": \"${{ github.ref_name }}\"}"
