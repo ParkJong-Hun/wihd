@@ -15,8 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import co.kr.parkjonghun.whatishedoingwithandroid.system.extension.clickableWithoutRipple
-import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.dark_linkBlue
-import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.light_linkBlue
+import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.SeedColors
 
 @Composable
 fun WihdText(
@@ -108,7 +107,7 @@ fun LinkText(
         text = text,
         style = style,
         modifier = modifier.clickableWithoutRipple { uriHandler.openUri(url) },
-        color = if (isSystemInDarkTheme()) dark_linkBlue else light_linkBlue,
+        color = if (isSystemInDarkTheme()) SeedColors.Other.LinkLight else SeedColors.Other.LinkDark,
         fontStyle = fontStyle,
         fontFamily = fontFamily,
         textDecoration = textDecoration,

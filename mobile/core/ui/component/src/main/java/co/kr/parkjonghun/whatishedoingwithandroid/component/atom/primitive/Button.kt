@@ -11,8 +11,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.dark_linkBlue
-import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.light_linkBlue
+import co.kr.parkjonghun.whatishedoingwithandroid.system.theme.SeedColors
 
 @Composable
 fun PrimaryFilledButton(
@@ -93,7 +92,7 @@ fun LinkButton(
         modifier = modifier,
         enabled = enabled,
         colors = ButtonDefaults.textButtonColors(
-            contentColor = if (isSystemInDarkTheme()) dark_linkBlue else light_linkBlue,
+            contentColor = if (isSystemInDarkTheme()) SeedColors.Other.LinkLight else SeedColors.Other.LinkDark,
         ),
         contentPadding = contentPadding,
         interactionSource = interactionSource,

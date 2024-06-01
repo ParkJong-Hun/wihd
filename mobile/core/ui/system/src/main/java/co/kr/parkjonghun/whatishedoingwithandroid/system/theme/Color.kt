@@ -1,74 +1,147 @@
 package co.kr.parkjonghun.whatishedoingwithandroid.system.theme
 
-import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 
-val md_theme_light_primary = Color(0xFFAE320A)
-val md_theme_light_onPrimary = Color(0xFFFFFFFF)
-val md_theme_light_primaryContainer = Color(0xFFFFDBD1)
-val md_theme_light_onPrimaryContainer = Color(0xFF3B0900)
-val md_theme_light_secondary = Color(0xFF77574E)
-val md_theme_light_onSecondary = Color(0xFFFFFFFF)
-val md_theme_light_secondaryContainer = Color(0xFFFFDBD1)
-val md_theme_light_onSecondaryContainer = Color(0xFF2C150F)
-val md_theme_light_tertiary = Color(0xFF6C5D2F)
-val md_theme_light_onTertiary = Color(0xFFFFFFFF)
-val md_theme_light_tertiaryContainer = Color(0xFFF6E1A6)
-val md_theme_light_onTertiaryContainer = Color(0xFF231B00)
-val md_theme_light_error = Color(0xFFBA1A1A)
-val md_theme_light_errorContainer = Color(0xFFFFDAD6)
-val md_theme_light_onError = Color(0xFFFFFFFF)
-val md_theme_light_onErrorContainer = Color(0xFF410002)
-val md_theme_light_background = Color(0xFFFFFBFF)
-val md_theme_light_onBackground = Color(0xFF201A19)
-val md_theme_light_surface = Color(0xFFFFFBFF)
-val md_theme_light_onSurface = Color(0xFF201A19)
-val md_theme_light_surfaceVariant = Color(0xFFF5DED8)
-val md_theme_light_onSurfaceVariant = Color(0xFF53433F)
-val md_theme_light_outline = Color(0xFF85736E)
-val md_theme_light_inverseOnSurface = Color(0xFFFBEEEB)
-val md_theme_light_inverseSurface = Color(0xFF362F2D)
-val md_theme_light_inversePrimary = Color(0xFFFFB5A0)
-val md_theme_light_shadow = Color(0xFF000000)
-val md_theme_light_surfaceTint = Color(0xFFAE320A)
-val md_theme_light_outlineVariant = Color(0xFFD8C2BC)
-val md_theme_light_scrim = Color(0xFF000000)
+object SeedColors {
+    object Mascot {
+        val Light = Color(0xFF5698D2)
+        val Dark = Color(0xFF5698D2)
 
-val md_theme_dark_primary = Color(0xFFFFB5A0)
-val md_theme_dark_onPrimary = Color(0xFF601400)
-val md_theme_dark_primaryContainer = Color(0xFF872000)
-val md_theme_dark_onPrimaryContainer = Color(0xFFFFDBD1)
-val md_theme_dark_secondary = Color(0xFFE7BDB2)
-val md_theme_dark_onSecondary = Color(0xFF442A22)
-val md_theme_dark_secondaryContainer = Color(0xFF5D4038)
-val md_theme_dark_onSecondaryContainer = Color(0xFFFFDBD1)
-val md_theme_dark_tertiary = Color(0xFFD9C58D)
-val md_theme_dark_onTertiary = Color(0xFF3B2F05)
-val md_theme_dark_tertiaryContainer = Color(0xFF534619)
-val md_theme_dark_onTertiaryContainer = Color(0xFFF6E1A6)
-val md_theme_dark_error = Color(0xFFFFB4AB)
-val md_theme_dark_errorContainer = Color(0xFF93000A)
-val md_theme_dark_onError = Color(0xFF690005)
-val md_theme_dark_onErrorContainer = Color(0xFFFFDAD6)
-val md_theme_dark_background = Color(0xFF201A19)
-val md_theme_dark_onBackground = Color(0xFFEDE0DD)
-val md_theme_dark_surface = Color(0xFF201A19)
-val md_theme_dark_onSurface = Color(0xFFEDE0DD)
-val md_theme_dark_surfaceVariant = Color(0xFF53433F)
-val md_theme_dark_onSurfaceVariant = Color(0xFFD8C2BC)
-val md_theme_dark_outline = Color(0xFFA08C87)
-val md_theme_dark_inverseOnSurface = Color(0xFF201A19)
-val md_theme_dark_inverseSurface = Color(0xFFEDE0DD)
-val md_theme_dark_inversePrimary = Color(0xFFAE320A)
-val md_theme_dark_shadow = Color(0xFF000000)
-val md_theme_dark_surfaceTint = Color(0xFFFFB5A0)
-val md_theme_dark_outlineVariant = Color(0xFF53433F)
-val md_theme_dark_scrim = Color(0xFF000000)
+        val SecondLight = Color(0xFF2163AF)
+        val SecondDark = Color(0xFF2163AF)
 
-val seed = Color(0xFFD04A23)
+        val ThirdLight = Color(0xFF205378)
+        val ThirdDark = Color(0xFF205378)
 
-@Stable
-val light_linkBlue get() = Color(0xFF0C43B7)
+        object Extensive {
+            val BrightLight = Color(0xFF9FBCD5)
+            val BrightDark = Color(0xFF252F38)
 
-@Stable
-val dark_linkBlue get() = Color(0xFF267EF7)
+            val DuskLight = Color(0xFF0D2130)
+            val DuskDark = Color(0xFF3B9EE6)
+        }
+    }
+
+    object White {
+        val FadeLight = Color(0xFFFCFCFC)
+        val FadeDark = Color(0xFF000000)
+
+        val Light = Color(0xFFFFFFFF)
+        val Dark = Color(0xFF171719)
+
+        val FrontLight = Color(0xFFE4E4F7)
+        val FrontDark = Color(0xFF242427)
+    }
+
+    object Black {
+        val Light = Color(0xFF000000)
+        val Dark = Color(0xFFFFFFFF)
+
+        val DarkGrayLight = Color(0xFF333333)
+        val DarkGrayDark = Color(0xFFCCCCCC)
+
+        val GrayLight = Color(0xFFA6A6A6)
+        val GrayDark = Color(0xFF78777B)
+    }
+
+    object Other {
+        val LinkLight = Color(0xFF0C43B7)
+        val LinkDark = Color(0xFF267EF7)
+
+        val WarnLight = Color(0xFFE0A825)
+        val WarnDark = Color(0xFFA88A25)
+
+        val ErrorLight = Color(0xFFE02525)
+        val ErrorDark = Color(0xFFA82525)
+    }
+}
+
+// Light
+internal val PrimaryLight = SeedColors.Black.Light
+internal val OnPrimaryLight = SeedColors.White.Light
+internal val PrimaryContainerLight = SeedColors.White.FadeLight
+internal val OnPrimaryContainerLight = SeedColors.Black.Light
+internal val InversePrimaryLight = SeedColors.White.FadeLight
+
+internal val SecondaryLight = SeedColors.Black.DarkGrayLight
+internal val OnSecondaryLight = SeedColors.White.Light
+internal val SecondaryContainerLight = SeedColors.White.Light
+internal val OnSecondaryContainerLight = SeedColors.Black.DarkGrayLight
+
+internal val TertiaryLight = SeedColors.Mascot.Extensive.DuskLight
+internal val OnTertiaryLight = SeedColors.White.Light
+internal val TertiaryContainerLight = SeedColors.White.FrontLight
+internal val OnTertiaryContainerLight = SeedColors.Mascot.Extensive.BrightLight
+
+internal val BackgroundLight = SeedColors.White.Light
+internal val OnBackgroundLight = SeedColors.Black.Light
+
+internal val SurfaceLight = SeedColors.White.FadeLight
+internal val OnSurfaceLight = SeedColors.Black.Light
+internal val SurfaceVariantLight = SeedColors.White.FadeLight
+internal val OnSurfaceVariantLight = SeedColors.Black.Light
+internal val InverseSurfaceLight = SeedColors.Black.Light
+internal val InverseOnSurfaceLight = SeedColors.White.Light
+internal val SurfaceBrightLight = SeedColors.White.FadeLight
+internal val SurfaceContainerLight = SeedColors.White.FadeLight
+internal val SurfaceContainerHighLight = SeedColors.White.FrontLight
+internal val SurfaceContainerHighestLight = SeedColors.White.FrontLight
+internal val SurfaceContainerLowLight = SeedColors.White.Light
+internal val SurfaceContainerLowestLight = SeedColors.White.Light
+internal val SurfaceDimLight = SeedColors.White.FrontLight
+internal val SurfaceTintLight = SeedColors.White.FrontLight
+
+internal val ErrorLight = SeedColors.Other.ErrorLight
+internal val OnErrorLight = SeedColors.White.Light
+internal val ErrorContainerLight = SeedColors.White.Light
+internal val OnErrorContainerLight = SeedColors.Other.ErrorLight
+
+internal val OutlineLight = SeedColors.Black.GrayLight
+internal val OutlineVariantLight = SeedColors.Black.DarkGrayLight
+
+internal val ScrimLight = SeedColors.Black.Light
+
+// Dark
+internal val PrimaryDark = SeedColors.White.Dark
+internal val OnPrimaryDark = SeedColors.Black.Dark
+internal val PrimaryContainerDark = SeedColors.White.FadeDark
+internal val OnPrimaryContainerDark = SeedColors.Black.Dark
+internal val InversePrimaryDark = SeedColors.White.FadeDark
+
+internal val SecondaryDark = SeedColors.Black.DarkGrayDark
+internal val OnSecondaryDark = SeedColors.White.Dark
+internal val SecondaryContainerDark = SeedColors.White.Dark
+internal val OnSecondaryContainerDark = SeedColors.Black.DarkGrayDark
+
+internal val TertiaryDark = SeedColors.Mascot.Extensive.DuskDark
+internal val OnTertiaryDark = SeedColors.White.Dark
+internal val TertiaryContainerDark = SeedColors.White.FrontDark
+internal val OnTertiaryContainerDark = SeedColors.Mascot.Extensive.BrightDark
+
+internal val BackgroundDark = SeedColors.White.Dark
+internal val OnBackgroundDark = SeedColors.Black.Dark
+
+internal val SurfaceDark = SeedColors.White.FadeDark
+internal val OnSurfaceDark = SeedColors.Black.Dark
+internal val SurfaceVariantDark = SeedColors.White.FadeDark
+internal val OnSurfaceVariantDark = SeedColors.Black.Dark
+internal val InverseSurfaceDark = SeedColors.Black.Dark
+internal val InverseOnSurfaceDark = SeedColors.White.Dark
+internal val SurfaceBrightDark = SeedColors.White.FadeDark
+internal val SurfaceContainerDark = SeedColors.White.FadeDark
+internal val SurfaceContainerHighDark = SeedColors.White.FrontDark
+internal val SurfaceContainerHighestDark = SeedColors.White.FrontDark
+internal val SurfaceContainerLowDark = SeedColors.White.Dark
+internal val SurfaceContainerLowestDark = SeedColors.White.Dark
+internal val SurfaceDimDark = SeedColors.White.FrontDark
+internal val SurfaceTintDark = SeedColors.White.FrontDark
+
+internal val ErrorDark = SeedColors.Other.ErrorDark
+internal val OnErrorDark = SeedColors.White.Dark
+internal val ErrorContainerDark = SeedColors.White.Dark
+internal val OnErrorContainerDark = SeedColors.Other.ErrorDark
+
+internal val OutlineDark = SeedColors.Black.GrayDark
+internal val OutlineVariantDark = SeedColors.Black.DarkGrayDark
+
+internal val ScrimDark = SeedColors.Black.Dark

@@ -25,7 +25,7 @@ commands:
         type: string
       # DO NOT TOUCH THIS
       default-vrt-option:
-        default: -Proborazzi.test.compare=true
+        default: -Proborazzi.test.record=true
         type: string
       vrt-option:
         default: ""
@@ -247,7 +247,7 @@ commands:
     parameters:
       maximum_seconds_past:
         type: integer
-        default: 1209600 # 14 days (industry standard agile sprint)
+        default: 2592000 # 1 month
     steps:
       - run:
           name: Cleanup branches

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,6 +21,9 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -30,7 +34,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import co.kr.parkjonghun.whatishedoingwithandroid.component.atom.primitive.IndicatorBar
@@ -71,28 +77,28 @@ private fun Catalog() {
     var onOff by remember { mutableStateOf(false) }
     var currentProgress by remember { mutableIntStateOf(0) }
     var loading by remember { mutableStateOf(false) }
-    MobileTheme {
+    var darkMode by remember { mutableStateOf(false) }
+    MobileTheme(
+        useDarkTheme = darkMode,
+    ) {
         Surface {
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = WindowInsets
-                    .systemBars
-                    .add(
-                        WindowInsets(
-                            left = beautifulSize,
-                            top = beautifulSize,
-                            right = beautifulSize,
-                            bottom = beautifulSize,
-                        ),
-                    )
-                    .asPaddingValues(),
+                contentPadding = WindowInsets.systemBars.add(
+                    WindowInsets(
+                        left = beautifulSize,
+                        top = beautifulSize,
+                        right = beautifulSize,
+                        bottom = beautifulSize,
+                    ),
+                ).asPaddingValues(),
                 verticalArrangement = Arrangement.spacedBy(beautifulSize),
             ) {
                 catalogHeadline(
+                    darkMode = darkMode,
                     displayComponentType = displayComponentType,
-                    onClickChip = { component ->
-                        displayComponentType = component
-                    },
+                    onClickChip = { component -> displayComponentType = component },
+                    onClickDarkModeIcon = { darkMode = !darkMode },
                 )
                 when (displayComponentType) {
                     ComponentType.Atom -> {
@@ -204,7 +210,7 @@ private fun Catalog() {
                         catalogItem(title = "Image") {
                             CatalogRow(title = "WihdImage") {
                                 WihdImage(
-                                    painter = painterResource(id = R.drawable.drawable_hello),
+                                    painter = painterResource(id = R.drawable.drawable_hello_catalog),
                                     contentDescription = "WihdImage",
                                 )
                             }
@@ -298,15 +304,31 @@ private fun Catalog() {
 
 private fun LazyListScope.catalogHeadline(
     displayComponentType: ComponentType,
+    darkMode: Boolean,
     onClickChip: (ComponentType) -> Unit,
+    onClickDarkModeIcon: () -> Unit,
 ) {
     item {
         Column {
-            WihdText(
-                text = "WIHD Catalog",
-                style = WihdTextStyle.D3,
-                color = MaterialTheme.colorScheme.primary,
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+                WihdText(
+                    text = "WIHD Catalog",
+                    style = WihdTextStyle.D3,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+                Icon(
+                    imageVector = Icons.Filled.Settings,
+                    contentDescription = "Use Dark Mode",
+                    modifier = Modifier
+                        .size(48.dp)
+                        .clickable(onClick = onClickDarkModeIcon),
+                    tint = if (darkMode) Color.Yellow else Color.DarkGray,
+                )
+            }
             Spacer(modifier = Modifier.height(16.dp))
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -340,10 +362,7 @@ private fun LazyListScope.catalogHeadline(
 }
 
 private enum class ComponentType {
-    Atom,
-    Molecule,
-    Organism,
-    Template,
+    Atom, Molecule, Organism, Template,
 }
 
 private fun LazyListScope.catalogItem(
