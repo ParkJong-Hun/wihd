@@ -152,6 +152,7 @@ commands:
               fi
             done
             
+            rm -f timestamp
             echo $(date +%s) > timestamp
             git add -f timestamp
             
