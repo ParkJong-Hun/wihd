@@ -332,14 +332,12 @@ workflows:
             branches:
               only:
                 - master
-                - /pull\/.*/
                 - /develop\/.*/
       - unit_test:
           filters:
             branches:
               only:
                 - master
-                - /pull\/.*/
                 - /develop\/.*/
       - build:
           requires:
