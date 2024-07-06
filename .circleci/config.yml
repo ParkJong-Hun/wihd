@@ -332,7 +332,6 @@ workflows:
             branches:
               only:
                 - master
-                - /renovate\/.*/
                 - /pull\/.*/
                 - /develop\/.*/
       - unit_test:
@@ -340,7 +339,6 @@ workflows:
             branches:
               only:
                 - master
-                - /renovate\/.*/
                 - /pull\/.*/
                 - /develop\/.*/
       - build:
