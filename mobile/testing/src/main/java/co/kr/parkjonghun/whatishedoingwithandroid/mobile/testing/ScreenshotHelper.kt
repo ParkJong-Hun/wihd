@@ -118,7 +118,7 @@ fun <A : ComponentActivity> AndroidComposeTestRule<ActivityScenarioRule<A>, A>.c
         this.onRoot()
             .captureRoboImage(
                 "build/outputs/roborazzi/" +
-                    "$name/$filename" +
+                    "${name}_$filename" +
                     "_$darkModeDesc" +
                     ".png",
                 roborazziOptions = DefaultRoborazziOptions,

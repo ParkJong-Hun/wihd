@@ -152,6 +152,7 @@ commands:
               fi
             done
             
+            rm -f timestamp
             echo $(date +%s) > timestamp
             git add -f timestamp
             
@@ -299,6 +300,17 @@ jobs:
       - run_danger:
           dangerfile: Dangerfile
 
+  lint-check-only:
+    <<: *android
+    steps:
+      - checkout
+      - gradle:
+          title: Lint check
+          task: :app:lint
+      - gradle:
+          title: Detekt
+          task: detekt
+
   unit_test:
     <<: *android
     steps:
@@ -332,23 +344,27 @@ workflows:
             branches:
               only:
                 - master
-                - /renovate\/.*/
-                - /pull\/.*/
                 - /develop\/.*/
       - unit_test:
           filters:
             branches:
               only:
                 - master
-                - /renovate\/.*/
-                - /pull\/.*/
                 - /develop\/.*/
-      - build:
-          requires:
-            - lint
-            - unit_test
+  #      - build:
+  #          requires:
+  #            - lint
+  #            - unit_test
+  #          filters:
+  #            branches:
+  #              only:
+  #                - master
+  #                - /develop\/.*/
+  ci-renovate:
+    jobs:
+      - lint-check-only:
           filters:
             branches:
               only:
-                - master
-                - /develop\/.*/
+                - /renovate\/.*/
+                - /pull\/.*/
