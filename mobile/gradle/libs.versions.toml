@@ -1,7 +1,7 @@
 [versions]
 # plugins
 agp = "8.5.1"
-kotlin = "1.9.24"
+kotlin = "2.0.0"
 gms = "4.4.2"
 crashlytics = "2.9.9"
 ksp = "2.0.0-1.0.24"
@@ -19,7 +19,6 @@ jetpack-junit = "1.2.1"
 jetpack-espresso-core = "3.6.1"
 jetpack-compose-bom = "2024.06.00"
 jetpack-compose = "1.6.8"
-jetpack-compose-compiler = "1.5.14"
 jetpack-compose-material3 = "1.2.1"
 jetpack-datastore-preferences = "1.1.1"
 junit = "4.13.2"
@@ -154,6 +153,7 @@ kotlinSerializationPlugin = { id = "org.jetbrains.kotlin.plugin.serialization", 
 kotlinParcelizePlugin = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 dependencyGuardPlugin = { id = "com.dropbox.dependency-guard", version.ref = "dependencyguard" }
 roborazziPlugin = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
+jetpackComposeCompilerPlugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 wihd-kotlin = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin", version = "unspecified" }
 wihd-android = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.android", version = "unspecified" }

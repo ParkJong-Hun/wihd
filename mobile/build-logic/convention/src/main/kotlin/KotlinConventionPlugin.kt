@@ -21,29 +21,29 @@ class KotlinConventionPlugin : Plugin<Project> {
                 kotlinOptions.jvmTarget = "17"
             }
 
-            android {
-                kotlinOptions {
-                    jvmTarget = JavaVersion.VERSION_17.toString()
-
-                    val metricsPath = "${project.buildDir.absolutePath}/compose_compiler_metrics"
-                    if (project.findProperty("composeCompilerMetrics") == "true") {
-                        freeCompilerArgs =
-                            listOf(
-                                *freeCompilerArgs.toTypedArray(),
-                                "-P",
-                                "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=$metricsPath",
-                            )
-                    }
-                    if (project.findProperty("composeCompilerReports") == "true") {
-                        freeCompilerArgs =
-                            listOf(
-                                *freeCompilerArgs.toTypedArray(),
-                                "-P",
-                                "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=$metricsPath",
-                            )
-                    }
-                }
-            }
+//            android {
+//                kotlinOptions {
+//                    jvmTarget = JavaVersion.VERSION_17.toString()
+//
+//                    val metricsPath = "${project.buildDir.absolutePath}/compose_compiler_metrics"
+//                    if (project.findProperty("composeCompilerMetrics") == "true") {
+//                        freeCompilerArgs =
+//                            listOf(
+//                                *freeCompilerArgs.toTypedArray(),
+//                                "-P",
+//                                "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=$metricsPath",
+//                            )
+//                    }
+//                    if (project.findProperty("composeCompilerReports") == "true") {
+//                        freeCompilerArgs =
+//                            listOf(
+//                                *freeCompilerArgs.toTypedArray(),
+//                                "-P",
+//                                "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=$metricsPath",
+//                            )
+//                    }
+//                }
+//            }
             dependencies {
                 implementation(libs.library("kotlinx-coroutines-core"))
                 implementation(libs.library("kotlinx-datetime"))
