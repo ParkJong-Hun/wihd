@@ -1,14 +1,12 @@
-import dsl.android
 import dsl.api
 import dsl.implementation
-import dsl.kotlinOptions
 import dsl.library
 import dsl.libs
 import dsl.testImplementation
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 @Suppress("unused")
 class KotlinConventionPlugin : Plugin<Project> {
@@ -17,8 +15,8 @@ class KotlinConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("org.jetbrains.kotlin.android")
             }
-            tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java) {
-                kotlinOptions.jvmTarget = "17"
+            tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile::class.java) {
+                compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
             }
 
 //            android {
