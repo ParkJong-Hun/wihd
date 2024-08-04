@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.dependencyGuardPlugin) apply false
     alias(libs.plugins.roborazziPlugin) apply false
     alias(libs.plugins.crashlyticsPlugin) apply false
+    alias(libs.plugins.jetpackComposeCompilerPlugin) apply false
 }
 
 tasks.register("clean", Delete::class) {

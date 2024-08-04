@@ -12,11 +12,8 @@ import org.gradle.kotlin.dsl.dependencies
 class ComposeConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            android {
-                buildFeatures.compose = true
-                composeOptions {
-                    kotlinCompilerExtensionVersion = libs.version("jetpack-compose-compiler")
-                }
+            with(pluginManager) {
+                apply("org.jetbrains.kotlin.plugin.compose")
             }
             dependencies {
                 implementation(platform(libs.library("jetpack-compose-bom")))
