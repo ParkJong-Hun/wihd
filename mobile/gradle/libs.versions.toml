@@ -1,10 +1,10 @@
 [versions]
 # plugins
-agp = "8.5.1"
-kotlin = "1.9.24"
+agp = "8.5.2"
+kotlin = "2.0.20"
 gms = "4.4.2"
 crashlytics = "2.9.9"
-ksp = "2.0.0-1.0.23"
+ksp = "2.0.20-1.0.24"
 jetbrain-compose = "1.6.11"
 dependencyguard = "0.5.0"
 
@@ -17,31 +17,30 @@ jetpack-core-splashscreen = "1.0.1"
 jetpack-navigation-compose = "2.8.0-beta06"
 jetpack-junit = "1.2.1"
 jetpack-espresso-core = "3.6.1"
-jetpack-compose-bom = "2024.06.00"
+jetpack-compose-bom = "2024.08.00"
 jetpack-compose = "1.6.8"
-jetpack-compose-compiler = "1.5.14"
 jetpack-compose-material3 = "1.2.1"
 jetpack-datastore-preferences = "1.1.1"
 junit = "4.13.2"
 kotlinx-coroutines-core = "1.8.1"
-kotlinx-datetime = "0.6.0"
+kotlinx-datetime = "0.6.1"
 kotlinx-collections-immutable = "0.3.7"
-firebase-bom = "33.1.2"
+firebase-bom = "33.2.0"
 koin = "3.5.6"
-annotation = "1.8.1"
+annotation = "1.8.2"
 appcompat = "1.7.0"
 material = "1.12.0"
 javapoet = "1.13.0"
 timber = "5.0.1"
 detekt = "1.23.6"
 twitter-compose-rules = "0.0.26"
-supabase = "2.5.3"
+supabase = "2.6.0-coil3"
 ktor = "2.3.12"
-serialization = "1.7.1"
+serialization = "1.7.2"
 mockk = "1.13.12"
 coil = "2.7.0"
 turbine = "1.1.0"
-roborazzi = "1.21.0"
+roborazzi = "1.26.0"
 robolectric = "4.13"
 accompanist = "0.34.0"
 
@@ -154,6 +153,7 @@ kotlinSerializationPlugin = { id = "org.jetbrains.kotlin.plugin.serialization", 
 kotlinParcelizePlugin = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 dependencyGuardPlugin = { id = "com.dropbox.dependency-guard", version.ref = "dependencyguard" }
 roborazziPlugin = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
+jetpackComposeCompilerPlugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 wihd-kotlin = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.kotlin", version = "unspecified" }
 wihd-android = { id = "parkjonghun.whatishedoingwithandroid.mobile.convention.android", version = "unspecified" }
