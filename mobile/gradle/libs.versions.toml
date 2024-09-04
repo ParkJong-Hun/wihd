@@ -1,6 +1,6 @@
 [versions]
 # plugins
-agp = "8.5.2"
+agp = "8.6.0"
 kotlin = "2.0.20"
 gms = "4.4.2"
 crashlytics = "2.9.9"
