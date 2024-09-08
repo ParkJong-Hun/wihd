@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.roborazziPlugin) apply false
     alias(libs.plugins.crashlyticsPlugin) apply false
     alias(libs.plugins.jetpackComposeCompilerPlugin) apply false
+    alias(libs.plugins.kotlinKoverPlugin) apply false
 }
 
 tasks.register("clean", Delete::class) {
