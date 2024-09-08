@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.wihd.firebase)
     alias(libs.plugins.wihd.detekt)
     alias(libs.plugins.wihd.serialization)
+    alias(libs.plugins.wihd.kover)
 }
 
 android {
@@ -55,4 +56,6 @@ dependencies {
     implementation(libs.jetpack.navigation.compose)
     implementation(libs.jetpack.compose.material3.windowsizeclass)
     implementation(libs.timber)
+
+    rootProject.subprojects.forEach { kover(it) }
 }
