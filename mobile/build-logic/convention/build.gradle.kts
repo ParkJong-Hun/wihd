@@ -67,5 +67,9 @@ gradlePlugin {
             id = "parkjonghun.whatishedoingwithandroid.mobile.convention.parcelize"
             implementationClass = "KotlinParcelizeConventionPlugin"
         }
+        register("kover") {
+            id = "parkjonghun.whatishedoingwithandroid.mobile.convention.kover"
+            implementationClass = "KoverConventionPlugin"
+        }
     }
 }
