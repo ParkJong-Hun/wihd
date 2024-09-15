@@ -3,7 +3,7 @@
 agp = "8.6.0"
 kotlin = "2.0.20"
 gms = "4.4.2"
-crashlytics = "2.9.9"
+crashlytics = "3.0.2"
 ksp = "2.0.20-1.0.25"
 jetbrain-compose = "1.6.11"
 dependencyguard = "0.5.0"
