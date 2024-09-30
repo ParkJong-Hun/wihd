@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.wihd.firebase)
     alias(libs.plugins.wihd.detekt)
     alias(libs.plugins.wihd.serialization)
+    alias(libs.plugins.wihd.kover)
 }
 
 android {
@@ -14,7 +15,7 @@ android {
     defaultConfig {
         applicationId = "co.kr.parkjonghun.whatishedoingwithandroid.mobile"
         versionCode = 1
-        versionName = "0.2.5"
+        versionName = "0.3.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -55,4 +56,6 @@ dependencies {
     implementation(libs.jetpack.navigation.compose)
     implementation(libs.jetpack.compose.material3.windowsizeclass)
     implementation(libs.timber)
+
+    rootProject.subprojects.forEach { kover(it) }
 }
